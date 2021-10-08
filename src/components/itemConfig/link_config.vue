@@ -1,8 +1,10 @@
 <template>
-    <div>
+    <div class="warp-box">
         <el-form>
             <el-form-item :label="configData.title">
-                <el-input v-model="configData.value"></el-input>
+                <el-input v-model="configData.value">
+                    <template slot="prepend">https://</template>
+                </el-input>
             </el-form-item>
         </el-form>
     </div>
@@ -31,9 +33,7 @@ export default {
     watch: {
         configObj:{
             handler:function(nval){
-               //this.defaultData = nval;
                this.configData = nval['content_setting'][this.configName];
-                console.log(nval)
             },
             deep:true,
         }
@@ -41,5 +41,7 @@ export default {
 }
 </script>
 <style scoped>
-
+.warp-box{
+        border-top: 1px solid #fefefe;
+    }
 </style>

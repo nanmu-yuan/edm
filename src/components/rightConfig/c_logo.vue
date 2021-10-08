@@ -17,7 +17,7 @@
 import toolConfig from "../itemConfig";
 import btnTYPE from '../commonBtn/type_btn.vue'
 export default {
-    name: "c_preheader",
+    name: "c_logo",
     components: {
         ...toolConfig,
         btnTYPE
@@ -39,7 +39,7 @@ export default {
             configObj: {},
             rToolCom: {
                 content_config: [
-                    {
+                     {
                         component: toolConfig.text_config,
                         configName: "text_config",
                     },
@@ -47,15 +47,19 @@ export default {
                         component: toolConfig.link_config,
                         configName: "link_config",
                     },
+                    {
+                        component: toolConfig.image_config,
+                        configName: "image_config",
+                    },
                 ],
                 style_config: [
                     {
-                        component: toolConfig.select_config,
-                        configName: "select_config",
-                    },
-                    {
                         component: toolConfig.bg_color_config,
                         configName: "bg_color_config",
+                    },
+                    {
+                        component: toolConfig.pd_position_config,
+                        configName: "pd_position_config",
                     },
                 ],
             },

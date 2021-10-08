@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="warp-box">
     <el-form>
       <el-form-item :label="configData.title">
         <el-select v-model="configData.value">
@@ -48,5 +48,7 @@ export default {
 }
 </script>
 <style scoped>
-
+.warp-box{
+        border-top: 1px solid #fefefe;
+    }
 </style>

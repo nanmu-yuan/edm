@@ -57,29 +57,7 @@ export default {
   computed: {
     ...mapState("adminConfig", ["defaultArray"]),
   },
-  watch: {
-    num: {
-      handler() {
-        //console.log(nval);
-      },
-      deep: true,
-    },
-    pageData: {
-      handler(nval) {
-        this.setConfig(nval);
-      },
-      deep: true,
-    },
-    defaultArray: {
-      handler() {
-        let data = this.$store.state.adminConfig.defaultArray[this.num];
-        this.setConfig(data);
-        console.log(data, 123456);
-      },
-      deep: true,
-    },
-  },
-  data() {
+   data() {
     return {
       defaultConfig: {
         name: "preheader",
@@ -147,11 +125,32 @@ export default {
       },
     };
   },
+  watch: {
+    num: {
+      handler() {
+        //console.log(nval);
+      },
+      deep: true,
+    },
+    pageData: {
+      handler(nval) {
+        this.setConfig(nval);
+      },
+      deep: true,
+    },
+    defaultArray: {
+      handler() {
+        let data = this.$store.state.adminConfig.defaultArray[this.num];
+        this.setConfig(data);
+      },
+      deep: true,
+    },
+  },
   methods: {
     setConfig(data) {
       if (data) {
         this.titleText = data.content_setting.text_config.value;
-        this.linkText = data.content_setting.link_config.value;
+        this.linkText = 'https://'+ data.content_setting.link_config.value;
         this.titleStyle["textAlign"] = data.style_setting.select_config.value;
         this.bgColor["background"] = data.style_setting.bg_color_config.bgColor;
         this.bgColor['backgroundImage'] = `url(${data.style_setting.bg_color_config.imageUrl})`;
