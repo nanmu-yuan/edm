@@ -8,104 +8,45 @@
     <div class="t-body-box">
       <el-row>
         <el-col :span="6" style="z-index: 30000; position: relative">
-          <draggable
-            class="dragArea list-group"
-            v-model="leftMenu"
-            animation="300"
-            :group="{ name: 'people', pull: 'clone', put: 'false' }"
-            :clone="cloneDom"
-            :sort="false"
-            style="display: flex"
-            @change="log"
-          >
-            <div
-              class="leftMenu-item"
-              v-for="(element, index) of leftMenu"
-              :key="index"
-              @click="addDom(element, index)"
-            >
+          <draggable class="dragArea list-group" v-model="leftMenu" animation="300" :group="{ name: 'people', pull: 'clone', put: 'false' }" :clone="cloneDom" :sort="false" style="display: flex" @change="log">
+            <div class="leftMenu-item" v-for="(element, index) of leftMenu" :key="index" @click="addDom(element, index)">
               <div>{{ element.cname }}</div>
             </div>
           </draggable>
         </el-col>
         <el-col :span="10" style="z-index: 30000; position: relative">
           <div style="margin-top: 20px">
-            <table
-              border="0"
-              cellspacing="0"
-              cellpadding="0"
-              width="100%"
-              style="background-color: #f2f2f2"
-              bgcolor="#f2f2f2"
-            >
+            <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color: #f2f2f2" bgcolor="#f2f2f2">
               <tbody>
                 <tr>
                   <td>
-                    <table
-                      border="0"
-                      cellpadding="0"
-                      cellspacing="0"
-                      width="100%"
-                      style="min-width: 290px"
-                    >
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 290px">
                       <tbody>
                         <tr>
                           <td>
-                            <table
-                              border="0"
-                              cellspacing="0"
-                              cellpadding="0"
-                              width="640px"
-                              align="center"
-                              class="mobile-wide"
-                              style="width: 640px; margin: 0 auto"
-                            >
+                            <table border="0" cellspacing="0" cellpadding="0" width="640px" align="center" class="mobile-wide" style="width: 640px; margin: 0 auto">
                               <tbody>
                                 <tr>
-                                  <td
-                                    bgcolor="#ffffff"
-                                    style="background-color: #ffffff"
-                                    class="zone zone-content ui-sortable"
-                                  >
-                                    <draggable
-                                      group="people"
-                                      ghost-class="ghost"
-                                      class="dragArea list-group"
-                                      v-model="middlePage"
-                                      @add="add"
-                                      @change="log"
-                                    >
+                                  <td bgcolor="#ffffff" style="background-color: #ffffff" class="zone zone-content ui-sortable">
+                                    <draggable group="people" ghost-class="ghost" class="dragArea list-group" v-model="middlePage" @add="add" @change="log">
                                       <transition-group>
-                                        <div
-                                          v-for="(item, index) of middlePage"
-                                          :key="index"
-                                          @click="bingConfig(item, index)"
-                                          class="content-block-wrapper"
-                                        >
+                                        <div v-for="(item, index) of middlePage" :key="index" @click="bingConfig(item, index)" class="content-block-wrapper">
                                           <div class="content-block-template">
-                                            <component
-                                              :is="item.name"
-                                              :num="item.num"
-                                              :index="index"
-                                            ></component>
+                                            <component :is="item.name" :num="item.num" :index="index"></component>
                                           </div>
                                           <div class="content-block-overlay">
-                                            <div
-                                              class="overlay-background"
-                                            ></div>
-                                            <div
-                                              :class="[
-                                                'overlay-edited',
-                                                activeIndex == index
-                                                  ? 'show'
-                                                  : 'hidden',
-                                              ]"
-                                            >
-                                              <div
-                                                class="
-                                                  overlay-edited-background
-                                                "
-                                              ></div>
+                                            <div class="overlay-background"></div>
+                                            <div :class="['overlay-edited',activeIndex == index? 'show': 'hidden',]">
+                                              <div class="overlay-edited-background"></div>
+                                            </div>
+                                            <div class="overlay-actions">
+                                              <div class="overlay-actions-middle">
+                                                <div class="overlay-actions-middle-wrapper clearfix">
+                                                  <div class="action-handle remove-handle" title="Remove" @click.stop = "remove(item,index)">
+                                                    <i class="el-icon-delete" style="font-size:24px"></i>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
@@ -127,20 +68,9 @@
         </el-col>
         <el-col :span="8">
           <div style="width: 100%"></div>
-          <el-drawer
-            :visible.sync="drawer"
-            :direction="direction"
-            :modal="false"
-            :wrapperClosable="false"
-            :modal-append-to-body="false"
-          >
+          <el-drawer :visible.sync="drawer" :direction="direction" :modal="false" :wrapperClosable="false" :modal-append-to-body="false">
             <div v-for="(item, index) of rightConfig" :key="index">
-              <component
-                :is="item.configName"
-                :num="item.num"
-                :index="index"
-                :activeIndex="activeIndex"
-              ></component>
+              <component :is="item.configName" :num="item.num" :index="index" :activeIndex="activeIndex"></component>
             </div>
           </el-drawer>
         </el-col>
@@ -182,8 +112,14 @@ export default {
         ...data,
       };
     },
+    remove(el,index){
+        this.rightConfig.splice(0,1);
+        this.middlePage.splice(index,1);
+        this.$store.commit("adminConfig/REMOVEARR",el);
+        console.log(this.activeIndex)
+          this.drawer = false;
+    },
     add() {
-      console.log(789);
       this.togoDrawer();
     },
     log(mData) {
@@ -208,7 +144,7 @@ export default {
         this.togoDrawer();
       }
     },
-    configLeftMenu() {},
+    configLeftMenu() { },
     //中间组件绑定数据
     bingConfig(data, index) {
       this.rightConfig = [];
@@ -364,6 +300,9 @@ export default {
 .content-block-overlay:hover .overlay-background {
   display: block;
 }
+.content-block-overlay:hover .overlay-actions {
+  display: block;
+}
 .content-block-wrapper {
   position: relative;
 }
@@ -397,5 +336,29 @@ export default {
   background: #d7f0da;
   width: 640px;
   height: 50px;
+}
+.overlay-actions{
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.overlay-actions-middle {
+    float: right;
+    margin-right: 70px;
+    display: inline-block;
+    margin-top: -5px;
+}
+.action-handle {
+    width: 40px;
+    height: 40px;
+    background: url(../assets/images/overlay-action-handle.png) no-repeat;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    float: left;
+    margin: 0 2px;
+    cursor: pointer;
 }
 </style>

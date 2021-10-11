@@ -52,7 +52,7 @@ export default {
                         configName: "image_config",
                     },
                 ],
-                style_config: [
+                style_config: [ 
                     {
                         component: toolConfig.bg_color_config,
                         configName: "bg_color_config",
@@ -68,9 +68,9 @@ export default {
     watch: {
         num: {
             handler: function (nval) {
+                console.log(nval,45645646)
                 // 记录每次添加组件时所保留的默认配置信息
-                this.configObj = JSON.parse(
-                    JSON.stringify(this.$store.state.adminConfig.defaultArray[nval])
+                this.configObj = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[nval])
                 );
             },
             deep: true,
@@ -93,9 +93,11 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            this.configObj = JSON.parse(
+            if(this.$store.state.adminConfig.defaultArray[this.num]){
+                 this.configObj = JSON.parse(
                 JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num])
             );
+            }
         });
     },
 };

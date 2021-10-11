@@ -89,9 +89,11 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            this.configObj = JSON.parse(
+            if(this.$store.state.adminConfig.defaultArray[this.num]){
+                 this.configObj = JSON.parse(
                 JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num])
             );
+            }
         });
     },
 };

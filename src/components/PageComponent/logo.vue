@@ -25,7 +25,7 @@
                                         </span>
                                       </span>
                                     </span>
-                                    <img  v-else alt="" border="0" v-lazy="imgaUrl" width="200" height="70" />
+                                    <img v-else alt="" border="0" v-lazy="imgaUrl" width="200" height="70" />
                                   </a>
                                 </td>
                               </tr>
@@ -153,8 +153,9 @@ export default {
   },
   watch: {
     num: {
-      handler() {
-        //console.log(nval);
+      handler(nval) {
+        let data = this.$store.state.adminConfig.defaultArray[this.num];
+        this.setConfig(data);
       },
       deep: true,
     },
@@ -165,7 +166,7 @@ export default {
       deep: true,
     },
     defaultArray: {
-      handler() {
+      handler(nval) {
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
       },
@@ -187,39 +188,38 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.pageData =
-        this.$store.state.adminConfig.defaultArray[this.num];
+      this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
       this.setConfig(this.pageData);
-    });
+    },20);
   },
 };
 </script>
 <style scoped>
 .image-placeholder {
-    display: inline-block;
+  display: inline-block;
 }
 .image-placeholder .placeholder-style {
-    background-color: #f2f2f2;
-    color: #b6b6b6;
-    font-family: Arial,sans-serif;
-    text-align: center;
-    font-size: 12px;
-    position: relative;
-    min-width: 40px;
-    min-height: 40px;
-    display: inline-block;
-    vertical-align: top;
+  background-color: #f2f2f2;
+  color: #b6b6b6;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  font-size: 12px;
+  position: relative;
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-block;
+  vertical-align: top;
 }
 .placeholder-inner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    -webkit-transform: translate(-50%,-50%);
-    margin: auto;
-    width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  margin: auto;
+  width: 100%;
 }
 .image-placeholder .placeholder-img-small {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 </style>

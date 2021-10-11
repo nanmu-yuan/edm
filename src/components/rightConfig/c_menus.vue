@@ -17,7 +17,7 @@
 import toolConfig from "../itemConfig";
 import btnTYPE from '../commonBtn/type_btn.vue'
 export default {
-    name: "c_preheader",
+    name: "c_menu",
     components: {
         ...toolConfig,
         btnTYPE
@@ -39,23 +39,19 @@ export default {
             configObj: {},
             rToolCom: {
                 content_config: [
-                    {
-                        component: toolConfig.text_config,
-                        configName: "text_config",
-                    },
-                    {
-                        component: toolConfig.link_config,
-                        configName: "link_config",
-                    },
+                     {
+                        component: toolConfig.add_item_config,
+                        configName: "add_item_config",
+                    }
                 ],
-                style_config: [
-                    {
-                        component: toolConfig.select_config,
-                        configName: "select_config",
-                    },
+                style_config: [ 
                     {
                         component: toolConfig.bg_color_config,
                         configName: "bg_color_config",
+                    },
+                    {
+                        component: toolConfig.pd_position_config,
+                        configName: "pd_position_config",
                     },
                 ],
             },
@@ -64,9 +60,9 @@ export default {
     watch: {
         num: {
             handler: function (nval) {
+                console.log(nval,45645646)
                 // 记录每次添加组件时所保留的默认配置信息
-                this.configObj = JSON.parse(
-                    JSON.stringify(this.$store.state.adminConfig.defaultArray[nval])
+                this.configObj = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[nval])
                 );
             },
             deep: true,
@@ -88,7 +84,7 @@ export default {
         }
     },
     mounted() {
-       this.$nextTick(() => {
+        this.$nextTick(() => {
             if(this.$store.state.adminConfig.defaultArray[this.num]){
                  this.configObj = JSON.parse(
                 JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num])

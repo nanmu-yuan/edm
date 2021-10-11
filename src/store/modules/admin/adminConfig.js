@@ -8,6 +8,10 @@ export default {
         ADDARRAY (state,data){
            state.defaultArray[data.num] = data.val
         },
+        REMOVEARR(state,data){
+            console.log(state.defaultArray,data)
+            delete state.defaultArray[data.num]
+        },
         UPDATEARRAY (state,data){
             state.defaultArray[data.num] = data.val;
             state.defaultArray = Object.assign({},state.defaultArray)
