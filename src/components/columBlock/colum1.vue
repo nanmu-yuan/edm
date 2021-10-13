@@ -1,0 +1,187 @@
+<template>
+  <div>
+    <div class="cbvariant cbvariant-1_column" v-for="(item,index) of productList" :key="index">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <td style="">
+              <div class="mobile-product-listing-table" style="display: table; width: 100%;">
+                <div class="mobile-product-listing-row" style="display: table-row;">
+                  <!--[if (mso)|(IE)]><table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td style="vertical-align: top; margin: 0 auto; width: 300px;" width="300"><![endif]-->
+                  <table border="0" cellpadding="0" cellspacing="0" width="290" style="width: 290px;" class="mobile-wide">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table border="0" cellpadding="0" cellspacing="0" align="center" style=" margin: 0 auto;">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td style="">
+                                          <table border="0" cellpadding="0" cellspacing="0" width="" style="">
+                                            <tbody>
+                                              <tr>
+                                                <td class="mobile-product-listing-2-image-cell" style="font-size: 0; line-height: 0; text-align: center;">
+                                                  <a target="_blank" href="">
+                                                    <span class="image-placeholder" style="">
+                                                      <span class="placeholder-style" style="width: 268px; height: 270px;">
+                                                        
+                                                        <span class="placeholder-inner">
+                                                          <img :src="item.productImg" alt="" width="100">
+                                                        </span>
+                                                      </span>
+                                                    </span>
+													<!-- <img :src="item.productImg" width='268' height='270' alt=""> -->
+                                                  </a>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!--[if (mso)|(IE)]></td><td style="width: 20px; vertical-align: top;" width="20"><![endif]-->
+                  <div class="mobile-product-listing-2-cell mobile-product-listing-2-separator" style="display: table-cell; width: 20px; vertical-align: top;"></div>
+                  <!--[if (mso)|(IE)]></td><td style="vertical-align: middle; width: 300px;" width="300"><![endif]-->
+                  <div class="mobile-container mobile-block" style="display: table-cell; vertical-align: middle; width: 300px;">
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td style="padding-top: 15px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-align:center;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-decoration:none;" href=""><span class="webfont-fallback-1">{{item.productName}}</span></a></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <!-- <tr>
+																	<td class="webfont-fallback-1" style="color:#999999;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:157%;padding-top:15px;text-align:center;text-decoration:none;">
+																		<p data-inner-style="description_paragraph" data-title="Description paragraph" data-uneditable-style="margin" style="margin:0;"><a data-inner-style="description_link" data-style-queue="5" data-title="Description link" style="color:#999999;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:157%;text-decoration:underline;" target="_blank">Enter a text</a>. Use the tools from the toolbox to format it according to your preferences.</p>
+																	</td>
+																</tr> -->
+                                <tr>
+                                  <td style="padding-top: 15px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td style="text-align:center;"><span class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;text-align:center;text-decoration:none;">{{item.price}}</span><span style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;"> / </span><span class="webfont-fallback-1" style="color:#999999;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:106%;text-decoration:line-through;">{{item.marketPrice}}</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding-top: 15px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
+                                      <tbody>
+                                        <tr>
+                                          <td class="webfont-fallback-1" style="border:2px solid #cc3366;border-radius:0px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding-bottom:7px;padding-left:20px;padding-right:20px;padding-top:7px;text-align:center;">
+                                            <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
+                                            <!--[if !mso]><!-->
+                                            <div style="line-height: 17px; text-align: center;">
+                                              <!--<![endif]--><a class="webfont-fallback-1" target="_blank" style="line-height: 17px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;text-align:center;text-decoration:none;" href=""><span class="webfont-fallback-1" style="line-height: 17px;">SHOP NOW</span></a>
+                                              <!--[if !mso]><!-->
+                                            </div>
+                                            <!--<![endif]-->
+                                            <!--[if (mso)|(IE) ]></td></tr></table><![endif]-->
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: 'colum1',
+  props: {
+    list: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      isData: false,
+      demoImg: require('../../assets/images/placeholder-img200.png')
+    };
+  },
+  computed: {
+    productList() {
+      if (this.list.length > 0) {
+        return this.list;
+      } else {
+        return [
+          {
+            productName: 'for example product info  list',
+            productUrl: 'https://www.berrylook.com/en/Products/short-high-collar-brief-plain-long-sleeve-t-shirt-232100.html',
+            productImg: this.demoImg,
+            price: '$20.74',
+            marketPrice: '$51.85',
+          },
+        ];
+      }
+    },
+  },
+};
+</script>
+<style scoped>
+.image-placeholder{
+	display: inline-block;
+}
+.placeholder-style{
+	background-color: #f2f2f2;
+    color: #b6b6b6;
+    font-family: Arial,sans-serif;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-block;
+    vertical-align: top;
+}
+.placeholder-inner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    margin: auto;
+    width: 100%;
+}
+</style>

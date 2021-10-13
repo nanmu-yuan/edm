@@ -36,7 +36,6 @@ export default {
             handler:function(nval){
                //this.defaultData = nval;
                this.configData = nval['style_setting'][this.configName];
-               console.log(this.configData );
             },
             deep:true,
         }

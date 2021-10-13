@@ -15,55 +15,58 @@
           </draggable>
         </el-col>
         <el-col :span="10" style="z-index: 30000; position: relative">
-          <div style="margin-top: 20px">
-            <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color: #f2f2f2" bgcolor="#f2f2f2">
-              <tbody>
-                <tr>
-                  <td>
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 290px">
-                      <tbody>
-                        <tr>
-                          <td>
-                            <table border="0" cellspacing="0" cellpadding="0" width="640px" align="center" class="mobile-wide" style="width: 640px; margin: 0 auto">
-                              <tbody>
-                                <tr>
-                                  <td bgcolor="#ffffff" style="background-color: #ffffff" class="zone zone-content ui-sortable">
-                                    <draggable group="people" ghost-class="ghost" class="dragArea list-group" v-model="middlePage" @add="add" @change="log">
-                                      <transition-group>
-                                        <div v-for="(item, index) of middlePage" :key="index" @click="bingConfig(item, index)" class="content-block-wrapper">
-                                          <div class="content-block-template">
-                                            <component :is="item.name" :num="item.num" :index="index"></component>
-                                          </div>
-                                          <div class="content-block-overlay">
-                                            <div class="overlay-background"></div>
-                                            <div :class="['overlay-edited',activeIndex == index? 'show': 'hidden',]">
-                                              <div class="overlay-edited-background"></div>
+          <div class="warp-scroll-hidden">
+            <div class="mid-content-box">
+              <el-backtop target=".mid-content-box"></el-backtop>
+              <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color: #f2f2f2" bgcolor="#f2f2f2">
+                <tbody>
+                  <tr>
+                    <td>
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 290px">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <table border="0" cellspacing="0" cellpadding="0" width="640px" align="center" class="mobile-wide" style="width: 640px; margin: 0 auto">
+                                <tbody>
+                                  <tr>
+                                    <td bgcolor="#ffffff" style="background-color: #ffffff" class="zone zone-content ui-sortable">
+                                      <draggable group="people" ghost-class="ghost" class="dragArea list-group" v-model="middlePage" @add="add" @change="log">
+                                        <transition-group>
+                                          <div v-for="(item, index) of middlePage" :key="index" @click="bingConfig(item, index)" class="content-block-wrapper">
+                                            <div class="content-block-template">
+                                              <component :is="item.name" :num="item.num" :index="index"></component>
                                             </div>
-                                            <div class="overlay-actions">
-                                              <div class="overlay-actions-middle">
-                                                <div class="overlay-actions-middle-wrapper clearfix">
-                                                  <div class="action-handle remove-handle" title="Remove" @click.stop = "remove(item,index)">
-                                                    <i class="el-icon-delete" style="font-size:24px"></i>
+                                            <div class="content-block-overlay">
+                                              <div class="overlay-background"></div>
+                                              <div :class="['overlay-edited',activeIndex == index? 'show': 'hidden',]">
+                                                <div class="overlay-edited-background"></div>
+                                              </div>
+                                              <div class="overlay-actions">
+                                                <div class="overlay-actions-middle">
+                                                  <div class="overlay-actions-middle-wrapper clearfix">
+                                                    <div class="action-handle remove-handle" title="Remove" @click.stop="remove(item,index)">
+                                                      <i class="el-icon-delete" style="font-size:24px"></i>
+                                                    </div>
                                                   </div>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      </transition-group>
-                                    </draggable>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                                        </transition-group>
+                                      </draggable>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </el-col>
         <el-col :span="8">
@@ -112,12 +115,12 @@ export default {
         ...data,
       };
     },
-    remove(el,index){
-        this.rightConfig.splice(0,1);
-        this.middlePage.splice(index,1);
-        this.$store.commit("adminConfig/REMOVEARR",el);
-        console.log(this.activeIndex)
-          this.drawer = false;
+    remove(el, index) {
+      this.rightConfig.splice(0, 1);
+      this.middlePage.splice(index, 1);
+      this.$store.commit("adminConfig/REMOVEARR", el);
+      console.log(this.activeIndex)
+      this.drawer = false;
     },
     add() {
       this.togoDrawer();
@@ -183,7 +186,6 @@ export default {
         val: dom.data().defaultConfig,
       });
       this.togoDrawer();
-      console.log(this.$store.state.adminConfig.defaultArray);
     },
     // 获取默认数据
     getDefaultConfig() {
@@ -275,6 +277,27 @@ export default {
 };
 </script>
 <style scoped>
+.t-header-box {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.warp-scroll-hidden {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+}
+.t-body-box {
+  margin-top: 50px;
+}
+.mid-content-box {
+  margin-top: 30px;
+  overflow-y: scroll;
+  height: 100%;
+  position: relative;
+  right: -18px;
+}
 .leftMenu-item {
   width: 100px;
   height: 30px;
@@ -337,28 +360,28 @@ export default {
   width: 640px;
   height: 50px;
 }
-.overlay-actions{
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: none;
+.overlay-actions {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
 }
 .overlay-actions-middle {
-    float: right;
-    margin-right: 70px;
-    display: inline-block;
-    margin-top: -5px;
+  float: right;
+  margin-right: 70px;
+  display: inline-block;
+  margin-top: -5px;
 }
 .action-handle {
-    width: 40px;
-    height: 40px;
-    background: url(../assets/images/overlay-action-handle.png) no-repeat;
-    line-height: 40px;
-    text-align: center;
-    display: block;
-    float: left;
-    margin: 0 2px;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background: url(../assets/images/overlay-action-handle.png) no-repeat;
+  line-height: 40px;
+  text-align: center;
+  display: block;
+  float: left;
+  margin: 0 2px;
+  cursor: pointer;
 }
 </style>

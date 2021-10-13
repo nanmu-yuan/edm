@@ -21,7 +21,7 @@
       </el-collapse>
     </div>
     <div class="add-btn-box">
-      <div @click="addItem">add</div>
+      <el-button  @click="addItem" :disabled="addBtnDisable">add</el-button>
     </div>
   </div>
 </template>
@@ -35,37 +35,50 @@ export default {
     configName: {
       type: String,
     },
+    num:{
+      type:String
+    }
   },
   data() {
     return {
       defaultData: {},
       configData: {},
       copyItemData:{},
-      m1: ''
+      addBtnDisable:false
     };
   },
   methods:{
       addItem(){
-          this.configData.linkArr.push(JSON.parse(JSON.stringify(this.copyItemData[0])))
+          if(this.configData.linkArr.length>=4){
+            return
+          }
+           this.configData.linkArr.push(JSON.parse(JSON.stringify(this.copyItemData)))
       },
       removeItem(data,index){
-          console.log(data,index)
-          this.configData.linkArr.splice(index,1)
+        if(this.configData.linkArr.length<=1){
+          return
+        }
+          this.configData.linkArr.splice(index,1);
       }
   },
   created() {
     this.defaultData = this.configObj;
-    console.log(this.configObj,99999)
-    //this.copyItemData = JSON.parse(JSON.stringify(this.defaultData["content_setting"][this.configName]['linkArr']));
+    this.copyItemData =JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]["content_setting"]['add_item_config'].linkArr[0]));
+    console.log(this.copyItemData);
   },
   watch: {
     configObj: {
       handler: function (nval) {
         this.configData = nval["content_setting"][this.configName];
+         if(this.configData.linkArr.length>=4){
+           this.addBtnDisable = true
+         }else{
+            this.addBtnDisable = false
+         }
       },
       deep: true,
     },
-  },
+  }
 };
 </script>
 <style scoped>
@@ -77,6 +90,9 @@ export default {
 }
 ::v-deep .el-form-item {
   margin-bottom: 0px !important;
+}
+::v-deep .el-button{
+  width: 100% !important;
 }
 .add-btn-box {
   text-align: center;

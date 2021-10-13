@@ -3,12 +3,12 @@
         <btnTYPE @typeData="typeData"></btnTYPE>
         <div class="content-warp" v-show="type==0">
             <div v-for="(item, index) of rToolCom.content_config" :key="index">
-                <component :is="item.component.name" :configObj="configObj" :num="num" :configName="item.configName"></component>
+                <component :is="item.component.name" :configObj="configObj" :configName="item.configName"></component>
             </div>
         </div>
         <div class="style-warp" v-show="type==1">
             <div v-for="(item, index) of rToolCom.style_config" :key="index">
-                <component :is="item.component.name" :configObj="configObj" :num="num" :configName="item.configName"></component>
+                <component :is="item.component.name" :configObj="configObj" :configName="item.configName"></component>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
 import toolConfig from "../itemConfig";
 import btnTYPE from '../commonBtn/type_btn.vue'
 export default {
-    name: "c_menu",
+    name: "c_product",
     components: {
         ...toolConfig,
         btnTYPE
@@ -40,18 +40,14 @@ export default {
             rToolCom: {
                 content_config: [
                      {
-                        component: toolConfig.add_item_config,
-                        configName: "add_item_config",
+                        component: toolConfig.text_config,
+                        configName: "text_config",
                     }
                 ],
                 style_config: [ 
                     {
-                        component: toolConfig.bg_color_config,
-                        configName: "bg_color_config",
-                    },
-                    {
-                        component: toolConfig.pd_position_config,
-                        configName: "pd_position_config",
+                        component: toolConfig.select_config,
+                        configName: "select_config",
                     },
                 ],
             },
@@ -60,6 +56,7 @@ export default {
     watch: {
         num: {
             handler: function (nval) {
+                console.log(nval,45645646)
                 // 记录每次添加组件时所保留的默认配置信息
                 this.configObj = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[nval])
                 );

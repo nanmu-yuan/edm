@@ -20,7 +20,7 @@
                                       <span class="placeholder-style" style="width: 200px; height: 50px;">
                                         <span class="placeholder-inner">
                                           <span class="placeholder-inner placeholder-img-small">
-                                            <img src="../../assets/images/placeholder-img50.png" width="25">
+                                            <img src="" width="25">
                                           </span>
                                         </span>
                                       </span>

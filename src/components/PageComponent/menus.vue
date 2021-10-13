@@ -10,18 +10,15 @@
                   <td style="border-bottom:0 solid #eaeaea;border-top:2px solid #eaeaea;">
                     <div style="display: table; margin: 0 auto;" class="mobile-block mobile-container">
                       <div style="display: table-row;">
-                        <div style="display: table-cell;" class="mobile-block mobile-container">
+                        <div v-for="(item,index) of titleAndLink" :key="index" style="display: table-cell;" class="mobile-block mobile-container">
                           <table border="0" cellspacing="0" cellpadding="0" width="100%" style="text-align: center;">
                             <tbody>
                               <tr>
-                                <td class="mobile-menu-
-                                
-                
-                                item-cell" style="padding-bottom:13px;padding-top:13px;; padding-left: 10px; padding-right: 10px;">
+                                <td  style="padding-bottom:13px;padding-top:13px;; padding-left: 10px; padding-right: 10px;">
                                   <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                     <tbody>
                                       <tr>
-                                        <td class="mobile-text-center webfont-fallback-1" style="color:#656565;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:114%;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#656565;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:114%;text-decoration:none;" href=""><span>LINK</span></a></td>
+                                        <td class="mobile-text-center webfont-fallback-1" style="color:#656565;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:114%;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#656565;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:114%;text-decoration:none;" :href="item.linkItem.value"><span>{{item.textItem.value}}</span></a></td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -110,8 +107,28 @@ export default {
         },
       },
       pageData: {},
-      titleText: "",
-      linkText: "",
+      titleAndLink:[
+              {
+                textItem:{
+                  label:'TEXT',
+                  value:'LINK'
+                },
+                linkItem:{
+                  label:'LINK',
+                  value:'LINK'
+                }
+              },
+              {
+                textItem:{
+                  label:'TEXT',
+                  value:'LINK'
+                },
+                linkItem:{
+                  label:'LINK',
+                  value:'LINK'
+                }
+              }
+            ],
       imgaUrl: "",
       bgStyle: {
         background: ''
@@ -149,6 +166,8 @@ export default {
   methods: {
     setConfig(data) {
       if (data) {
+        console.log(data,456456);
+        this.titleAndLink = data.content_setting.add_item_config.linkArr
         // this.titleText = data.content_setting.text_config.value;
         // this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
         // this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
