@@ -3,12 +3,12 @@
         <btnTYPE @typeData="typeData"></btnTYPE>
         <div class="content-warp" v-show="type==0">
             <div v-for="(item, index) of rToolCom.content_config" :key="index">
-                <component :is="item.component.name" :configObj="configObj" :configName="item.configName"></component>
+                <component :is="item.component.name" :configObj="configObj" :num="num" :configName="item.configName"></component>
             </div>
         </div>
         <div class="style-warp" v-show="type==1">
             <div v-for="(item, index) of rToolCom.style_config" :key="index">
-                <component :is="item.component.name" :configObj="configObj" :configName="item.configName"></component>
+                <component :is="item.component.name" :configObj="configObj" :num="num" :configName="item.configName"></component>
             </div>
         </div>
     </div>
@@ -40,8 +40,8 @@ export default {
             rToolCom: {
                 content_config: [
                      {
-                        component: toolConfig.text_config,
-                        configName: "text_config",
+                        component: toolConfig.spu_config,
+                        configName: "spu_config",
                     }
                 ],
                 style_config: [ 

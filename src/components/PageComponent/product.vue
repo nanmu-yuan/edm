@@ -9,16 +9,16 @@
                 <tr>
                   <td style="padding-bottom:20px;padding-left:20px;padding-right:20px;padding-top:20px;">
                    <div v-if="rowNum==1">
-                       <colum1></colum1>
+                       <colum1 :list="productList"></colum1>
                    </div>
                    <div v-else-if="rowNum==2">
-                        <colum2></colum2>
+                        <colum2 :list="productList"></colum2>
                    </div>
                    <div v-else-if="rowNum==3">
-                        <colum3></colum3>
+                        <colum3 :list="productList"></colum3>
                    </div>
                    <div v-else-if="rowNum==4">
-                        <colum4></colum4>
+                        <colum4 :list="productList"></colum4>
                    </div>
                   </td>
                 </tr>
@@ -31,6 +31,7 @@
   </div>
 </template>
 <script>
+import {EventBus} from '../../util/eventBus'
 import { mapState } from "vuex";
 import colums from '../columBlock'
 export default {
@@ -56,19 +57,12 @@ export default {
       defaultConfig: {
         name: "product",
         timestamp: this.num,
+        list:[],
         content_setting: {
-          text_config: {
-            title: "TEXT",
-            value: "Enter a title",
-          },
-          link_config: {
-            title: "LINK",
-            value: "link",
-          },
-          image_config: {
-            title: "IMAGE",
-            value: "",
-          },
+          spu_config: {
+            title: "SPU",
+            value: "Please input spu",
+          }
         },
         style_setting: {
           bg_color_config: {
@@ -131,7 +125,8 @@ export default {
         paddingBottom: '',
         paddingLeft: '',
         paddingRight: '',
-      }
+      },
+      productList:[]
     };
   },
   watch: {
@@ -151,6 +146,7 @@ export default {
     defaultArray: {
       handler(nval) {
         let data = this.$store.state.adminConfig.defaultArray[this.num];
+        console.log(this.$store.state.adminConfig.defaultArray);
         this.setConfig(data);
       },
       deep: true,
@@ -173,6 +169,16 @@ export default {
       this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
       this.setConfig(this.pageData);
     }, 20);
+    EventBus.$on('message',data=>{
+        if(data.time == this.num){
+            this.productList = data.list;
+            this.defaultConfig.list = data.list
+            this.$store.commit("adminConfig/UPDATEARRAY", {
+                    num: this.num,
+                    val: this.defaultConfig,
+                });
+        }
+    })
   },
 };
 </script>

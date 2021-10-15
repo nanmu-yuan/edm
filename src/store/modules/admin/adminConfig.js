@@ -38,6 +38,7 @@ export default {
                 newObj[sortArr[i].timestamp] = sortArr[i]
             }
             state.defaultArray = newObj;
+            console.log(state.defaultArray)
         }
     },
     actions: {

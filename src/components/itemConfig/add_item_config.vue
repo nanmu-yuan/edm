@@ -64,7 +64,6 @@ export default {
   created() {
     this.defaultData = this.configObj;
     this.copyItemData =JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]["content_setting"]['add_item_config'].linkArr[0]));
-    console.log(this.copyItemData);
   },
   watch: {
     configObj: {

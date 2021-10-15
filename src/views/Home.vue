@@ -139,6 +139,7 @@ export default {
       }
       if (mData.moved) {
         let data = mData.moved.element;
+        console.log('move')
         this.$store.commit("adminConfig/DEFAULTARRAYSORT", mData.moved);
         this.rightConfig = [];
         this.activeIndex = mData.moved.newIndex;

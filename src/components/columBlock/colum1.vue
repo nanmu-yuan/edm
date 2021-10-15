@@ -25,7 +25,7 @@
                                               <tr>
                                                 <td class="mobile-product-listing-2-image-cell" style="font-size: 0; line-height: 0; text-align: center;">
                                                   <a target="_blank" href="">
-                                                    <span class="image-placeholder" style="">
+                                                    <span v-if="item.productImg" class="image-placeholder" style="">
                                                       <span class="placeholder-style" style="width: 268px; height: 270px;">
                                                         
                                                         <span class="placeholder-inner">
@@ -33,7 +33,7 @@
                                                         </span>
                                                       </span>
                                                     </span>
-													<!-- <img :src="item.productImg" width='268' height='270' alt=""> -->
+													<img v-else :src="item.img" width='268' height='270' alt="">
                                                   </a>
                                                 </td>
                                               </tr>

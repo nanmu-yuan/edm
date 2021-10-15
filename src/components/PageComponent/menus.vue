@@ -166,7 +166,6 @@ export default {
   methods: {
     setConfig(data) {
       if (data) {
-        console.log(data,456456);
         this.titleAndLink = data.content_setting.add_item_config.linkArr
         // this.titleText = data.content_setting.text_config.value;
         // this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
