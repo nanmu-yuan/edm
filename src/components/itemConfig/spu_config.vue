@@ -11,7 +11,6 @@
   </div>
 </template>
 <script>
-import {EventBus} from '../../util/eventBus'
 export default {
   name: 'spu_config',
   props: {
@@ -64,12 +63,13 @@ export default {
         promiseList.push(this.get(url, spus[i]));
       }
       this.promiseAllarr(promiseList).then(res => {
-        this.originListData = {
-            list:this.dataOptimization(res),
-            time:this.number
-        };
-        EventBus.$emit('message',this.originListData);
-        console.log(this.originListData)
+        this.originListData = this.dataOptimization(res);
+        console.log( this.originListData);
+        this.$store.commit('adminConfig/UPDATEPRODUCTLIST',{
+          num:this.num,
+          list:this.originListData
+        })
+      //this.configData = this.originListData;
       });
     },
     promiseAllarr(arr) {

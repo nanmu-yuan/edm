@@ -15,25 +15,24 @@
                           <table border="0" cellpadding="0" cellspacing="0" align="center" style=" margin: 0 auto;">
                             <tbody>
                               <tr>
-                                <td>
+                                <td style="border:1px solid #666666;">
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tbody>
                                       <tr>
-                                        <td style="">
+                                        <td style="padding:10px">
                                           <table border="0" cellpadding="0" cellspacing="0" width="" style="">
                                             <tbody>
                                               <tr>
                                                 <td class="mobile-product-listing-2-image-cell" style="font-size: 0; line-height: 0; text-align: center;">
                                                   <a target="_blank" href="">
-                                                    <span v-if="item.productImg" class="image-placeholder" style="">
+                                                    <img  v-if="item.img" :src="item.img" width='268' height='270' alt="">
+                                                    <span v-else class="image-placeholder" style="">
                                                       <span class="placeholder-style" style="width: 268px; height: 270px;">
-                                                        
                                                         <span class="placeholder-inner">
-                                                          <img :src="item.productImg" alt="" width="100">
+                                                         <img class="placeholder-img-medium" src="../../assets/images/placeholder-img200.png" width="100">
                                                         </span>
                                                       </span>
                                                     </span>
-													<img v-else :src="item.img" width='268' height='270' alt="">
                                                   </a>
                                                 </td>
                                               </tr>

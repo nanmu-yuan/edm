@@ -26,13 +26,11 @@
 																							<tbody>
 																								<tr>
 																									<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-																											<img width="100%" :src="item[0] && item[0].productImg" alt="">
-																											<span class="image-placeholder" style="" v-if="list.length == 0">
+																											<img width="100%" v-if="item[0] && item[0].img" :src="item[0] && item[0].img" alt="">
+																											<span v-else class="image-placeholder" style="">
 																												<span class="placeholder-style" style="width: 164px; height: 166px;">
 																													<span class="placeholder-inner">
-
-																														<img class="placeholder-img-medium" src="" width="60">
-
+																														<img class="placeholder-img-medium" src="../../assets/images/placeholder-img200.png" width="60">
 																													</span>
 
 																												</span>
@@ -129,12 +127,12 @@
 																							<tbody>
 																								<tr>
 																									<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-																											<img width="100%" :src="item[1] && item[1].productImg || defaultImg" alt="">
-																											<span class="image-placeholder" style="" v-if="list.length == 0">
+																											<img v-if="item[1] && item[1].img" width="100%" :src="item[1] && item[1].img" alt="">
+																											<span v-else class="image-placeholder" style="">
 																												<span class="placeholder-style" style="width: 164px; height: 166px;">
 																													<span class="placeholder-inner">
 
-																														<img class="placeholder-img-medium" src="" width="60">
+																														<img class="placeholder-img-medium" src="../../assets/images/placeholder-img200.png" width="60">
 
 																													</span>
 
@@ -231,15 +229,12 @@
 																							<tbody>
 																								<tr>
 																									<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-																											<img :src="item[2] && item[2].productImg|| defaultImg" width="100%" alt="">
-																											<span class="image-placeholder" style="" v-if="list.length == 0">
+																											<img v-if ="item[2] && item[2].img" :src="item[2] && item[2].img" width="100%" alt="">
+																											<span v-else class="image-placeholder" style="">
 																												<span class="placeholder-style" style="width: 164px; height: 166px;">
 																													<span class="placeholder-inner">
-
-																														<!-- <img class="placeholder-img-medium" src="../../assets/imgages/placeholder-img80.png" width="60"> -->
-
+																														<img class="placeholder-img-medium" src="../../assets/images/placeholder-img200.png" width="60">
 																													</span>
-
 																												</span>
 																											</span>
 																										</a></td>
@@ -376,3 +371,29 @@ export default {
 	},
 };
 </script>
+<style scoped>
+.image-placeholder{
+	display: inline-block;
+}
+.placeholder-style{
+	background-color: #f2f2f2;
+    color: #b6b6b6;
+    font-family: Arial,sans-serif;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-block;
+    vertical-align: top;
+}
+.placeholder-inner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    margin: auto;
+    width: 100%;
+}
+</style>

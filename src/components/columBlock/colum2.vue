@@ -3,8 +3,6 @@
     <div class="cbvariant cbvariant-2_columns" v-for="(item,index) of productList" :key="index">
       <div class="mobile-product-listing-table" style="display: table; width: 100%;">
         <div class="mobile-product-listing-row" style="display: table-row;">
-          <!--[if (mso)|(IE)]><table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"><tr><![endif]-->
-          <!--[if (mso)|(IE)]><td style="width: 290px; vertical-align: top;" width="290"><![endif]-->
           <div class="mobile-container" style="display: table-cell; width: 290px; vertical-align: top;">
             <table border="0" cellspacing="0" cellpadding="0" width="290" style="width:290px;" class="mobile-wide">
               <tbody>
@@ -26,12 +24,11 @@
                                               <tbody>
                                                 <tr>
                                                   <td class="mobile-product-listing-2-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-                                                      <img :src="item[0]&& item[0].productImg" alt="" width="100%">
-                                                      <span class="image-placeholder" style="" v-if="list.length==0">
+                                                      <img v-if="item[0] && item[0].img" :src="item[0]&& item[0].img" alt="" width="100%">
+                                                      <span class="image-placeholder" style="" v-else>
                                                         <span class="placeholder-style" style="width: 268px; height: 270px;">
                                                           <span class="placeholder-inner">
-                                                            <img class="placeholder-img-large" src="" width="100">
-
+                                                          <img class="placeholder-img-medium" src="../../assets/images/placeholder-img200.png" width="100">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -82,14 +79,9 @@
                               <tbody>
                                 <tr>
                                   <td class="webfont-fallback-1" style="border:2px solid #cc3366;border-radius:0px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding-bottom:7px;padding-left:20px;padding-right:20px;padding-top:7px;text-align:center;">
-                                    <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
-                                    <!--[if !mso]><!-->
                                     <div style="line-height: 17px; text-align: center;">
-                                      <!--<![endif]--><a class="webfont-fallback-1" target="_blank" style="line-height: 17px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;text-align:center;text-decoration:none;" href=""><span class="webfont-fallback-1" style="line-height: 17px;">SHOP NOW</span></a>
-                                      <!--[if !mso]><!-->
+                                      <a class="webfont-fallback-1" target="_blank" style="line-height: 17px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;text-align:center;text-decoration:none;" href=""><span class="webfont-fallback-1" style="line-height: 17px;">SHOP NOW</span></a>
                                     </div>
-                                    <!--<![endif]-->
-                                    <!--[if (mso)|(IE) ]></td></tr></table><![endif]-->
                                   </td>
                                 </tr>
                               </tbody>
@@ -103,8 +95,6 @@
               </tbody>
             </table>
           </div>
-          <!--[if (mso)|(IE)]></td><![endif]-->
-          <!--[if (mso)|(IE)]><td style="width: 20px; vertical-align: top;" width="20"><![endif]-->
           <div class="mobile-product-listing-2-cell mobile-product-listing-2-separator" style="display: table-cell; width: 20px; vertical-align: top;"></div>
           <div class="mobile-container" style="display: table-cell; width: 290px; vertical-align: top;">
             <table border="0" cellspacing="0" cellpadding="0" width="290" style="width:290px;" class="mobile-wide">
@@ -127,12 +117,11 @@
                                               <tbody>
                                                 <tr>
                                                   <td class="mobile-product-listing-2-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-                                                      <img :src="item[1] && item[1].productImg" alt="" width="100%">
-                                                      <span class="image-placeholder" style="" v-if="list.length ==0">
+                                                      <img v-if="item[1] && item[1].img" :src="item[1]&& item[1].img" alt="" width="100%">
+                                                      <span class="image-placeholder" style="" v-else>
                                                         <span class="placeholder-style" style="width: 268px; height: 270px;">
-
                                                           <span class="placeholder-inner">
-                                                            <!-- <img class="placeholder-img-large" src="../../assets/imgages/placeholder-img80.png" width="100"> -->
+                                                           <img class="placeholder-img-medium" src="../../assets/images/placeholder-img200.png" width="100">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -225,6 +214,7 @@ export default {
   },
   computed: {
     productList() {
+      console.log(this.list);
       if (this.list.length > 0) {
         return this.group(this.list, 2);
       } else {
@@ -258,8 +248,35 @@ export default {
       while (index < array.length) {
         newArray.push(array.slice(index, (index += subGroupLength)));
       }
+      console.log(newArray,'ppppppppppppppppppppppp')
       return newArray;
     },
   },
 };
 </script>
+<style scoped>
+.image-placeholder{
+	display: inline-block;
+}
+.placeholder-style{
+	background-color: #f2f2f2;
+    color: #b6b6b6;
+    font-family: Arial,sans-serif;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-block;
+    vertical-align: top;
+}
+.placeholder-inner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    margin: auto;
+    width: 100%;
+}
+</style>

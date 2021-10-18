@@ -26,10 +26,11 @@
                                               <tbody>
                                                 <tr>
                                                   <td class="mobile-product-listing-4-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-                                                      <span class="image-placeholder" style="">
+                                                       <img v-if="item[0] && item[0].img" :src="item[0] && item[0].img" width="100%">
+                                                      <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
-                                                            <img :src="item[0].productImg" width="100%">
+                                                            <img src="../../assets/images/placeholder-img200.png" width="100%">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -122,11 +123,11 @@
                                               <tbody>
                                                 <tr>
                                                   <td class="mobile-product-listing-4-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-                                                      <img :src="item[1].productImg" width="100%" alt="">
-                                                      <span class="image-placeholder" style="" v-if="list.length == 0">
+                                                      <img v-if="item[1]&&item[1].img" :src="item[1].img" width="100%" alt="">
+                                                      <span v-else class="image-placeholder">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
-                                                            <img src="" width="40">
+                                                            <img src="../../assets/images/placeholder-img200.png" width="100%">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -219,11 +220,11 @@
                                               <tbody>
                                                 <tr>
                                                   <td class="mobile-product-listing-4-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-                                                      <img :src="item[2] && item[2].productImg" width="100%" alt="">
-                                                      <span class="image-placeholder" style="" v-if="list.length == 0">
+                                                      <img  v-if="item[2] && item[2].img" :src="item[2] && item[2].img" width="100%" alt="">
+                                                      <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
-                                                            <img src="" width="40">
+                                                            <img src="../../assets/images/placeholder-img200.png" width="100%">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -316,11 +317,11 @@
                                               <tbody>
                                                 <tr>
                                                   <td class="mobile-product-listing-4-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-                                                      <img :src="item[3] && item[3].productImg" width="100%" alt="">
-                                                      <span class="image-placeholder" style="" v-if="list.length == 0">
+                                                      <img v-if="item[3] && item[3].img" :src="item[3] && item[3].img" width="100%" alt="">
+                                                      <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
-                                                            <img src="" width="40">
+                                                             <img src="../../assets/images/placeholder-img200.png" width="100%">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -464,3 +465,29 @@ export default {
   },
 };
 </script>
+<style scoped>
+.image-placeholder{
+	display: inline-block;
+}
+.placeholder-style{
+	background-color: #f2f2f2;
+    color: #b6b6b6;
+    font-family: Arial,sans-serif;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-block;
+    vertical-align: top;
+}
+.placeholder-inner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    margin: auto;
+    width: 100%;
+}
+</style>

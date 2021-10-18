@@ -31,7 +31,6 @@
   </div>
 </template>
 <script>
-import {EventBus} from '../../util/eventBus'
 import { mapState } from "vuex";
 import colums from '../columBlock'
 export default {
@@ -57,11 +56,11 @@ export default {
       defaultConfig: {
         name: "product",
         timestamp: this.num,
-        list:[],
         content_setting: {
           spu_config: {
             title: "SPU",
             value: "Please input spu",
+            list:[]
           }
         },
         style_setting: {
@@ -146,7 +145,6 @@ export default {
     defaultArray: {
       handler(nval) {
         let data = this.$store.state.adminConfig.defaultArray[this.num];
-        console.log(this.$store.state.adminConfig.defaultArray);
         this.setConfig(data);
       },
       deep: true,
@@ -155,30 +153,24 @@ export default {
   methods: {
     setConfig(data) {
       if (data) {
+        console.log(data.content_setting.spu_config);
         this.rowNum = data.style_setting.select_config.value;
         this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
         this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
         this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
         this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
         this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
+        this.productList = data.content_setting.spu_config.list;
       }
     },
   },
   mounted() {
     this.$nextTick(() => {
-      this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
-      this.setConfig(this.pageData);
+     if(this.$store.state.adminConfig.defaultArray[this.num]){
+        this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
+        this.setConfig(this.pageData);
+      }
     }, 20);
-    EventBus.$on('message',data=>{
-        if(data.time == this.num){
-            this.productList = data.list;
-            this.defaultConfig.list = data.list
-            this.$store.commit("adminConfig/UPDATEARRAY", {
-                    num: this.num,
-                    val: this.defaultConfig,
-                });
-        }
-    })
   },
 };
 </script>

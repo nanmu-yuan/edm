@@ -14,7 +14,12 @@ export default {
         },
         UPDATEARRAY (state,data){
             state.defaultArray[data.num] = data.val;
-            state.defaultArray = Object.assign({},state.defaultArray)
+            state.defaultArray = Object.assign({},state.defaultArray);
+        },
+        UPDATEPRODUCTLIST (state,data){
+            console.log(data)
+           state.defaultArray[data.num]['content_setting']['spu_config']['list'] = data.list;
+           console.log(state.defaultArray);
         },
         SETCONFIGNAME (state,data){
             state.configName = data;

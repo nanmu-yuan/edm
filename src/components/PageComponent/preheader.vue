@@ -159,8 +159,10 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.pageData = this.$store.state.adminConfig.defaultArray[this.num];
-      this.setConfig(this.pageData);
+      if(this.$store.state.adminConfig.defaultArray[this.num]){
+        this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
+        this.setConfig(this.pageData);
+      }
     });
   },
 };
