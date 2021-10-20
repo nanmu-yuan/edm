@@ -55,4 +55,38 @@ function responseData(data){
         })
     })
  }
+// export function post(url,prarms){
+//      return new Promise((reslove,reject) =>{
+//          axios.post(url,{
+//             html:prarms.template,
+//             site_name:prarms.site_name
+//          }).then(res =>{
+//              reslove(res.data)
+//          }).catch(err=>{
+//              reject(err)
+//          })
+//      })
+//  }
+ export function post(url,prams){
+    return new Promise((resolve,rejcet) =>{
+        $.ajax({
+            type : 'post',
+            url : url,
+            data:{
+                html:prams.template,
+                site_name:prams.site_name
+            },
+            success:function(res){
+                var data = JSON.parse(res)
+                resolve(data)
+            },
+            error : function(err){
+                rejcet(err)
+            },
+            complete:function(){
+      
+            }
+        })
+    })
+ } 
  export default request

@@ -6,9 +6,9 @@ import axios from 'axios';
 import VueLazyload from 'vue-lazyload'
 import {get,post,jsonp} from './http'
 Vue.prototype.get = get;
+Vue.prototype.jsonp = jsonp;
 Vue.prototype.post = post;
-Vue.prototype.jsonp = jsonp
-Vue.prototype.axios = axios
+Vue.prototype.axios = axios;
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   loading: require('./assets/images/loading.gif'),
