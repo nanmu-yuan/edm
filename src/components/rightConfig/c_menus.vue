@@ -17,7 +17,7 @@
 import toolConfig from "../itemConfig";
 import btnTYPE from '../commonBtn/type_btn.vue'
 export default {
-    name: "c_menu",
+    name: "c_menus",
     components: {
         ...toolConfig,
         btnTYPE

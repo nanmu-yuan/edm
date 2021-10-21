@@ -30,7 +30,7 @@
                                                       <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
-                                                            <img src="../../assets/images/placeholder-img200.png" width="100%">
+                                                            <img src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="100%">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -127,7 +127,7 @@
                                                       <span v-else class="image-placeholder">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
-                                                            <img src="../../assets/images/placeholder-img200.png" width="100%">
+                                                            <img src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="100%">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -224,7 +224,7 @@
                                                       <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
-                                                            <img src="../../assets/images/placeholder-img200.png" width="100%">
+                                                            <img src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="100%">
                                                           </span>
                                                         </span>
                                                       </span>
@@ -321,7 +321,7 @@
                                                       <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
-                                                             <img src="../../assets/images/placeholder-img200.png" width="100%">
+                                                             <img src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="100%">
                                                           </span>
                                                         </span>
                                                       </span>

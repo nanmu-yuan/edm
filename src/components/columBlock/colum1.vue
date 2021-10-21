@@ -29,7 +29,7 @@
                                                     <span v-else class="image-placeholder" style="">
                                                       <span class="placeholder-style" style="width: 268px; height: 270px;">
                                                         <span class="placeholder-inner">
-                                                         <img class="placeholder-img-medium" src="../../assets/images/placeholder-img200.png" width="100">
+                                                         <img class="placeholder-img-medium" src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="100">
                                                         </span>
                                                       </span>
                                                     </span>

@@ -13,56 +13,58 @@
           <div class="warp-scroll-hidden">
             <div class="mid-content-box">
               <el-backtop target=".mid-content-box"></el-backtop>
-              <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color: #f2f2f2" bgcolor="#f2f2f2">
-                <tbody>
-                  <tr>
-                    <td>
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 290px">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div id="template">
-                                <table ref="template" border="0" cellspacing="0" cellpadding="0" width="640px" align="center" class="mobile-wide" style="width: 640px; margin: 0 auto">
-                                  <tbody>
-                                    <tr>
-                                      <td bgcolor="#ffffff" style="background-color: #ffffff" class="zone zone-content ui-sortable">
-                                        <draggable animation="300" :scroll="true" group="people" chosenClass="chosen" ghost-class="ghost" class="dragArea list-group" v-model="middlePage" @add="add" @change="log">
-                                          <transition-group>
-                                            <div v-for="(item, index) of middlePage" :key="index" @click="bingConfig(item, index)" class="content-block-wrapper">
-                                              <div class="content-block-template">
-                                                <component :is="item.name" :num="item.num" :index="index"></component>
-                                              </div>
-                                              <div v-if="isShowPlacehold" class="content-block-overlay">
-                                                <div class="overlay-background"></div>
-                                                <div :class="['overlay-edited',activeIndex == index? 'show': 'hidden',]">
-                                                  <div class="overlay-edited-background"></div>
+              <div ref="template">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color: #f2f2f2" bgcolor="#f2f2f2">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 290px">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <div id="template">
+                                  <table border="0" cellspacing="0" cellpadding="0" width="640px" align="center" class="mobile-wide" style="width: 640px; margin: 0 auto">
+                                    <tbody>
+                                      <tr>
+                                        <td bgcolor="#ffffff" style="background-color: #ffffff" class="zone zone-content ui-sortable">
+                                          <draggable animation="300" :scroll="true" group="people" chosenClass="chosen" ghost-class="ghost" class="dragArea list-group" v-model="middlePage" @add="add" @change="log">
+                                            <transition-group>
+                                              <div v-for="(item, index) of middlePage" :key="index" @click="bingConfig(item, index)" class="content-block-wrapper">
+                                                <div class="content-block-template">
+                                                  <component :is="item.name" :num="item.num" :index="index"></component>
                                                 </div>
-                                                <div class="overlay-actions">
-                                                  <div class="overlay-actions-middle">
-                                                    <div class="overlay-actions-middle-wrapper clearfix">
-                                                      <div class="action-handle remove-handle" title="Remove" @click.stop="remove(item,index)">
-                                                        <i class="el-icon-delete" style="font-size:24px"></i>
+                                                <div v-if="isShowPlacehold" class="content-block-overlay">
+                                                  <div class="overlay-background"></div>
+                                                  <div :class="['overlay-edited',activeIndex == index? 'show': 'hidden',]">
+                                                    <div class="overlay-edited-background"></div>
+                                                  </div>
+                                                  <div class="overlay-actions">
+                                                    <div class="overlay-actions-middle">
+                                                      <div class="overlay-actions-middle-wrapper clearfix">
+                                                        <div class="action-handle remove-handle" title="Remove" @click.stop="remove(item,index)">
+                                                          <i class="el-icon-delete" style="font-size:24px"></i>
+                                                        </div>
                                                       </div>
                                                     </div>
                                                   </div>
                                                 </div>
                                               </div>
-                                            </div>
-                                          </transition-group>
-                                        </draggable>
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                                            </transition-group>
+                                          </draggable>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </el-col>
@@ -107,32 +109,52 @@ export default {
     ...rConfig,
   },
   methods: {
-    save(data) {
-      console.log(data);
+    save() {
       this.isShowPlacehold = false;
-      let temp = $("#template").html();
+      let temp = this.$refs.template.innerHTML.replace(
+        /data-v-[^"]*"[^"]*"/g,
+        ""
+      );
       let params = {
         template: temp,
         site_name: "berrylook",
       };
-      $.ajax({
-        type: "post",
-        url: "https://admin.fashionmia.net/opbm.php?a=EdmHtml&m=Api",
-        data: {
-          html: params.template,
-          site_name: params.site_name,
-        },
-        success: function (res) {
-          //var data = JSON.parse(res)
-          console.log(res);
-        },
+      this.promise(params).then((res) => {
+        console.log(res);
+      });
+    },
+    promise(params) {
+      return new Promise((soleve) => {
+        $.ajax({
+          type: "post",
+          url: "https://admin.fashionmia.net/opbm.php?a=EdmHtml&m=Api",
+          data: {
+            html: params.template,
+            site_name: params.site_name,
+          },
+          success: function (res) {
+            soleve(res);
+          },
+        });
       });
     },
     saveTemplate() {
       var self = this;
+      let temp = this.$refs.template.innerHTML.replace(/data-v-[^"]*"[^"]*"/g,"");
+      let params = {
+        template: temp,
+        site_name: "berrylook",
+      };
+      this.promise(params).then((res) => {
+        let data = JSON.parse(res);
+        self.pullData(data);
+      });
+    },
+    pullData(data) {
+      var self =this;
       let json_text = {
         base_template: this.$store.state.adminConfig.defaultArray,
-        img: 123,
+        img: data.data.img,
       };
       const params = {
         title: "berrylook12321",
@@ -158,6 +180,7 @@ export default {
       });
     },
     objToArry(data) {
+      if(!data) return [];
       let obj = Object.keys(data);
       let arr = obj.map((key) => data[key]);
       return arr;
@@ -259,7 +282,7 @@ export default {
           //var data = JSON.parse(res)
           let data = JSON.parse(res.data.json_text);
           console.log(data);
-          let dataArr = self.objToArry(data);
+          let dataArr = self.objToArry(data.base_template);
           dataArr.map((item) => {
             self.leftMenu.map((el) => {
               if (item.name == el.name) {
@@ -358,9 +381,6 @@ export default {
   display: block;
 }
 .ghost {
-  background: red;
-  opacity: 1;
-  height: 80px;
 }
 .overlay-actions {
   text-align: center;

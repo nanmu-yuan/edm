@@ -4,10 +4,10 @@
       <el-collapse>
         <el-collapse-item name="1">
           <template slot="title">
-           <div class="add-collapse-box">
-               <span>LINK</span>
-                <span @click.stop="removeItem(item,index)" class="icon el-icon-delete"></span>
-               </div>
+            <div class="add-collapse-box">
+              <span>LINK</span>
+              <span @click.stop="removeItem(item,index)" class="icon el-icon-delete"></span>
+            </div>
           </template>
           <el-form class="add-box">
             <el-form-item :label="item.linkItem.label">
@@ -21,7 +21,7 @@
       </el-collapse>
     </div>
     <div class="add-btn-box">
-      <el-button  @click="addItem" :disabled="addBtnDisable">add</el-button>
+      <el-button @click="addItem" :disabled="addBtnDisable">add</el-button>
     </div>
   </div>
 </template>
@@ -35,49 +35,57 @@ export default {
     configName: {
       type: String,
     },
-    num:{
-      type:String
-    }
+    num: {
+      type: String,
+    },
   },
   data() {
     return {
       defaultData: {},
       configData: {},
-      copyItemData:{},
-      addBtnDisable:false
+      copyItemData: {},
+      addBtnDisable: false,
     };
   },
-  methods:{
-      addItem(){
-          if(this.configData.linkArr.length>=4){
-            return
-          }
-           this.configData.linkArr.push(JSON.parse(JSON.stringify(this.copyItemData)))
-      },
-      removeItem(data,index){
-        if(this.configData.linkArr.length<=1){
-          return
-        }
-          this.configData.linkArr.splice(index,1);
+  methods: {
+    addItem() {
+      if (this.configData.linkArr.length >= 4) {
+        return;
       }
+      this.configData.linkArr.push(
+        JSON.parse(JSON.stringify(this.copyItemData))
+      );
+    },
+    removeItem(data, index) {
+      if (this.configData.linkArr.length <= 1) {
+        return;
+      }
+      this.configData.linkArr.splice(index, 1);
+    },
   },
   created() {
     this.defaultData = this.configObj;
-    this.copyItemData =JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]["content_setting"]['add_item_config'].linkArr[0]));
+    this.copyItemData = JSON.parse(
+      JSON.stringify(
+        this.$store.state.adminConfig.defaultArray[this.num]["content_setting"][
+          "add_item_config"
+        ].linkArr[0]
+      )
+    );
   },
   watch: {
     configObj: {
       handler: function (nval) {
         this.configData = nval["content_setting"][this.configName];
-         if(this.configData.linkArr.length>=4){
-           this.addBtnDisable = true
-         }else{
-            this.addBtnDisable = false
-         }
+        if (this.configData.linkArr.length >= 4) {
+          this.addBtnDisable = true;
+        } else {
+          this.addBtnDisable = false;
+        }
       },
       deep: true,
     },
-  }
+  },
 };
 </script>
 <style scoped>
@@ -90,7 +98,7 @@ export default {
 ::v-deep .el-form-item {
   margin-bottom: 0px !important;
 }
-::v-deep .el-button{
+::v-deep .el-button {
   width: 100% !important;
 }
 .add-btn-box {
@@ -103,15 +111,15 @@ export default {
   line-height: 35px;
   cursor: pointer;
 }
-.add-collapse-box{
-    width: 100%;
-    text-align: center;
-    position: relative;
+.add-collapse-box {
+  width: 100%;
+  text-align: center;
+  position: relative;
 }
-.icon{
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 16px;
+.icon {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 16px;
 }
 </style>

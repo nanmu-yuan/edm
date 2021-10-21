@@ -1,10 +1,10 @@
 <template>
   <div class="cb  cb-menu">
-    <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color:#fafafa;" bgcolor="#fafafa" background="">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color:#fff;" bgcolor="#fff" background="">
       <tbody>
         <tr>
           <td style="padding-left:0px;padding-right:0px;">
-            <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color:#fafafa;" bgcolor="#fafafa" background="">
+            <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color:#fff;" bgcolor="#fff" background="">
               <tbody>
                 <tr>
                   <td style="border-bottom:0 solid #eaeaea;border-top:2px solid #eaeaea;">
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       defaultConfig: {
-        name: "menu",
+        name: "menus",
         timestamp: this.num,
         content_setting: {
           add_item_config: {
@@ -107,28 +107,7 @@ export default {
         },
       },
       pageData: {},
-      titleAndLink:[
-              {
-                textItem:{
-                  label:'TEXT',
-                  value:'LINK'
-                },
-                linkItem:{
-                  label:'LINK',
-                  value:'LINK'
-                }
-              },
-              {
-                textItem:{
-                  label:'TEXT',
-                  value:'LINK'
-                },
-                linkItem:{
-                  label:'LINK',
-                  value:'LINK'
-                }
-              }
-            ],
+      titleAndLink:[],
       imgaUrl: "",
       bgStyle: {
         background: ''
@@ -144,6 +123,7 @@ export default {
   watch: {
     num: {
       handler(nval) {
+         console.log(12133131)
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
       },
@@ -151,12 +131,14 @@ export default {
     },
     pageData: {
       handler(nval) {
+         console.log(12133131)
         this.setConfig(nval);
       },
       deep: true,
     },
     defaultArray: {
       handler(nval) {
+         console.log(12133131)
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
       },
@@ -165,6 +147,7 @@ export default {
   },
   methods: {
     setConfig(data) {
+      console.log(data,4545644645645)
       if (data) {
         this.titleAndLink = data.content_setting.add_item_config.linkArr
         // this.titleText = data.content_setting.text_config.value;
@@ -178,6 +161,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      console.log(12133131)
      if(this.$store.state.adminConfig.defaultArray[this.num]){
         this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
         this.setConfig(this.pageData);

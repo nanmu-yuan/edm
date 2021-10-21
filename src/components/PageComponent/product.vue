@@ -153,7 +153,6 @@ export default {
   methods: {
     setConfig(data) {
       if (data) {
-        console.log(data.content_setting.spu_config);
         this.rowNum = data.style_setting.select_config.value;
         this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
         this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
