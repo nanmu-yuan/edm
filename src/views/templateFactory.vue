@@ -2,14 +2,10 @@
   <div>
     <div class="t-body-box">
       <el-row>
-        <el-col :span="6" style="z-index: 30000; position: relative">
-          <draggable class="dragArea list-group" v-model="leftMenu" animation="300" :group="{ name: 'people', pull: 'clone', put: 'false' }" :clone="cloneDom" :sort="false" style="display: flex" @change="log">
-            <div class="leftMenu-item" v-for="(element, index) of leftMenu" :key="index" @click="addDom(element, index)">
-              <div>{{ element.cname }}</div>
-            </div>
-          </draggable>
+        <el-col :span="6" style="position: relative">
+          <div style="width:100%">12312</div>
         </el-col>
-        <el-col :span="10" style="z-index: 30000; position: relative">
+        <el-col :span="12" style="position: relative">
           <div class="warp-scroll-hidden">
             <div class="mid-content-box">
               <el-backtop target=".mid-content-box"></el-backtop>
@@ -22,40 +18,38 @@
                           <tbody>
                             <tr>
                               <td>
-                                <div id="template">
-                                  <table border="0" cellspacing="0" cellpadding="0" width="640px" align="center" class="mobile-wide" style="width: 640px; margin: 0 auto">
-                                    <tbody>
-                                      <tr>
-                                        <td bgcolor="#ffffff" style="background-color: #ffffff" class="zone zone-content ui-sortable">
-                                          <draggable animation="300" :scroll="true" group="people" chosenClass="chosen" ghost-class="ghost" class="dragArea list-group" v-model="middlePage" @add="add" @change="log">
-                                            <transition-group>
-                                              <div v-for="(item, index) of middlePage" :key="index" @click="bingConfig(item, index)" class="content-block-wrapper">
-                                                <div class="content-block-template">
-                                                  <component :is="item.name" :num="item.num" :index="index"></component>
+                                <table border="0" cellspacing="0" cellpadding="0" width="640px" align="center" class="mobile-wide" style="width: 640px; margin: 0 auto">
+                                  <tbody>
+                                    <tr>
+                                      <td bgcolor="#ffffff" style="background-color: #ffffff" class="zone zone-content ui-sortable">
+                                        <draggable animation="300" :scroll="true" group="people" chosenClass="chosen" ghost-class="ghost" class="dragArea list-group" v-model="middlePage" @add="add" @change="log">
+                                          <transition-group>
+                                            <div v-for="(item, index) of middlePage" :key="index" @click="bingConfig(item, index)" class="content-block-wrapper">
+                                              <div class="content-block-template">
+                                                <component :is="item.name" :num="item.num" :index="index"></component>
+                                              </div>
+                                              <div v-if="isShowPlacehold" class="content-block-overlay">
+                                                <div class="overlay-background"></div>
+                                                <div :class="['overlay-edited',activeIndex == index? 'show': 'hidden',]">
+                                                  <div class="overlay-edited-background"></div>
                                                 </div>
-                                                <div v-if="isShowPlacehold" class="content-block-overlay">
-                                                  <div class="overlay-background"></div>
-                                                  <div :class="['overlay-edited',activeIndex == index? 'show': 'hidden',]">
-                                                    <div class="overlay-edited-background"></div>
-                                                  </div>
-                                                  <div class="overlay-actions">
-                                                    <div class="overlay-actions-middle">
-                                                      <div class="overlay-actions-middle-wrapper clearfix">
-                                                        <div class="action-handle remove-handle" title="Remove" @click.stop="remove(item,index)">
-                                                          <i class="el-icon-delete" style="font-size:24px"></i>
-                                                        </div>
+                                                <div class="overlay-actions">
+                                                  <div class="overlay-actions-middle">
+                                                    <div class="overlay-actions-middle-wrapper clearfix">
+                                                      <div class="action-handle remove-handle" title="Remove" @click.stop="remove(item,index)">
+                                                        <i class="el-icon-delete" style="font-size:24px"></i>
                                                       </div>
                                                     </div>
                                                   </div>
                                                 </div>
                                               </div>
-                                            </transition-group>
-                                          </draggable>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
+                                            </div>
+                                          </transition-group>
+                                        </draggable>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
                               </td>
                             </tr>
                           </tbody>
@@ -68,16 +62,26 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="8">
-          <div style="width: 100%"></div>
-          <el-drawer :visible.sync="drawer" :direction="direction" :modal="false" :wrapperClosable="false" :modal-append-to-body="false">
-            <div v-for="(item, index) of rightConfig" :key="index">
-              <component :is="item.configName" :num="item.num" :index="index" :activeIndex="activeIndex"></component>
+        <el-col :span="6">
+          <div class="menu-box">
+            <div class="menu-item">
+              <draggable class="dragArea list-group" v-model="leftMenu" animation="300" :group="{ name: 'people', pull: 'clone', put: 'false' }" :clone="cloneDom" :sort="false" style="display: flex" @change="log">
+                <div class="leftMenu-item" v-for="(element, index) of leftMenu" :key="index" @click="addDom(element, index)">
+                  <div>{{ element.cname }}</div>
+                </div>
+              </draggable>
             </div>
-            <div class="save-box">
-              <save @save='save' @saveTemplate='saveTemplate'></save>
-            </div>
-          </el-drawer>
+            <drawer :isDrawer='drawer' @isDrawer="isDrawer">
+              <div>
+                <div v-for="(item, index) of rightConfig" :key="index">
+                  <component :is="item.configName" :num="item.num" :index="index" :activeIndex="activeIndex"></component>
+                </div>  
+                <div class="save-box">
+                  <save @save='save' @saveTemplate='saveTemplate'></save>
+                </div>
+              </div>
+            </drawer>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -86,6 +90,7 @@
 <script>
 import $ from "jquery";
 import save from "../components/commonBtn/save";
+import drawer from "@/components/commonBtn/drawer";
 import draggable from "vuedraggable";
 import pageCom from "../components/PageComponent";
 import rConfig from "../components/rightConfig";
@@ -105,10 +110,14 @@ export default {
   components: {
     draggable,
     save,
+    drawer,
     ...pageCom,
     ...rConfig,
   },
   methods: {
+    isDrawer(nval){
+      this.drawer = nval;
+    },
     save() {
       this.isShowPlacehold = false;
       let temp = this.$refs.template.innerHTML.replace(
@@ -121,6 +130,11 @@ export default {
       };
       this.promise(params).then((res) => {
         console.log(res);
+        this.$notify({
+          title: "成功",
+          message: "这是一条成功的提示消息",
+          type: "success",
+        });
       });
     },
     promise(params) {
@@ -140,7 +154,15 @@ export default {
     },
     saveTemplate() {
       var self = this;
-      let temp = this.$refs.template.innerHTML.replace(/data-v-[^"]*"[^"]*"/g,"");
+      this.isShowPlacehold = false;
+      let temp = this.$refs.template.innerHTML.replace(
+        /data-v-[^"]*"[^"]*"/g,
+        ""
+      );
+      console.log(this.$refs.template);
+      this.domToImage.toPng(this.$refs.template).then((res) => {
+        console.log(res);
+      });
       let params = {
         template: temp,
         site_name: "berrylook",
@@ -151,7 +173,7 @@ export default {
       });
     },
     pullData(data) {
-      var self =this;
+      var self = this;
       let json_text = {
         base_template: this.$store.state.adminConfig.defaultArray,
         img: data.data.img,
@@ -180,7 +202,7 @@ export default {
       });
     },
     objToArry(data) {
-      if(!data) return [];
+      if (!data) return [];
       let obj = Object.keys(data);
       let arr = obj.map((key) => data[key]);
       return arr;
@@ -317,19 +339,26 @@ export default {
   overflow: hidden;
 }
 .mid-content-box {
-  margin-top: 30px;
   overflow-y: scroll;
   height: 100%;
   position: relative;
   right: -18px;
 }
 .leftMenu-item {
-  width: 100px;
+  width: 150px;
   height: 30px;
-  border: 1px solid #fefefe;
-  background: gray;
+  border: 1px solid #DCDFE6;
+  background: #fff;
   line-height: 30px;
   text-align: center;
+  margin-right: 15px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+}
+.leftMenu-item:hover{
+   background: #DCDFE6;
 }
 ::v-deep .el-drawer__wrapper {
   top: 60px !important;
@@ -412,5 +441,15 @@ export default {
 }
 .chosen {
   width: 100%;
+}
+.menu-item {
+  position: relative;
+}
+.menu-box {
+  position: relative;
+  height: calc(100vh - 90px);
+  z-index: 0;
+  padding-left: 56px;
+  padding-top: 15px;
 }
 </style>

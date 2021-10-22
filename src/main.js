@@ -5,6 +5,8 @@ import store from './store'
 import axios from 'axios';
 import VueLazyload from 'vue-lazyload'
 import {get,post,jsonp} from './http'
+import domToImage from 'dom-to-image'
+Vue.prototype.domToImage = domToImage;
 Vue.prototype.get = get;
 Vue.prototype.jsonp = jsonp;
 Vue.prototype.post = post;

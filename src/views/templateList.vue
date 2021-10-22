@@ -51,6 +51,7 @@ export default {
           "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1MjI5NjQyLCJlbWFpbCI6IiJ9.Foj2rGAWMP0tHmnaEJcrEiYEQ2L2s61ZpPyNyMMm9Hg",
       },
       success: function (res) {
+        console.log(res)
         self.baseList = res.data.results;
       },
     });

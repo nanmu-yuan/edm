@@ -1,6 +1,61 @@
 const Mock = require('mockjs');
 module.exports = function(app){
-    app.get('/api/base_template',function(req,res){
-        res.json({"1634637432646":{"name":"preheader","timestamp":"1634637432646","content_setting":{"text_config":{"title":"TEXT","value":"hahahaha"},"link_config":{"title":"LINK","value":"link"}},"style_setting":{"select_config":{"title":"TYPE","options":[{"label":"center","value":"center"},{"label":"left","value":"left"},{"label":"right","value":"right"}],"value":"center"},"bg_color_config":{"title":"background","bgColor":"#fff","imageUrl":""}}},"1634637420101":{"name":"logo","timestamp":"1634637420101","content_setting":{"text_config":{"title":"TEXT","value":"Enter a title"},"link_config":{"title":"LINK","value":"link"},"image_config":{"title":"IMAGE","value":""}},"style_setting":{"bg_color_config":{"title":"background","bgColor":"#fff"},"pd_position_config":{"title":"POSITION","pd_style":[{"label":"PADDING TOP","value":20},{"label":"PADDING BOTTOM","value":20},{"label":"PADDING RIGHT","value":20},{"label":"PADDING LEFT","value":20}]}}},"1634637426284":{"name":"banner","timestamp":"1634637426284","content_setting":{"link_config":{"title":"LINK","value":"link"},"image_config":{"title":"IMAGE","value":""}},"style_setting":{"bg_color_config":{"title":"background","bgColor":"#fff"},"pd_position_config":{"title":"POSITION","pd_style":[{"label":"PADDING TOP","value":20},{"label":"PADDING BOTTOM","value":20},{"label":"PADDING RIGHT","value":20},{"label":"PADDING LEFT","value":20}]}}},"1634637424709":{"name":"menu","timestamp":"1634637424709","content_setting":{"add_item_config":{"linkArr":[{"textItem":{"label":"TEXT","value":"LINK"},"linkItem":{"label":"LINK","value":"LINK"}}]}},"style_setting":{"bg_color_config":{"title":"background","bgColor":"#fff"},"pd_position_config":{"title":"POSITION","pd_style":[{"label":"PADDING TOP","value":20},{"label":"PADDING BOTTOM","value":20},{"label":"PADDING RIGHT","value":20},{"label":"PADDING LEFT","value":20}]}}},"1634637422949":{"name":"product","timestamp":"1634637422949","content_setting":{"spu_config":{"title":"SPU","value":"Please input spu","list":[]}},"style_setting":{"bg_color_config":{"title":"background","bgColor":"#fff"},"select_config":{"title":"TYPE","options":[{"label":"1 product in a row","value":"1"},{"label":"2 product in a row","value":"2"},{"label":"3 product in a row","value":"3"},{"label":"4 product in a row","value":"4"}],"value":"1"},"pd_position_config":{"title":"POSITION","pd_style":[{"label":"PADDING TOP","value":"20"},{"label":"PADDING BOTTOM","value":"20"},{"label":"PADDING RIGHT","value":"20"},{"label":"PADDING LEFT","value":"20"}]}}},"1634637440061":{"name":"product","timestamp":"1634637440061","content_setting":{"spu_config":{"title":"SPU","value":"Please input spu","list":[]}},"style_setting":{"bg_color_config":{"title":"background","bgColor":"#fff"},"select_config":{"title":"TYPE","options":[{"label":"1 product in a row","value":"1"},{"label":"2 product in a row","value":"2"},{"label":"3 product in a row","value":"3"},{"label":"4 product in a row","value":"4"}],"value":"4"},"pd_position_config":{"title":"POSITION","pd_style":[{"label":"PADDING TOP","value":"20"},{"label":"PADDING BOTTOM","value":"20"},{"label":"PADDING RIGHT","value":"20"},{"label":"PADDING LEFT","value":"20"}]}}}})
+    app.get('/api/querySiteInfo',function(req,res){
+        res.json({
+            meSystem:[
+                "orderplus",
+                "calladream",
+                "fashionmia",
+                "fashionme",
+                "berrylook",
+                "comfybub",
+            ],
+            cloud:[
+                "blogladi",
+                "funluc",
+                "skybomiu",
+                "anystylish",
+                "popopieshop",
+                "cathybuy",
+                "selaros",
+                "onlyyo",
+                "omnifever",
+                "trendysuper",
+                "sebellamore",
+            ],
+            shopify:[
+                "verywear",
+                "techwearclub",
+                "rollangel",
+                "netlumi",
+                "aqilabuy",
+                "lululike",
+                "stylishplus",
+                "mumetaz",
+                "hellocloth",
+            ],
+            Independence:[
+                "ng-style",
+                "kokorou"
+            ],
+            api:{
+                airytops :[
+                    "airytops ",
+                    "http://api.opmall.com/api/Product/shoplazzaEdm?pid=7714&spus=",
+                ],
+                rollangel:[
+                    "rollangel",
+                    "http://lms.orderplus.com/api/bamboo/siteProduct/getPDMSpdSpuInfoList?siteId=24660&spus="
+                ],
+                techwearclub:[
+                    "techwearclub",
+                    "http://lms.orderplus.com/api/bamboo/siteProduct/getPDMSpdSpuInfoList?siteId=33968&spus="
+                ],
+                verywear:[
+                    "verywear",
+                    "http://lms.orderplus.com/api/bamboo/siteProduct/getPDMSpdSpuInfoList?siteId=24646&spus="
+                ]
+            }
+        })
     })
 } 

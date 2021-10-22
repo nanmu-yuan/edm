@@ -2,7 +2,7 @@
   <div>
     <div>
     <div class="t-header-box">
-        <Theader></Theader>
+        <Theader :siteList='siteList'></Theader>
     </div>
     </div>
     <div>
@@ -21,7 +21,8 @@ export default {
   },
   data () {
     return {
-        isRouterAlive:true
+        isRouterAlive:true,
+        siteList:{},
     }
   },
   methods:{
@@ -31,6 +32,11 @@ export default {
         this.isRouterAlive = true;
       })
     }
+  },
+  created(){
+    this.axios.get('/api/querySiteInfo').then(res =>{
+      this.siteList = res.data;
+    })
   },
   components:{
     Theader

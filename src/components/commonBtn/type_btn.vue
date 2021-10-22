@@ -23,6 +23,10 @@ export default {
 </script>
 <style scoped>
 .btn-box{
+  padding-left: 86px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #DCDFE6;
+  margin-bottom: 8px;
 
 }
 </style>

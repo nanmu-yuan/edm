@@ -7,7 +7,7 @@
             <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color:#fff;" bgcolor="#fff" background="">
               <tbody>
                 <tr>
-                  <td style="border-bottom:0 solid #eaeaea;border-top:2px solid #eaeaea;">
+                  <td style="border-bottom:1px solid #eaeaea;border-top:1px solid #eaeaea;">
                     <div style="display: table; margin: 0 auto;" class="mobile-block mobile-container">
                       <div style="display: table-row;">
                         <div v-for="(item,index) of titleAndLink" :key="index" style="display: table-cell;" class="mobile-block mobile-container">
