@@ -49,6 +49,14 @@ export default {
                         component: toolConfig.select_config,
                         configName: "select_config",
                     },
+                    {
+                        component: toolConfig.bg_color_config,
+                        configName: "bg_color_config",
+                    },
+                     {
+                        component: toolConfig.pd_position_config,
+                        configName: "pd_position_config",
+                    },
                 ],
             },
         };

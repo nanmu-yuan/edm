@@ -36,6 +36,7 @@ export default {
   created(){
     this.axios.get('/api/querySiteInfo').then(res =>{
       this.siteList = res.data;
+      this.$store.commit('siteConfig/SAVESITELIST',res.data);
     })
   },
   components:{

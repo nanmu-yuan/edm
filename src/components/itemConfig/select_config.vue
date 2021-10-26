@@ -1,7 +1,8 @@
 <template>
   <div class="warp-box">
     <el-form>
-      <el-form-item :label="configData.title">
+      <div class="title">TYPE</div>
+      <el-form-item >
         <el-select v-model="configData.value">
           <el-option
             v-for=" item of configData.options"
@@ -51,4 +52,11 @@ export default {
 .warp-box{
         border-top: 1px solid #fefefe;
     }
+.title{
+    margin: 8px 0 15px 0;
+    padding: 2px 0;
+    text-align: center;
+    background: #E4E7ED;
+    border-radius: 4px;
+}
 </style>

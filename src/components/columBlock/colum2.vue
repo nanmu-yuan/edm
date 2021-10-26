@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="cbvariant cbvariant-2_columns" v-for="(item,index) of productList" :key="index">
-      <div class="mobile-product-listing-table" style="display: table; width: 100%;">
-        <div class="mobile-product-listing-row" style="display: table-row;">
-          <div class="mobile-container" style="display: table-cell; width: 290px; vertical-align: top;">
+    <div v-for="(item,index) of productList" :key="index">
+      <div style="display: table; width: 100%;">
+        <div style="display: table-row;">
+          <div  style="display: table-cell; width: 290px; vertical-align: top;">
             <table border="0" cellspacing="0" cellpadding="0" width="290" style="width:290px;" class="mobile-wide">
               <tbody>
                 <tr>

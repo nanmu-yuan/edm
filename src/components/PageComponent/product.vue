@@ -3,11 +3,11 @@
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
       <tbody>
         <tr>
-          <td class="mobile-desktop" style="" bgcolor="" background="">
+          <td style="" :bgcolor="bgStyle" :style="bgStyle">
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
               <tbody>
                 <tr>
-                  <td style="padding-bottom:20px;padding-left:20px;padding-right:20px;padding-top:20px;">
+                  <td :style="pdStyle">
                    <div v-if="rowNum==1">
                        <colum1 :list="productList"></colum1>
                    </div>
@@ -50,6 +50,7 @@ export default {
   },
   computed: {
     ...mapState("adminConfig", ["defaultArray"]),
+    ...mapState("siteConfig", ["currentSiteName","siteInfo"]),
   },
   data() {
     return {
@@ -68,7 +69,7 @@ export default {
             title: "background",
             bgColor: "#fff"
           },
-             select_config: {
+            select_config: {
             title: "TYPE",
             options: [
               {
@@ -94,19 +95,19 @@ export default {
             title: 'POSITION',
             pd_style: [
               {
-                label: 'PADDING TOP',
+                label: 'TOP',
                 value: '20'
               },
               {
-                label: 'PADDING BOTTOM',
+                label: 'BOTTOM',
                 value: '20'
               },
               {
-                label: 'PADDING RIGHT',
+                label: 'RIGHT',
                 value: '20'
               },
               {
-                label: 'PADDING LEFT',
+                label: 'LEFT',
                 value: '20'
               }
             ]
@@ -143,12 +144,17 @@ export default {
       deep: true,
     },
     defaultArray: {
-      handler(nval) {
+      handler() {
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
       },
       deep: true,
     },
+    currentSiteName:{
+      handler(){
+      },
+      deep:true
+    }
   },
   methods: {
     setConfig(data) {

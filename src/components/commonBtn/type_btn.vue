@@ -11,7 +11,7 @@ export default {
     name:'type-btn',
     data () {
         return {
-            type:0
+            type:0,
         }
     },
     methods: {

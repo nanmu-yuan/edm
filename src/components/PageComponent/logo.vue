@@ -40,12 +40,12 @@
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tbody>
                                       <tr>
-                                        <td style="color: #656565;font-family: Arial, sans-serif;font-size: 11px;font-weight: normal;line-height: 127%;text-align: right;text-decoration: none;">
+                                        <td>
                                           <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                             <tbody>
                                               <tr>
-                                                <td style="text-decoration: none;color: #656565;font-family: Arial, sans-serif;font-size: 11px; font-weight: normal;line-height: 127%;text-align: right;">
-                                                  {{titleText}}
+                                                <td :style="fontStyle">
+                                                  {{titleText }}
                                                 </td>
                                               </tr>
                                             </tbody>
@@ -116,30 +116,44 @@ export default {
             title: 'POSITION',
             pd_style: [
               {
-                label: 'PADDING TOP',
+                label: 'TOP',
                 value: '20'
               },
               {
-                label: 'PADDING BOTTOM',
+                label: 'BOTTOM',
                 value: '20'
               },
               {
-                label: 'PADDING RIGHT',
+                label: 'RIGHT',
                 value: '20'
               },
               {
-                label: 'PADDING LEFT',
+                label: 'LEFT',
                 value: '20'
               }
             ]
 
+          },
+          font_config:{
+            font_size:'12',
+            color:'#000',
+            font_weight:'normal',
+            lineHeight: '127%',
+            textAlign: 'right'
           }
         },
       },
       pageData: {},
-      titleText: "",
+      titleText: "123123",
       linkText: "",
       imgaUrl: "",
+      fontStyle:{
+        fontSize:'12',
+        color:'#000',
+        fontWeight:'normal',
+        lineHeight: '127%',
+        textAlign: 'right'
+      },
       bgStyle: {
         background: ''
       },
@@ -153,7 +167,7 @@ export default {
   },
   watch: {
     num: {
-      handler(nval) {
+      handler() {
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
       },
@@ -166,7 +180,7 @@ export default {
       deep: true,
     },
     defaultArray: {
-      handler(nval) {
+      handler() {
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
       },
@@ -183,6 +197,9 @@ export default {
         this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
         this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
         this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
+        this.fontStyle.fontSize = data.style_setting.font_config.font_size+'px';
+        this.fontStyle.color = data.style_setting.font_config.color;
+        this.fontStyle.fontWeight = data.style_setting.font_config.font_weight;
       }
     },
   },

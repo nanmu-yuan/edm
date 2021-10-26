@@ -75,8 +75,8 @@ export default {
     promiseAllarr(arr) {
       var result = [];
       var successCount = 0;
-      return new Promise((resolve, reject) => {
-        arr.forEach((item, index) => {
+      return new Promise((resolve) => {
+        arr.forEach((item) => {
           item.then((a) => {
             result.push(a);
             successCount++;
@@ -103,6 +103,8 @@ export default {
         } else {
           obj.img = 'http://' + item.img;
         }
+        obj.price= '$'+item.price;
+        obj.market_price = '$'+item.market_price;
         return obj
       })
     }

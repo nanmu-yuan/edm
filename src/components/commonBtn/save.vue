@@ -1,12 +1,13 @@
 <template>
   <div class="btn-box">
-   <el-button @click="save">SUBMIT</el-button>
+   <el-button @click="save" >SUBMIT</el-button>
     <el-button @click="saveTemplate">SUBMIT TEMPLATE</el-button>
   </div>
 </template>
 <script>
 export default {
     name:'save',
+    props: ['fullscreenLoading'],
     data () {
         return {
             type:0

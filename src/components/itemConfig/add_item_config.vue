@@ -1,5 +1,6 @@
 <template>
   <div class="warp-box">
+    <div class="title">ADD LINK</div>
     <div class="add-item-box" v-for="(item,index)  of  configData.linkArr" :key="index">
       <el-collapse>
         <el-collapse-item name="1">
@@ -121,5 +122,12 @@ export default {
   right: 15px;
   top: 15px;
   font-size: 16px;
+}
+.title{
+    margin: 8px 0 15px 0;
+    padding: 2px 0;
+    text-align: center;
+    background: #E4E7ED;
+    border-radius: 4px;
 }
 </style>

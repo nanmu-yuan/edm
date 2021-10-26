@@ -86,19 +86,19 @@ export default {
             title: 'POSITION',
             pd_style: [
               {
-                label: 'PADDING TOP',
+                label: 'TOP',
                 value: '20'
               },
               {
-                label: 'PADDING BOTTOM',
+                label: 'BOTTOM',
                 value: '20'
               },
               {
-                label: 'PADDING RIGHT',
+                label: 'RIGHT',
                 value: '20'
               },
               {
-                label: 'PADDING LEFT',
+                label: 'LEFT',
                 value: '20'
               }
             ]
@@ -122,7 +122,7 @@ export default {
   },
   watch: {
     num: {
-      handler(nval) {
+      handler() {
          console.log(12133131)
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
@@ -137,7 +137,7 @@ export default {
       deep: true,
     },
     defaultArray: {
-      handler(nval) {
+      handler() {
          console.log(12133131)
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);

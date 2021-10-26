@@ -6,27 +6,13 @@
           <table border="0" cellspacing="0" cellpadding="0" width="100%">
             <tbody>
               <tr>
-                <td
-                  style="
-                    padding-bottom: 15px;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                    padding-top: 15px;
-                  "
-                >
-                  <table
-                    border="0"
-                    cellspacing="0"
-                    cellpadding="0"
-                    width="100%"
-                  >
+                <td style="padding-bottom: 15px;padding-left: 20px;padding-right: 20px;padding-top: 15px;">
+                  <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tbody>
                       <tr>
                         <td :style="titleStyle">
                           <span>{{ titleText }}</span>
-                          <a target="_blank" href="" :style="linkStyle"
-                            ><span> {{ linkText }}</span></a
-                          >
+                          <a target="_blank" href="" :style="linkStyle"><span> {{ linkText }}</span></a>
                         </td>
                       </tr>
                     </tbody>
@@ -56,8 +42,9 @@ export default {
   },
   computed: {
     ...mapState("adminConfig", ["defaultArray"]),
+    ...mapState("siteConfig", ["currentSiteName"]),
   },
-   data() {
+  data() {
     return {
       defaultConfig: {
         name: "preheader",
@@ -119,9 +106,9 @@ export default {
       },
       bgColor: {
         background: "",
-        backgroundImage:'',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
+        backgroundImage: "",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
       },
     };
   },
@@ -145,22 +132,31 @@ export default {
       },
       deep: true,
     },
+    currentSiteName: {
+      handler(nval) {
+        console.log(nval);
+      },
+    },
   },
   methods: {
     setConfig(data) {
       if (data) {
         this.titleText = data.content_setting.text_config.value;
-        this.linkText = 'https://'+ data.content_setting.link_config.value;
+        this.linkText = "https://" + data.content_setting.link_config.value;
         this.titleStyle["textAlign"] = data.style_setting.select_config.value;
         this.bgColor["background"] = data.style_setting.bg_color_config.bgColor;
-        this.bgColor['backgroundImage'] = `url(${data.style_setting.bg_color_config.imageUrl})`;
+        this.bgColor[
+          "backgroundImage"
+        ] = `url(${data.style_setting.bg_color_config.imageUrl})`;
       }
     },
   },
   mounted() {
     this.$nextTick(() => {
-      if(this.$store.state.adminConfig.defaultArray[this.num]){
-        this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
+      if (this.$store.state.adminConfig.defaultArray[this.num]) {
+        this.pageData = JSON.parse(
+          JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num])
+        );
         this.setConfig(this.pageData);
       }
     });

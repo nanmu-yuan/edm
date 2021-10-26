@@ -32,7 +32,7 @@ export default {
         url: `http://smartsend.beta.seamarketings.com/api/v3/base_template/${id}/`,
         headers: {
           Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1MjI5NjQyLCJlbWFpbCI6IiJ9.Foj2rGAWMP0tHmnaEJcrEiYEQ2L2s61ZpPyNyMMm9Hg",
+            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1ODU4NTk4LCJlbWFpbCI6IiJ9.XJ-jnTY3hGfdrNx1jPnrQQIT1-HKkNt3I8M7gIL9wEc",
         },
         success: function (res) {
                console.log(res);
@@ -43,15 +43,21 @@ export default {
   },
   created() {
     var self = this;
+    const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
     $.ajax({
       type: "get",
       url: "http://smartsend.beta.seamarketings.com/api/v3/base_template/",
       headers: {
         Authorization:
-          "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1MjI5NjQyLCJlbWFpbCI6IiJ9.Foj2rGAWMP0tHmnaEJcrEiYEQ2L2s61ZpPyNyMMm9Hg",
+          "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1ODU4NTk4LCJlbWFpbCI6IiJ9.XJ-jnTY3hGfdrNx1jPnrQQIT1-HKkNt3I8M7gIL9wEc",
       },
       success: function (res) {
-        console.log(res)
+        loading.close();
         self.baseList = res.data.results;
       },
     });

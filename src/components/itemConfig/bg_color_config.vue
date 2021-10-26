@@ -1,6 +1,7 @@
 <template>
     <div class="warp-box">
         <el-form :inline="true">
+            <div class="title">BACKGROUND</div>
             <el-form-item>
                 <div class="bg-box"></div>
             </el-form-item>
@@ -71,4 +72,11 @@ export default {
 .warp-box{
          border-top: 1px solid #fefefe;
     }
+.title{
+    margin: 8px 0 15px 0;
+    padding: 2px 0;
+    text-align: center;
+    background: #E4E7ED;
+    border-radius: 4px;
+}
 </style>

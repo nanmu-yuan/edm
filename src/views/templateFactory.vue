@@ -63,9 +63,10 @@
           </div>
         </el-col>
         <el-col :span="6">
-          <div class="menu-box">
+          <div class="menu-warp">
+            <div class="menu-box">
             <div class="menu-item">
-              <draggable class="dragArea list-group" v-model="leftMenu" animation="300" :group="{ name: 'people', pull: 'clone', put: 'false' }" :clone="cloneDom" :sort="false" style="display: flex" @change="log">
+              <draggable class="dragArea list-group" v-model="leftMenu" animation="300" :group="{ name: 'people', pull: 'clone', put: 'false' }" :clone="cloneDom" :sort="false" style="display: flex;flex-wrap:wrap" @change="log">
                 <div class="leftMenu-item" v-for="(element, index) of leftMenu" :key="index" @click="addDom(element, index)">
                   <div>{{ element.cname }}</div>
                 </div>
@@ -75,12 +76,13 @@
               <div>
                 <div v-for="(item, index) of rightConfig" :key="index">
                   <component :is="item.configName" :num="item.num" :index="index" :activeIndex="activeIndex"></component>
-                </div>  
+                </div>
                 <div class="save-box">
                   <save @save='save' @saveTemplate='saveTemplate'></save>
                 </div>
               </div>
             </drawer>
+          </div>
           </div>
         </el-col>
       </el-row>
@@ -115,10 +117,17 @@ export default {
     ...rConfig,
   },
   methods: {
-    isDrawer(nval){
+    isDrawer(nval) {
       this.drawer = nval;
+       this.activeIndex = 100;
     },
     save() {
+      const loading = this.$loading({
+        lock: true,
+        text: "Loading",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
       this.isShowPlacehold = false;
       let temp = this.$refs.template.innerHTML.replace(
         /data-v-[^"]*"[^"]*"/g,
@@ -130,6 +139,7 @@ export default {
       };
       this.promise(params).then((res) => {
         console.log(res);
+        loading.close();
         this.$notify({
           title: "成功",
           message: "这是一条成功的提示消息",
@@ -155,11 +165,16 @@ export default {
     saveTemplate() {
       var self = this;
       this.isShowPlacehold = false;
+      const loading = this.$loading({
+        lock: true,
+        text: "Loading",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
       let temp = this.$refs.template.innerHTML.replace(
         /data-v-[^"]*"[^"]*"/g,
         ""
       );
-      console.log(this.$refs.template);
       this.domToImage.toPng(this.$refs.template).then((res) => {
         console.log(res);
       });
@@ -169,10 +184,10 @@ export default {
       };
       this.promise(params).then((res) => {
         let data = JSON.parse(res);
-        self.pullData(data);
+        self.pullData(data, loading);
       });
     },
-    pullData(data) {
+    pullData(data, loading) {
       var self = this;
       let json_text = {
         base_template: this.$store.state.adminConfig.defaultArray,
@@ -188,13 +203,14 @@ export default {
         url: "http://smartsend.beta.seamarketings.com/api/v3/base_template/",
         headers: {
           Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1MjI5NjQyLCJlbWFpbCI6IiJ9.Foj2rGAWMP0tHmnaEJcrEiYEQ2L2s61ZpPyNyMMm9Hg",
+            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1ODU4NTk4LCJlbWFpbCI6IiJ9.XJ-jnTY3hGfdrNx1jPnrQQIT1-HKkNt3I8M7gIL9wEc",
         },
         data: {
           title: params.title,
           json_text: params.json_text,
         },
         success: function () {
+          loading.close();
           self.$router.push({
             path: `/home/templateList`,
           });
@@ -293,17 +309,23 @@ export default {
     getDefaultConfig() {
       let id = this.$route.query.id;
       var self = this;
+      const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
       $.ajax({
         type: "get",
         url: `http://smartsend.beta.seamarketings.com/api/v3/base_template/${id}/`,
         headers: {
           Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1MjI5NjQyLCJlbWFpbCI6IiJ9.Foj2rGAWMP0tHmnaEJcrEiYEQ2L2s61ZpPyNyMMm9Hg",
+            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1ODU4NTk4LCJlbWFpbCI6IiJ9.XJ-jnTY3hGfdrNx1jPnrQQIT1-HKkNt3I8M7gIL9wEc",
         },
         success: function (res) {
           //var data = JSON.parse(res)
           let data = JSON.parse(res.data.json_text);
-          console.log(data);
+         loading.close();
           let dataArr = self.objToArry(data.base_template);
           dataArr.map((item) => {
             self.leftMenu.map((el) => {
@@ -345,20 +367,21 @@ export default {
   right: -18px;
 }
 .leftMenu-item {
-  width: 150px;
-  height: 30px;
-  border: 1px solid #DCDFE6;
+  width: 68px;
+  height: 40px;
+  border: 1px solid #dcdfe6;
   background: #fff;
-  line-height: 30px;
+  line-height: 40px;
   text-align: center;
   margin-right: 15px;
+  margin-bottom: 15px;
   padding: 8px;
   cursor: pointer;
   border-radius: 4px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.leftMenu-item:hover{
-   background: #DCDFE6;
+.leftMenu-item:hover {
+  background: #dcdfe6;
 }
 ::v-deep .el-drawer__wrapper {
   top: 60px !important;
@@ -410,6 +433,8 @@ export default {
   display: block;
 }
 .ghost {
+  background: #4db159;
+  width: 120px;
 }
 .overlay-actions {
   text-align: center;
@@ -447,9 +472,10 @@ export default {
 }
 .menu-box {
   position: relative;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 76px);
   z-index: 0;
   padding-left: 56px;
   padding-top: 15px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
 }
 </style>

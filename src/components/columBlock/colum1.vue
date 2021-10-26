@@ -23,7 +23,7 @@
                                           <table border="0" cellpadding="0" cellspacing="0" width="" style="">
                                             <tbody>
                                               <tr>
-                                                <td class="mobile-product-listing-2-image-cell" style="font-size: 0; line-height: 0; text-align: center;">
+                                                <td style="font-size: 0; line-height: 0; text-align: center;">
                                                   <a target="_blank" href="">
                                                     <img  v-if="item.img" :src="item.img" width='268' height='270' alt="">
                                                     <span v-else class="image-placeholder" style="">
@@ -65,7 +65,7 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-align:center;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-decoration:none;" href=""><span class="webfont-fallback-1">{{item.productName}}</span></a></td>
+                                          <td class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-align:center;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-decoration:none;" href=""><span class="webfont-fallback-1">{{item.goods_name}}</span></a></td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -81,7 +81,7 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td style="text-align:center;"><span class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;text-align:center;text-decoration:none;">{{item.price}}</span><span style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;"> / </span><span class="webfont-fallback-1" style="color:#999999;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:106%;text-decoration:line-through;">{{item.marketPrice}}</span></td>
+                                          <td style="text-align:center;"><span class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;text-align:center;text-decoration:none;">{{item.price}}</span><span style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;"> / </span><span class="webfont-fallback-1" style="color:#999999;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:106%;text-decoration:line-through;">{{item.market_price}}</span></td>
                                         </tr>
                                       </tbody>
                                     </table>

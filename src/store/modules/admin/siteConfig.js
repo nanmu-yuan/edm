@@ -1,11 +1,16 @@
 export default{
     namespaced:true,
     state:{
-        siteList:[],
-        siteInfo:''
+        siteInfo:{},
+        currentSiteName:''
     },
     mutations: {
-        
+        UPDATESITENAME(state,data){
+            state.currentSiteName = data.siteName;
+        },
+        SAVESITELIST(state,data){
+            state.siteInfo = data;
+        }
     },
     actions: {
         

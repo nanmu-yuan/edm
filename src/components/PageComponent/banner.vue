@@ -69,19 +69,19 @@ export default {
             title: 'POSITION',
             pd_style: [
               {
-                label: 'PADDING TOP',
+                label: 'TOP',
                 value: '20'
               },
               {
-                label: 'PADDING BOTTOM',
+                label: 'BOTTOM',
                 value: '20'
               },
               {
-                label: 'PADDING RIGHT',
+                label: 'RIGHT',
                 value: '20'
               },
               {
-                label: 'PADDING LEFT',
+                label: 'LEFT',
                 value: '20'
               }
             ]

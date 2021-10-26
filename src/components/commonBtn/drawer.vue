@@ -1,10 +1,12 @@
 <template>
   <transition name="bounce">
     <div v-if="isDrawer" class="drawer-box">
-    <div class="cance-box"><span @click="cance" class="el-icon-d-arrow-right"></span></div>
+      <div style=" padding: 15px;">
+        <div class="cance-box"><span @click="cance" class="el-icon-d-arrow-right"></span></div>
       <slot>
 
       </slot>
+      </div>
     </div>
   </transition>
 </template>
@@ -22,7 +24,7 @@ export default {
   },
   methods:{
       cance(){
-         this.$emit('isDrawer',false)
+         this.$emit('isDrawer',false);
       }
   },
   created() {},
@@ -32,13 +34,13 @@ export default {
 .drawer-box {
   position: fixed;
   right: 0;
-  height: calc(100vh - 92px);
-  width: 21%;
+  height: calc(100vh - 61px);
+  width: 25%;
   border: 1px solid #e4e7ed;
-  padding: 15px;
   z-index: 999;
   top: 60px;
   background: #fff;
+   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
 }
 .bounce-enter-active {
   animation: bounce-in .5s;
@@ -55,14 +57,17 @@ export default {
   }
 }
 .cance-box span{
- font-weight: bold;
  cursor: pointer;
+}
+.cance-box span:hover{
+  font-weight: bold;
+  color:#909399;
 }
 .cance-box{
     position: absolute;
     right: 15px;
     font-size: 16px;
-    color:#909399;
+    color:rgb(220, 223, 230);
     top: 25px;
 }
 </style>

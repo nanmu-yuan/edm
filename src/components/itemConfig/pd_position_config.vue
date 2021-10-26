@@ -1,10 +1,10 @@
 <template>
     <div class="warp-box">
         <el-form :inline="true" label-width="80px">
+            <div class="title">POSITION</div>
             <template v-for="(item,index) of configData.pd_style">
-                <el-form-item :key="index">
-                <div>{{item.label}}</div>
-                <el-input-number v-model="item.value" @change="handleChange" :min="0" ></el-input-number>
+                <el-form-item :key="index" :label="item.label">
+                <el-input-number size="mini" style="width:100px" v-model="item.value" @change="handleChange" :min="0" ></el-input-number>
             </el-form-item>
             </template>
         </el-form>
@@ -49,6 +49,15 @@ export default {
 </script>
 <style scoped>
     .warp-box{
-         border-top: 1px solid #fefefe;
+         border-top: 1px solid #DCDFE6;
+         padding-top: 8px;
+         border-bottom: 1px solid #DCDFE6;
     }
+    .title{
+    margin: 8px 0 15px 0;
+    padding: 2px 0;
+    text-align: center;
+    background: #E4E7ED;
+    border-radius: 4px;
+}
 </style>
