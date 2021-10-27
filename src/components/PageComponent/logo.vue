@@ -135,11 +135,13 @@ export default {
 
           },
           font_config:{
+            text:{
             font_size:'12',
             color:'#000',
             font_weight:'normal',
             lineHeight: '127%',
             textAlign: 'right'
+            }
           }
         },
       },
@@ -197,9 +199,9 @@ export default {
         this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
         this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
         this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
-        this.fontStyle.fontSize = data.style_setting.font_config.font_size+'px';
-        this.fontStyle.color = data.style_setting.font_config.color;
-        this.fontStyle.fontWeight = data.style_setting.font_config.font_weight;
+        this.fontStyle.fontSize = data.style_setting.font_config.text.font_size+'px';
+        this.fontStyle.color = data.style_setting.font_config.text.color;
+        this.fontStyle.fontWeight = data.style_setting.font_config.text.font_weight;
       }
     },
   },

@@ -4,21 +4,21 @@
       <tbody>
         <tr>
           <td style="padding-left:0px;padding-right:0px;">
-            <table border="0" cellspacing="0" cellpadding="0" width="100%" style="background-color:#fff;" bgcolor="#fff" background="">
+            <table border="0" cellspacing="0" cellpadding="0" width="100%" :style="bgStyle" bgcolor="#fff" background="">
               <tbody>
                 <tr>
                   <td style="border-bottom:1px solid #eaeaea;border-top:1px solid #eaeaea;">
-                    <div style="display: table; margin: 0 auto;" class="mobile-block mobile-container">
+                    <div style="display: table; margin: 0 auto;">
                       <div style="display: table-row;">
-                        <div v-for="(item,index) of titleAndLink" :key="index" style="display: table-cell;" class="mobile-block mobile-container">
+                        <div v-for="(item,index) of titleAndLink" :key="index" style="display: table-cell;">
                           <table border="0" cellspacing="0" cellpadding="0" width="100%" style="text-align: center;">
                             <tbody>
                               <tr>
-                                <td  style="padding-bottom:13px;padding-top:13px;; padding-left: 10px; padding-right: 10px;">
+                                <td  :style="pdStyle">
                                   <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                     <tbody>
                                       <tr>
-                                        <td class="mobile-text-center webfont-fallback-1" style="color:#656565;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:114%;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#656565;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:114%;text-decoration:none;" :href="item.linkItem.value"><span>{{item.textItem.value}}</span></a></td>
+                                        <td><a  target="_blank" :style="fontStyle" :href="item.linkItem.value"><span>{{item.textItem.value}}</span></a></td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -102,7 +102,15 @@ export default {
                 value: '20'
               }
             ]
-
+          },
+          font_config:{
+            link:{
+              font_size:'12',
+              color:'#000',
+              font_weight:'normal',
+              lineHeight: '127%',
+              textAlign: 'right'
+            }
           }
         },
       },
@@ -110,7 +118,13 @@ export default {
       titleAndLink:[],
       imgaUrl: "",
       bgStyle: {
-        background: ''
+        background: '#fff'
+      },
+      fontStyle:{
+        fontSize:'12',
+        color:'#000',
+        fontWeight:'normal',
+        textDecoration: 'none'
       },
       pdStyle: {
         paddingTop: '',
@@ -150,12 +164,14 @@ export default {
       console.log(data,4545644645645)
       if (data) {
         this.titleAndLink = data.content_setting.add_item_config.linkArr
-        // this.titleText = data.content_setting.text_config.value;
-        // this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
-        // this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
-        // this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
-        // this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
-        // this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
+        this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
+        this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
+        this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
+        this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
+        this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
+        this.fontStyle.fontSize = data.style_setting.font_config.link.font_size+'px';
+        this.fontStyle.color = data.style_setting.font_config.link.color;
+        this.fontStyle.fontWeight = data.style_setting.font_config.link.font_weight;
       }
     },
   },

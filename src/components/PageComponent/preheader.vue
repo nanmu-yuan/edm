@@ -12,7 +12,7 @@
                       <tr>
                         <td :style="titleStyle">
                           <span>{{ titleText }}</span>
-                          <a target="_blank" href="" :style="linkStyle"><span> {{ linkText }}</span></a>
+                          <a target="_blank" :href="linkUrl" :style="linkStyle"><span> {{ linkText }}</span></a>
                         </td>
                       </tr>
                     </tbody>
@@ -54,6 +54,10 @@ export default {
             title: "TEXT",
             value: "hahahaha",
           },
+          link_text_config: {
+            title: "LINKText",
+            value: "hahahaha",
+          },
           link_config: {
             title: "LINK",
             value: "link",
@@ -83,11 +87,24 @@ export default {
             bgColor: "#fff",
             imageUrl: "",
           },
+          font_config:{
+            text:{
+              color: "#999999",
+              fontSize: "13px",
+              fontWeight: "normal",
+            },
+            link:{
+              color: "#999999",
+              fontSize: "13px",
+              fontWeight: "normal",
+            }
+          }
         },
       },
       pageData: {},
       titleText: "",
-      linkText: "",
+      linkUrl: "",
+      linkText:'',
       titleStyle: {
         color: "#999999",
         fontSize: "13px",
@@ -142,12 +159,13 @@ export default {
     setConfig(data) {
       if (data) {
         this.titleText = data.content_setting.text_config.value;
-        this.linkText = "https://" + data.content_setting.link_config.value;
+        this.linkUrl = "https://" + data.content_setting.link_config.value;
         this.titleStyle["textAlign"] = data.style_setting.select_config.value;
         this.bgColor["background"] = data.style_setting.bg_color_config.bgColor;
-        this.bgColor[
-          "backgroundImage"
-        ] = `url(${data.style_setting.bg_color_config.imageUrl})`;
+        this.bgColor["backgroundImage"] = `url(${data.style_setting.bg_color_config.imageUrl})`;
+        this.linkStyle.color = data.style_setting.font_config.link.color;
+        this.titleStyle.color = data.style_setting.font_config.text.color;
+        this.linkText= data.content_setting.link_text_config.value;
       }
     },
   },

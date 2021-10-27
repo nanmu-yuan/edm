@@ -53,6 +53,10 @@ export default {
                         component: toolConfig.pd_position_config,
                         configName: "pd_position_config",
                     },
+                    {
+                        component: toolConfig.font_config,
+                        configName: "font_config",
+                    },
                 ],
             },
         };

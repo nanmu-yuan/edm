@@ -44,6 +44,10 @@ export default {
                         configName: "text_config",
                     },
                     {
+                        component: toolConfig.text_config,
+                        configName: "link_text_config",
+                    },
+                    {
                         component: toolConfig.link_config,
                         configName: "link_config",
                     },
@@ -56,6 +60,10 @@ export default {
                     {
                         component: toolConfig.bg_color_config,
                         configName: "bg_color_config",
+                    },
+                    {
+                        component: toolConfig.font_config,
+                        configName: "font_config",
                     },
                 ],
             },
