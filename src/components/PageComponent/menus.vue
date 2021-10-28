@@ -103,14 +103,19 @@ export default {
               }
             ]
           },
-          font_config:{
+          style_config:{
             link:{
               font_size:'12',
               color:'#000',
               font_weight:'normal',
               lineHeight: '127%',
               textAlign: 'right'
-            }
+            },
+            background: {
+                bgImage: '',
+                pattern:'',
+                color: '#fff'
+              },
           }
         },
       },
@@ -118,7 +123,8 @@ export default {
       titleAndLink:[],
       imgaUrl: "",
       bgStyle: {
-        background: '#fff'
+        backgroundColor:'#fff',
+        backgroundImage:'url()',
       },
       fontStyle:{
         fontSize:'12',
@@ -137,7 +143,6 @@ export default {
   watch: {
     num: {
       handler() {
-         console.log(12133131)
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
       },
@@ -145,14 +150,12 @@ export default {
     },
     pageData: {
       handler(nval) {
-         console.log(12133131)
         this.setConfig(nval);
       },
       deep: true,
     },
     defaultArray: {
       handler() {
-         console.log(12133131)
         let data = this.$store.state.adminConfig.defaultArray[this.num];
         this.setConfig(data);
       },
@@ -161,17 +164,17 @@ export default {
   },
   methods: {
     setConfig(data) {
-      console.log(data,4545644645645)
       if (data) {
         this.titleAndLink = data.content_setting.add_item_config.linkArr
-        this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
+        this.bgStyle.backgroundColor = data.style_setting.style_config.background.color;
+        this.bgStyle.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`;
         this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
         this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
         this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
         this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
-        this.fontStyle.fontSize = data.style_setting.font_config.link.font_size+'px';
-        this.fontStyle.color = data.style_setting.font_config.link.color;
-        this.fontStyle.fontWeight = data.style_setting.font_config.link.font_weight;
+        this.fontStyle.fontSize = data.style_setting.style_config.link.font_size+'px';
+        this.fontStyle.color = data.style_setting.style_config.link.color;
+        this.fontStyle.fontWeight = data.style_setting.style_config.link.font_weight;
       }
     },
   },

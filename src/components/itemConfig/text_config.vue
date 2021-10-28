@@ -1,7 +1,8 @@
 <template>
     <div class="warp-box">
+        <el-divider>{{configData.title}}</el-divider>
         <el-form>
-            <el-form-item :label="configData.title">
+            <el-form-item>
                 <el-input v-model="configData.value"></el-input>
             </el-form-item>
         </el-form>

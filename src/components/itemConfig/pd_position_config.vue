@@ -1,7 +1,7 @@
 <template>
     <div class="warp-box">
         <el-form :inline="true" label-width="80px">
-            <div class="title">POSITION</div>
+            <el-divider>POSITION</el-divider>
             <template v-for="(item,index) of configData.pd_style">
                 <el-form-item :key="index" :label="item.label">
                 <el-input-number size="mini" style="width:100px" v-model="item.value" @change="handleChange" :min="0" ></el-input-number>
@@ -49,9 +49,7 @@ export default {
 </script>
 <style scoped>
     .warp-box{
-         border-top: 1px solid #DCDFE6;
          padding-top: 8px;
-         border-bottom: 1px solid #DCDFE6;
     }
     .title{
     margin: 8px 0 15px 0;

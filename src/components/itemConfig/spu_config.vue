@@ -1,7 +1,8 @@
 <template>
   <div class="warp-box">
+    <el-divider>{{configData.title}}</el-divider>
     <el-form>
-      <el-form-item :label="configData.title">
+      <el-form-item>
         <el-input type="textarea" v-model="spus"></el-input>
       </el-form-item>
       <el-form-item>
@@ -38,7 +39,7 @@ export default {
         },
         deep:true,
         immediate:true
-    }
+    },
   },
   data() {
     return {
@@ -55,6 +56,8 @@ export default {
   },
   methods: {
     submit() {
+      console.log(this.$store.state.siteConfig.currentSiteApi);
+      return
       let promiseList = [];
       let a = 'http://lms.orderplus.com/api/bamboo/siteProduct/getPDMSpdSpuInfoList?siteId=24646&spus=';
       let spus = this.spus.split(',');
@@ -64,7 +67,6 @@ export default {
       }
       this.promiseAllarr(promiseList).then(res => {
         this.originListData = this.dataOptimization(res);
-        console.log( this.originListData);
         this.$store.commit('adminConfig/UPDATEPRODUCTLIST',{
           num:this.num,
           list:this.originListData

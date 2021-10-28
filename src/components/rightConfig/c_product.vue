@@ -50,8 +50,8 @@ export default {
                         configName: "select_config",
                     },
                     {
-                        component: toolConfig.font_config,
-                        configName: "font_config",
+                        component: toolConfig.style_config,
+                        configName: "style_config",
                     },
                     {
                         component: toolConfig.pd_position_config,

@@ -1,9 +1,10 @@
 <template>
   <div class="warp-box">
+    <el-divider>{{configData.title}}</el-divider>
     <el-form>
-      <el-form-item :label="configData.title">
+      <el-form-item>
         <el-upload class="avatar-uploader" action="https://admin.fashionmia.net/opbm.php?a=EdmImages&m=Api" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-          <i class="el-icon-plus avatar-uploader-icon"></i>
+         <el-button>SELECT IMAGE</el-button>
         </el-upload>
       </el-form-item>
     </el-form>

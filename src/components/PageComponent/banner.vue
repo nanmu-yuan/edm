@@ -3,7 +3,7 @@
     <table width="100%" cellspacing="0" cellpadding="0" border="0" style="">
       <tbody>
         <tr>
-          <td class="" style="" bgcolor="" background="">
+          <td :style="bgStyle">
             <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: 0 auto; ">
               <tbody>
                 <tr>
@@ -12,11 +12,11 @@
                       <span class="image-placeholder" style="" v-if="!imageUrl">
                         <span class="placeholder-style" style="width: 600px; height: 300px;">
                           <span class="placeholder-inner">
-                            <img class="placeholder-img-large"  src="../../assets/images/placeholder-img200.png" width="100"><br>
+                            <img class="placeholder-img-large"  src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="100"><br>
                           </span>
                         </span>
                       </span>
-                      <img v-else v-lazy ="imageUrl" alt="" width ='600' height ='210'>
+                      <img v-else v-lazy ="imageUrl" alt="" width ='600'>
                     </a>
                   </td>
                 </tr>
@@ -61,9 +61,12 @@ export default {
           },
         },
         style_setting: {
-          bg_color_config: {
-            title: "background",
-            bgColor: "#fff"
+          style_config:{
+            background: {
+                bgImage: '',
+                pattern:'',
+                color: '#fff'
+              },
           },
           pd_position_config: {
             title: 'POSITION',
@@ -92,10 +95,10 @@ export default {
       pageData: {},
       titleText: "",
       linkText: "",
-      bgimageUrl: "",
       imageUrl: '',
       bgStyle: {
-        background: ''
+        backgroundColor:'#fff',
+        backgroundImage:'url()',
       },
       pdStyle: {
         paddingTop: '',
@@ -131,7 +134,8 @@ export default {
       if (data) {
         this.linkText = 'https://'+data.content_setting.link_config.value
         this.imageUrl = data.content_setting.image_config.value;
-        this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
+        this.bgStyle.backgroundColor = data.style_setting.style_config.background.color;
+        this.bgStyle.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`;
         this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
         this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
         this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';

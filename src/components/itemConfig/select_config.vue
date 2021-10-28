@@ -1,7 +1,7 @@
 <template>
   <div class="warp-box">
+    <el-divider>TYPE</el-divider>
     <el-form>
-      <div class="title">TYPE</div>
       <el-form-item >
         <el-select v-model="configData.value">
           <el-option

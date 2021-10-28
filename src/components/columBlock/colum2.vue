@@ -248,7 +248,6 @@ export default {
       while (index < array.length) {
         newArray.push(array.slice(index, (index += subGroupLength)));
       }
-      console.log(newArray,'ppppppppppppppppppppppp')
       return newArray;
     },
   },

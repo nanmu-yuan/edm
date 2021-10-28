@@ -45,6 +45,9 @@ export default {
     select(value){
       this.$store.commit('siteConfig/UPDATESITENAME',{
         siteName:value
+      });
+      this.$store.commit('siteConfig/UPDATESITEAPI',{
+        siteName:value
       })
     },
     dataConfig(data) {

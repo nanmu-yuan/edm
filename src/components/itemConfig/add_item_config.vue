@@ -1,6 +1,6 @@
 <template>
   <div class="warp-box">
-    <div class="title">ADD LINK</div>
+    <el-divider>ADD LINK</el-divider>
     <div class="add-item-box" v-for="(item,index)  of  configData.linkArr" :key="index">
       <el-collapse>
         <el-collapse-item name="1">

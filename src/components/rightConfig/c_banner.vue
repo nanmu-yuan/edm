@@ -50,8 +50,8 @@ export default {
                 ],
                 style_config: [
                     {
-                        component: toolConfig.bg_color_config,
-                        configName: "bg_color_config",
+                        component: toolConfig.style_config,
+                        configName: "style_config",
                     },
                     {
                         component: toolConfig.pd_position_config,

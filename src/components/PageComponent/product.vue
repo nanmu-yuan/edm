@@ -113,7 +113,7 @@
               ]
 
             },
-            font_config: {
+            style_config: {
               describe: {
                 color: "#333",
                 font_size: "20",
@@ -248,29 +248,29 @@
           this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
           this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
           this.productList = data.content_setting.spu_config.list;
-          this.styleData.describe.color = data.style_setting.font_config.describe.color;
-          this.styleData.describe.fontSize = data.style_setting.font_config.describe.font_size + 'px';
-          this.styleData.describe.fontWeight = data.style_setting.font_config.describe.font_weight;
-          this.styleData.price.color = data.style_setting.font_config.price.color;
-          this.styleData.price.fontSize = data.style_setting.font_config.price.font_size + 'px';
-          this.styleData.price.fontWeight = data.style_setting.font_config.price.font_weight;
-          this.styleData.marketPrice.color = data.style_setting.font_config.marketPrice.color;
-          this.styleData.marketPrice.fontSize = data.style_setting.font_config.marketPrice.font_size + 'px';
-          this.styleData.marketPrice.fontWeight = data.style_setting.font_config.marketPrice.font_weight;
-          this.styleData.button.text.color = data.style_setting.font_config.button.color;
-          this.styleData.button.text.fontSize = data.style_setting.font_config.button.font_size + 'px';
-          this.styleData.button.text.fontWeight = data.style_setting.font_config.button.font_weight;
-          this.styleData.button.border.borderWidth = data.style_setting.font_config.button.border_width + 'px';
-          this.styleData.button.border.borderStyle = data.style_setting.font_config.button.border_style;
-          this.styleData.button.border.borderColor = data.style_setting.font_config.button.color;
-          this.styleData.button.border.paddingBottom = data.style_setting.font_config.button.bottom_padding + 'px';
-          this.styleData.button.border.paddingTop = data.style_setting.font_config.button.top_padding + 'px';
-          this.styleData.button.border.borderRadius = data.style_setting.font_config.button.border_radius + 'px';
-          this.styleData.backgroundColor.backgroundColor = data.style_setting.font_config.background.color;
-          this.styleData.backgroundColor.backgroundImage = `url(${data.style_setting.font_config.background.bgImage})`;
-          this.styleData.backgroundImage.borderColor = data.style_setting.font_config.image.color;
-          this.styleData.backgroundImage.borderStyle = data.style_setting.font_config.image.border_style;
-          this.styleData.backgroundImage.borderWidth = data.style_setting.font_config.image.border_width + 'px';
+          this.styleData.describe.color = data.style_setting.style_config.describe.color;
+          this.styleData.describe.fontSize = data.style_setting.style_config.describe.font_size + 'px';
+          this.styleData.describe.fontWeight = data.style_setting.style_config.describe.font_weight;
+          this.styleData.price.color = data.style_setting.style_config.price.color;
+          this.styleData.price.fontSize = data.style_setting.style_config.price.font_size + 'px';
+          this.styleData.price.fontWeight = data.style_setting.style_config.price.font_weight;
+          this.styleData.marketPrice.color = data.style_setting.style_config.marketPrice.color;
+          this.styleData.marketPrice.fontSize = data.style_setting.style_config.marketPrice.font_size + 'px';
+          this.styleData.marketPrice.fontWeight = data.style_setting.style_config.marketPrice.font_weight;
+          this.styleData.button.text.color = data.style_setting.style_config.button.color;
+          this.styleData.button.text.fontSize = data.style_setting.style_config.button.font_size + 'px';
+          this.styleData.button.text.fontWeight = data.style_setting.style_config.button.font_weight;
+          this.styleData.button.border.borderWidth = data.style_setting.style_config.button.border_width + 'px';
+          this.styleData.button.border.borderStyle = data.style_setting.style_config.button.border_style;
+          this.styleData.button.border.borderColor = data.style_setting.style_config.button.color;
+          this.styleData.button.border.paddingBottom = data.style_setting.style_config.button.bottom_padding + 'px';
+          this.styleData.button.border.paddingTop = data.style_setting.style_config.button.top_padding + 'px';
+          this.styleData.button.border.borderRadius = data.style_setting.style_config.button.border_radius + 'px';
+          this.styleData.backgroundColor.backgroundColor = data.style_setting.style_config.background.color;
+          this.styleData.backgroundColor.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`;
+          this.styleData.backgroundImage.borderColor = data.style_setting.style_config.image.color;
+          this.styleData.backgroundImage.borderStyle = data.style_setting.style_config.image.border_style;
+          this.styleData.backgroundImage.borderWidth = data.style_setting.style_config.image.border_width + 'px';
         }
       },
     },

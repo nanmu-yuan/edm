@@ -72,175 +72,182 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
-export default {
-  name: "logo",
-  cname: "logo",
-  configName: "c_logo",
-  props: {
-    num: {
-      type: null,
+  import {
+    mapState
+  } from "vuex";
+  export default {
+    name: "logo",
+    cname: "logo",
+    configName: "c_logo",
+    props: {
+      num: {
+        type: null,
+      },
+      index: {
+        type: null,
+      },
     },
-    index: {
-      type: null,
+    computed: {
+      ...mapState("adminConfig", ["defaultArray"]),
     },
-  },
-  computed: {
-    ...mapState("adminConfig", ["defaultArray"]),
-  },
-  data() {
-    return {
-      defaultConfig: {
-        name: "logo",
-        timestamp: this.num,
-        content_setting: {
-          text_config: {
-            title: "TEXT",
-            value: "Enter a title",
+    data() {
+      return {
+        defaultConfig: {
+          name: "logo",
+          timestamp: this.num,
+          content_setting: {
+            text_config: {
+              title: "TEXT",
+              value: "Enter a title",
+            },
+            link_config: {
+              title: "LINK",
+              value: "link",
+            },
+            image_config: {
+              title: "IMAGE",
+              value: "",
+            },
           },
-          link_config: {
-            title: "LINK",
-            value: "link",
-          },
-          image_config: {
-            title: "IMAGE",
-            value: "",
-          },
-        },
-        style_setting: {
-          bg_color_config: {
-            title: "background",
-            bgColor: "#fff"
-          },
-          pd_position_config: {
-            title: 'POSITION',
-            pd_style: [
-              {
-                label: 'TOP',
-                value: '20'
-              },
-              {
-                label: 'BOTTOM',
-                value: '20'
-              },
-              {
-                label: 'RIGHT',
-                value: '20'
-              },
-              {
-                label: 'LEFT',
-                value: '20'
-              }
-            ]
+          style_setting: {
+            pd_position_config: {
+              title: 'POSITION',
+              pd_style: [{
+                  label: 'TOP',
+                  value: '20'
+                },
+                {
+                  label: 'BOTTOM',
+                  value: '20'
+                },
+                {
+                  label: 'RIGHT',
+                  value: '20'
+                },
+                {
+                  label: 'LEFT',
+                  value: '20'
+                }
+              ]
 
-          },
-          font_config:{
-            text:{
-            font_size:'12',
-            color:'#000',
-            font_weight:'normal',
-            lineHeight: '127%',
-            textAlign: 'right'
+            },
+            style_config: {
+              text: {
+                font_size: '12',
+                color: '#000',
+                font_weight: 'normal',
+                lineHeight: '127%',
+                textAlign: 'right'
+              },
+              background: {
+                bgImage: '',
+                pattern:'',
+                color: '#fff'
+              },
             }
-          }
+          },
         },
-      },
-      pageData: {},
-      titleText: "123123",
-      linkText: "",
-      imgaUrl: "",
-      fontStyle:{
-        fontSize:'12',
-        color:'#000',
-        fontWeight:'normal',
-        lineHeight: '127%',
-        textAlign: 'right'
-      },
-      bgStyle: {
-        background: ''
-      },
-      pdStyle: {
-        paddingTop: '',
-        paddingBottom: '',
-        paddingLeft: '',
-        paddingRight: '',
-      }
-    };
-  },
-  watch: {
-    num: {
-      handler() {
-        let data = this.$store.state.adminConfig.defaultArray[this.num];
-        this.setConfig(data);
-      },
-      deep: true,
+        pageData: {},
+        titleText: "123123",
+        linkText: "",
+        imgaUrl: "",
+        fontStyle: {
+          fontSize: '12',
+          color: '#000',
+          fontWeight: 'normal',
+          lineHeight: '127%',
+          textAlign: 'right'
+        },
+        bgStyle: {
+          backgroundColor:'#fff',
+          backgroundImage:'url()',
+        },
+        pdStyle: {
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          paddingRight: '',
+        }
+      };
     },
-    pageData: {
-      handler(nval) {
-        this.setConfig(nval);
+    watch: {
+      num: {
+        handler() {
+          let data = this.$store.state.adminConfig.defaultArray[this.num];
+          this.setConfig(data);
+        },
+        deep: true,
       },
-      deep: true,
-    },
-    defaultArray: {
-      handler() {
-        let data = this.$store.state.adminConfig.defaultArray[this.num];
-        this.setConfig(data);
+      pageData: {
+        handler(nval) {
+          this.setConfig(nval);
+        },
+        deep: true,
       },
-      deep: true,
+      defaultArray: {
+        handler() {
+          let data = this.$store.state.adminConfig.defaultArray[this.num];
+          this.setConfig(data);
+        },
+        deep: true,
+      },
     },
-  },
-  methods: {
-    setConfig(data) {
-      if (data) {
-        this.titleText = data.content_setting.text_config.value;
-        this.imgaUrl = data.content_setting.image_config.value;
-        this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
-        this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
-        this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
-        this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
-        this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
-        this.fontStyle.fontSize = data.style_setting.font_config.text.font_size+'px';
-        this.fontStyle.color = data.style_setting.font_config.text.color;
-        this.fontStyle.fontWeight = data.style_setting.font_config.text.font_weight;
-      }
+    methods: {
+      setConfig(data) {
+        if (data) {
+          this.titleText = data.content_setting.text_config.value;
+          this.imgaUrl = data.content_setting.image_config.value;
+          this.bgStyle.backgroundColor = data.style_setting.style_config.background.color;
+          this.bgStyle.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`
+          this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
+          this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
+          this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
+          this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
+          this.fontStyle.fontSize = data.style_setting.style_config.text.font_size + 'px';
+          this.fontStyle.color = data.style_setting.style_config.text.color;
+          this.fontStyle.fontWeight = data.style_setting.style_config.text.font_weight;
+        }
+      },
     },
-  },
-  mounted() {
-    this.$nextTick(() => {
-      if(this.$store.state.adminConfig.defaultArray[this.num]){
-        this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
-        this.setConfig(this.pageData);
-      }
-    },20);
-  },
-};
+    mounted() {
+      this.$nextTick(() => {
+        if (this.$store.state.adminConfig.defaultArray[this.num]) {
+          this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
+          this.setConfig(this.pageData);
+        }
+      }, 20);
+    },
+  };
 </script>
 <style scoped>
-.image-placeholder {
-  display: inline-block;
-}
-.image-placeholder .placeholder-style {
-  background-color: #f2f2f2;
-  color: #b6b6b6;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  font-size: 12px;
-  position: relative;
-  min-width: 40px;
-  min-height: 40px;
-  display: inline-block;
-  vertical-align: top;
-}
-.placeholder-inner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  margin: auto;
-  width: 100%;
-}
-.image-placeholder .placeholder-img-small {
-  padding-bottom: 10px;
-}
+  .image-placeholder {
+    display: inline-block;
+  }
+
+  .image-placeholder .placeholder-style {
+    background-color: #f2f2f2;
+    color: #b6b6b6;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .placeholder-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    margin: auto;
+    width: 100%;
+  }
+
+  .image-placeholder .placeholder-img-small {
+    padding-bottom: 10px;
+  }
 </style>

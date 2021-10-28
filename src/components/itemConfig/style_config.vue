@@ -1,7 +1,7 @@
 <template>
   <div class="warp-box">
     <el-form :inline="true">
-      <div class="title">STYLE</div>
+      <el-divider>STYLE</el-divider>
       <el-form-item v-for="(c_item,c_key) in configData">
         <div style="display:flex;">
           <div>
@@ -67,7 +67,7 @@
 </template>
 <script>
   export default {
-    name: "font_config",
+    name: "style_config",
     props: {
       configObj: {
         type: Object,
