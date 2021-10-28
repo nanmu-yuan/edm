@@ -3,13 +3,13 @@
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
       <tbody>
         <tr>
-          <td style="" :bgcolor="bgStyle" :style="bgStyle">
+          <td :style="styleData.backgroundColor">
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
               <tbody>
                 <tr>
                   <td :style="pdStyle">
                     <div v-if="rowNum==1">
-                      <colum1 :list="productList" :fontStyle="fontStyle"></colum1>
+                      <colum1 :list="productList" :fontStyle="styleData"></colum1>
                     </div>
                     <div v-else-if="rowNum==2">
                       <colum2 :list="productList"></colum2>
@@ -123,12 +123,12 @@
                 color: "#999999",
                 font_size: "13",
                 font_weight: "normal",
-                top_padding:'10',
-                bottom_padding:'10',
-                border_width:'1',
-                border_style:'solid',
-                border_color:'#999',
-                border_radius:'0'
+                top_padding: '10',
+                bottom_padding: '10',
+                border_width: '1',
+                border_style: 'solid',
+                border_color: '#999',
+                border_radius: '0'
               },
               price: {
                 color: "red",
@@ -139,6 +139,16 @@
                 color: "#999999",
                 font_size: "13",
                 font_weight: "normal",
+              },
+              background: {
+                bgImage: '',
+                pattern:'',
+                color: '#fff'
+              },
+              image: {
+                border_width: '1',
+                border_style: 'solid',
+                color: '#999',
               }
             }
           },
@@ -155,12 +165,12 @@
           paddingRight: '',
         },
         productList: [],
-        fontStyle: {
+        styleData: {
           describe: {
             color: "#333",
             fontSize: "18px",
             fontWeight: "normal",
-            textDecoration:'none'
+            textDecoration: 'none'
           },
           price: {
             color: "#999999",
@@ -171,25 +181,34 @@
             color: "#999999",
             fontSize: "13px",
             fontWeight: "normal",
-            textDecoration:'line-through'
+            textDecoration: 'line-through'
           },
           button: {
-            text:{
-             color: "#999999",
-             fontSize: "13px",
-             fontWeight: "normal",
+            text: {
+              color: "#999999",
+              fontSize: "13px",
+              fontWeight: "normal",
             },
-            border:{
-              paddingTop:'10px',
-              paddingBottom:'10px',
-              borderWidth:'1px',
-              borderStyle:'solid',
-              borderRadius:'0',
-              borderColor:'red',
-              paddingRight:'17px',
-              paddingLeft:'17px',
+            border: {
+              paddingTop: '10px',
+              paddingBottom: '10px',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderRadius: '0',
+              borderColor: 'red',
+              paddingRight: '17px',
+              paddingLeft: '17px',
             }
           },
+          backgroundColor:{
+            backgroundColor:'#fff',
+            backgroundImage:'url()',
+          },
+          backgroundImage:{
+            borderWidth:'1px',
+            borderStyle:'solid',
+            borderColor:'#000'
+          }
         }
       };
     },
@@ -223,30 +242,35 @@
       setConfig(data) {
         if (data) {
           this.rowNum = data.style_setting.select_config.value;
-          this.bgStyle.background = data.style_setting.bg_color_config.bgColor;
+          this.bgStyle.background = data.style_setting.bg_color_config.color;
           this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
           this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
           this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
           this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
           this.productList = data.content_setting.spu_config.list;
-          this.fontStyle.describe.color = data.style_setting.font_config.describe.color;
-          this.fontStyle.describe.fontSize = data.style_setting.font_config.describe.font_size+'px';
-          this.fontStyle.describe.fontWeight = data.style_setting.font_config.describe.font_weight;
-          this.fontStyle.price.color = data.style_setting.font_config.price.color;
-          this.fontStyle.price.fontSize = data.style_setting.font_config.price.font_size+'px';
-          this.fontStyle.price.fontWeight = data.style_setting.font_config.price.font_weight;
-          this.fontStyle.marketPrice.color = data.style_setting.font_config.marketPrice.color;
-          this.fontStyle.marketPrice.fontSize = data.style_setting.font_config.marketPrice.font_size+'px';
-          this.fontStyle.marketPrice.fontWeight = data.style_setting.font_config.marketPrice.font_weight;
-          this.fontStyle.button.text.color = data.style_setting.font_config.button.color;
-          this.fontStyle.button.text.fontSize = data.style_setting.font_config.button.font_size+'px';
-          this.fontStyle.button.text.fontWeight = data.style_setting.font_config.button.font_weight;
-          this.fontStyle.button.border.borderWidth = data.style_setting.font_config.button.border_width+'px';
-          this.fontStyle.button.border.borderStyle = data.style_setting.font_config.button.border_style;
-          this.fontStyle.button.border.borderColor = data.style_setting.font_config.button.border_color;
-          this.fontStyle.button.border.paddingBottom = data.style_setting.font_config.button.bottom_padding+'px';
-          this.fontStyle.button.border.paddingTop = data.style_setting.font_config.button.top_padding+'px';
-          this.fontStyle.button.border.borderRadius = data.style_setting.font_config.button.border_radius+'px';
+          this.styleData.describe.color = data.style_setting.font_config.describe.color;
+          this.styleData.describe.fontSize = data.style_setting.font_config.describe.font_size + 'px';
+          this.styleData.describe.fontWeight = data.style_setting.font_config.describe.font_weight;
+          this.styleData.price.color = data.style_setting.font_config.price.color;
+          this.styleData.price.fontSize = data.style_setting.font_config.price.font_size + 'px';
+          this.styleData.price.fontWeight = data.style_setting.font_config.price.font_weight;
+          this.styleData.marketPrice.color = data.style_setting.font_config.marketPrice.color;
+          this.styleData.marketPrice.fontSize = data.style_setting.font_config.marketPrice.font_size + 'px';
+          this.styleData.marketPrice.fontWeight = data.style_setting.font_config.marketPrice.font_weight;
+          this.styleData.button.text.color = data.style_setting.font_config.button.color;
+          this.styleData.button.text.fontSize = data.style_setting.font_config.button.font_size + 'px';
+          this.styleData.button.text.fontWeight = data.style_setting.font_config.button.font_weight;
+          this.styleData.button.border.borderWidth = data.style_setting.font_config.button.border_width + 'px';
+          this.styleData.button.border.borderStyle = data.style_setting.font_config.button.border_style;
+          this.styleData.button.border.borderColor = data.style_setting.font_config.button.color;
+          this.styleData.button.border.paddingBottom = data.style_setting.font_config.button.bottom_padding + 'px';
+          this.styleData.button.border.paddingTop = data.style_setting.font_config.button.top_padding + 'px';
+          this.styleData.button.border.borderRadius = data.style_setting.font_config.button.border_radius + 'px';
+          this.styleData.backgroundColor.backgroundColor = data.style_setting.font_config.background.color;
+          this.styleData.backgroundColor.backgroundImage = `url(${data.style_setting.font_config.background.bgImage})`;
+          this.styleData.backgroundImage.borderColor = data.style_setting.font_config.image.color;
+          this.styleData.backgroundImage.borderStyle = data.style_setting.font_config.image.border_style;
+          this.styleData.backgroundImage.borderWidth = data.style_setting.font_config.image.border_width + 'px';
         }
       },
     },

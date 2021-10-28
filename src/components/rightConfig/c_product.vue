@@ -50,10 +50,6 @@ export default {
                         configName: "select_config",
                     },
                     {
-                        component: toolConfig.bg_color_config,
-                        configName: "bg_color_config",
-                    },
-                    {
                         component: toolConfig.font_config,
                         configName: "font_config",
                     },

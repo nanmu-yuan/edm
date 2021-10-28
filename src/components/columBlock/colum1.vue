@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="cbvariant cbvariant-1_column" v-for="(item,index) of productList" :key="index">
+    <div  v-for="(item,index) of productList" :key="index">
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <tbody>
           <tr>
-            <td style="">
+            <td>
               <div  style="display: table; width: 100%;">
                 <div  style="display: table-row;">
                   <!--[if (mso)|(IE)]><table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td style="vertical-align: top; margin: 0 auto; width: 300px;" width="300"><![endif]-->
@@ -15,7 +15,7 @@
                           <table border="0" cellpadding="0" cellspacing="0" align="center" style=" margin: 0 auto;">
                             <tbody>
                               <tr>
-                                <td style="border:1px solid #666666;">
+                                <td :style="fontStyleData.backgroundImage">
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tbody>
                                       <tr>
@@ -51,9 +51,9 @@
                     </tbody>
                   </table>
                   <!--[if (mso)|(IE)]></td><td style="width: 20px; vertical-align: top;" width="20"><![endif]-->
-                  <div class="mobile-product-listing-2-cell mobile-product-listing-2-separator" style="display: table-cell; width: 20px; vertical-align: top;"></div>
+                  <div  style="display: table-cell; width: 20px; vertical-align: top;"></div>
                   <!--[if (mso)|(IE)]></td><td style="vertical-align: middle; width: 300px;" width="300"><![endif]-->
-                  <div class="mobile-container mobile-block" style="display: table-cell; vertical-align: middle; width: 300px;">
+                  <div style="display: table-cell; vertical-align: middle; width: 300px;">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                       <tbody>
                         <tr>

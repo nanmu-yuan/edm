@@ -376,7 +376,7 @@ export default {
   margin-right: 15px;
   margin-bottom: 15px;
   padding: 8px;
-  cursor: pointer;
+  cursor: all-scroll;
   border-radius: 4px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
