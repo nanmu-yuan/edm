@@ -129,16 +129,12 @@ export default {
         background: "rgba(0, 0, 0, 0.7)",
       });
       this.isShowPlacehold = false;
-      let temp = this.$refs.template.innerHTML.replace(
-        /data-v-[^"]*"[^"]*"/g,
-        ""
-      );
+      let temp = this.$refs.template.innerHTML.replace(/data-v-[^"]*"[^"]*"/g,"");
       let params = {
         template: temp,
-        site_name: "berrylook",
+        site_name: this.$store.state.siteConfig.currentSiteName,
       };
       this.promise(params).then((res) => {
-        console.log(res);
         loading.close();
         this.$notify({
           title: "成功",
@@ -203,7 +199,7 @@ export default {
         url: "http://smartsend.beta.seamarketings.com/api/v3/base_template/",
         headers: {
           Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1ODU4NTk4LCJlbWFpbCI6IiJ9.XJ-jnTY3hGfdrNx1jPnrQQIT1-HKkNt3I8M7gIL9wEc",
+            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM2NjM4MTM4LCJlbWFpbCI6IiJ9.l_qJ4ioqkjb4gshjNGnRmE6gmGS8pdSokGAMYcKiHEU",
         },
         data: {
           title: params.title,
@@ -320,7 +316,7 @@ export default {
         url: `http://smartsend.beta.seamarketings.com/api/v3/base_template/${id}/`,
         headers: {
           Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM1ODU4NTk4LCJlbWFpbCI6IiJ9.XJ-jnTY3hGfdrNx1jPnrQQIT1-HKkNt3I8M7gIL9wEc",
+            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM2NjM4MTM4LCJlbWFpbCI6IiJ9.l_qJ4ioqkjb4gshjNGnRmE6gmGS8pdSokGAMYcKiHEU",
         },
         success: function (res) {
           //var data = JSON.parse(res)

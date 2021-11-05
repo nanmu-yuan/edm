@@ -1,39 +1,58 @@
 import axios from 'axios'
 import $ from 'jquery'
+import store from './store'
 const request = axios.create({
     //baseURL: process.env.VUE_APP_BASEURL,
     timeout: 30000
 });
-export function get(url,spu){
-    return  new Promise((resolve,reject) =>{
-        axios.get(url).then(res =>{
-            if(res.data.code == '200' && res.data.data.length>0){
-                resolve(responseData(res));
-            }else{
-                reject(spu)
+export function queryProductBySpu(url,spu){
+    return new Promise((resolve,reject) =>{
+        $.ajax({
+            type:'get',
+            url:url,
+            dataType:isJsonp()?'json':'jsonp',
+            jsonp:isJsonp()?false:'jsonpcallback',
+            beforeSend(req){
+                isJsonp()?req.setRequestHeader('pms-token',"orderplus") : ''
+            },
+            success(res){
+                if(responseData(res)){
+                    resolve(responseData(res));
+                }else{
+                    reject(spu);
+                }
+            },
+            error(err){
+                reject(spu);
+                console.err(err);
+            },
+            complete(){
+
             }
-        }).catch(err =>{
-            reject(spu);
-            console.err(err);
         })
     })
 }
+function isJsonp(){
+    let currentSiteName = store.state.siteConfig.currentSiteName,siteList = store.state.siteConfig.siteInfo,isJsonp=true;
+    siteList.meSystem.indexOf(currentSiteName)>0?isJsonp = false:isJsonp = true;
+    return isJsonp
+}
 function responseData(data){
-    // const para = store.state.edm;
-    // if(typeof data == 'string'){data = JSON.parse(data)}
-    // if(para.meSystem.indexOf(para.siteName) >= 0){
-    //     obj = data.response.data
-    // }else if(para.cloud.indexOf(para.siteName) >= 0){
-    //     obj = data.data.list;
-    // }else if( para.shopify.indexOf(para.siteName) >= 0){
-    //     obj = data.data.response ? data.data.response : [];
-    // }else if(para.Independence.indexOf(para.siteName) >= 0){
-    //     obj  = data;
-    // }
-    // else{
-    //     obj =  data.data
-    // }
-    let obj = data.data.data[0];
+    let obj = null;
+    let currentSiteName = store.state.siteConfig.currentSiteName,siteList = store.state.siteConfig.siteInfo
+    if(typeof data == 'string'){data = JSON.parse(data)}
+    if(siteList.meSystem.indexOf(currentSiteName) >= 0){
+        obj = data.response.data[0]
+    }else if(siteList.cloud.indexOf(currentSiteName) >= 0){
+        obj = data.data.list[0];
+    }else if( siteList.shopify.indexOf(currentSiteName) >= 0){
+        obj = data.data.response? data.data.response:data.data ? data.data[0] : null;
+    }else if(siteList.Independence.indexOf(currentSiteName) >= 0){
+        obj  = data;
+    }
+    else{
+        obj =  data.data
+    }
     return obj;
 }
  export  function jsonp(url){
@@ -55,18 +74,6 @@ function responseData(data){
         })
     })
  }
-// export function post(url,prarms){
-//      return new Promise((reslove,reject) =>{
-//          axios.post(url,{
-//             html:prarms.template,
-//             site_name:prarms.site_name
-//          }).then(res =>{
-//              reslove(res.data)
-//          }).catch(err=>{
-//              reject(err)
-//          })
-//      })
-//  }
  export function post(url,prams){
     return new Promise((resolve,rejcet) =>{
         $.ajax({

@@ -39,6 +39,12 @@ module.exports = function(app){
                 "kokorou"
             ],
             api:{
+                blogladi:[
+                    "blogladi",
+                    "http://cloud-api.orderplus.com/api/goods/list?siteId=41758&lang=ar&processCurrency=true&spu=",
+                    "SLang",
+                ],
+                berrylook: ["BERRY", "https://websolr.berrylook.com/dla?insku=", "bl."],
                 airytops :[
                     "airytops ",
                     "http://api.opmall.com/api/Product/shoplazzaEdm?pid=7714&spus=",

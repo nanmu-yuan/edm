@@ -15,7 +15,7 @@
                             <tbody>
                               <tr>
                                 <td>
-                                  <a target="_blank" href="" style="text-decoration: none">
+                                  <a target="_blank" href="https://www.SITENAME.com/?utm_source=EDM&amp;utm_medium=AQB20171019&amp;utm_campaign=Link503" style="text-decoration: none">
                                     <span class="image-placeholder" v-if="!imgaUrl">
                                       <span class="placeholder-style" style="width: 200px; height: 50px;">
                                         <span class="placeholder-inner">

@@ -4,10 +4,10 @@ import router from './router'
 import store from './store'
 import axios from 'axios';
 import VueLazyload from 'vue-lazyload'
-import {get,post,jsonp} from './http'
+import {post,jsonp,queryProductBySpu} from './http'
 import domToImage from 'dom-to-image'
 Vue.prototype.domToImage = domToImage;
-Vue.prototype.get = get;
+Vue.prototype.get = queryProductBySpu;
 Vue.prototype.jsonp = jsonp;
 Vue.prototype.post = post;
 Vue.prototype.axios = axios;
