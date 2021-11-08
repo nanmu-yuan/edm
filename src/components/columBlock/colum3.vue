@@ -5,102 +5,99 @@
 				<div class="mobile-product-listing-row" style="display: table-row;">
 										<!--[if (mso)|(IE)]><table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"><tr><![endif]-->
 					<!--[if (mso)|(IE)]><td style="width: 186px; vertical-align: top;"><![endif]-->
-					<div class="mobile-product-listing-3-cell" style="display: table-cell; width: 186px; vertical-align: top;">
-						<table border="0" cellspacing="0" cellpadding="0" width="100%">
-							<tbody>
-								<tr>
-									<td style="padding-top: 15px; padding-bottom: 15px;">
-										<table border="0" cellpadding="0" cellspacing="0" width="100%">
-											<tbody>
-												<tr>
-													<td>
-														<table border="0" cellpadding="0" cellspacing="0" align="center" style=" margin: 0 auto;">
-															<tbody>
-																<tr>
-																	<td style="border:1px solid #666666;">
-																		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-																			<tbody>
-																				<tr>
-																					<td style="padding: 10px 10px 10px 10px;">
-																						<table border="0" cellpadding="0" cellspacing="0">
-																							<tbody>
-																								<tr>
-																									<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
-																											<img width="100%" v-if="item[0] && item[0].img" :src="item[0] && item[0].img" alt="">
-																											<span v-else class="image-placeholder" style="">
-																												<span class="placeholder-style" style="width: 164px; height: 166px;">
-																													<span class="placeholder-inner">
-																														<img class="placeholder-img-medium" src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="60">
+						<div class="mobile-product-listing-3-cell" style="display: table-cell; width: 186px; vertical-align: top;">
+							<table border="0" cellspacing="0" cellpadding="0" width="100%">
+								<tbody>
+									<tr>
+										<td style="padding-top: 15px; padding-bottom: 15px;">
+											<table border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td>
+															<table border="0" cellpadding="0" cellspacing="0" align="center" style=" margin: 0 auto;">
+																<tbody>
+																	<tr>
+																		<td :style="fontStyleData.backgroundImage">
+																			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																				<tbody>
+																					<tr>
+																						<td style="padding: 10px 10px 10px 10px;">
+																							<table border="0" cellpadding="0" cellspacing="0">
+																								<tbody>
+																									<tr>
+																										<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;">
+																											<a target="_blank" :href="item[0].url">
+																												<img v-if ="item[0] && item[0].img" :src="item[0] && item[0].img" width="100%" alt="">
+																												<span v-else class="image-placeholder" style="">
+																													<span class="placeholder-style" style="width: 164px; height: 166px;">
+																														<span class="placeholder-inner">
+																															<img class="placeholder-img-medium" src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="60">
+																														</span>
 																													</span>
-
 																												</span>
-																											</span>
-																										</a></td>
-																								</tr>
-																							</tbody>
-																						</table>
-																					</td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td style="padding-top: 15px;">
-														<table border="0" cellpadding="0" cellspacing="0" width="100%">
-															<tbody>
-																<tr>
-																	<td class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-align:center;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-decoration:none;" href="">
-																		<span class="webfont-fallback-1" v-if="item[0] && item[0].productName">{{item[0].productName}}</span>
-																		<span class="webfont-fallback-1" v-else>Product title</span>
-																		</a></td>
-																</tr>
-															</tbody>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td style="padding-top: 15px;">
-														<table border="0" cellpadding="0" cellspacing="0" width="100%">
-															<tbody>
-																<tr>
-																	<td style="text-align:center;"><span class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;text-align:center;text-decoration:none;">$0.00</span><span style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;"> / </span><span class="webfont-fallback-1" style="color:#999999;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:106%;text-decoration:line-through;">$0.00</span></td>
-																</tr>
-															</tbody>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td style="padding-top: 15px;">
-														<table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
-															<tbody>
-																<tr>
-																	<td class="webfont-fallback-1" style="border:2px solid #cc3366;border-radius:0px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding-bottom:7px;padding-left:20px;padding-right:20px;padding-top:7px;text-align:center;">
-																		<!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
-																		<!--[if !mso]><!-->
-																		<div style="line-height: 17px; text-align: center;">
-																			<!--<![endif]--><a class="webfont-fallback-1" target="_blank" style="line-height: 17px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;text-align:center;text-decoration:none;" href=""><span class="webfont-fallback-1" style="line-height: 17px;">SHOP NOW</span></a>
+																											</a></td>
+																									</tr>
+																								</tbody>
+																							</table>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td style="padding-top: 15px;">
+															<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																<tbody>
+																	<tr>
+																		<td style="text-align: center;"><a :style="fontStyleData.describe"><span>{{item[0].goods_name}}</span></a></td>
+																	</tr>
+																</tbody>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td style="padding-top: 15px;">
+															<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																<tbody>
+																	<tr>
+																		<td style="text-align:center;"><span  :style="fontStyleData.price">{{item[0].price}}</span><span> / </span><span  :style="fontStyleData.marketPrice">{{item[0].market_price}}</span></td>
+																	</tr>
+																</tbody>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td style="padding-top: 15px;">
+															<table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
+																<tbody>
+																	<tr>
+																		<td>
+																			<!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
 																			<!--[if !mso]><!-->
-																		</div>
-																		<!--<![endif]-->
-																		<!--[if (mso)|(IE) ]></td></tr></table><![endif]-->
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+																			<div :style="fontStyleData.button.border">
+																				<!--<![endif]--><a :href="item[0].url"  target="_blank" :style="fontStyleData.button.text">SHOP NOW</a>
+																				<!--[if !mso]><!-->
+																			</div>
+																			<!--<![endif]-->
+																			<!--[if (mso)|(IE) ]></td></tr></table><![endif]-->
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					<!--[if (mso)|(IE)]></td><![endif]-->
 					<!--[if (mso)|(IE)]><td style="width: 21px; vertical-align: top;"><![endif]-->
 					<div class="mobile-product-listing-3-cell mobile-product-listing-3-separator" style="display: table-cell; width: 21px; vertical-align: top;"></div>
@@ -118,7 +115,7 @@
 														<table border="0" cellpadding="0" cellspacing="0" align="center" style=" margin: 0 auto;">
 															<tbody>
 																<tr>
-																	<td style="border:1px solid #666666;">
+																	<td :style="fontStyleData.backgroundImage">
 																		<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																			<tbody>
 																				<tr>
@@ -126,16 +123,14 @@
 																						<table border="0" cellpadding="0" cellspacing="0">
 																							<tbody>
 																								<tr>
-																									<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
+																									<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;">
+																										<a target="_blank" :href="item[1].url">
 																											<img v-if="item[1] && item[1].img" width="100%" :src="item[1] && item[1].img" alt="">
 																											<span v-else class="image-placeholder" style="">
 																												<span class="placeholder-style" style="width: 164px; height: 166px;">
 																													<span class="placeholder-inner">
-
 																														<img class="placeholder-img-medium" src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="60">
-
 																													</span>
-
 																												</span>
 																											</span>
 																										</a></td>
@@ -157,8 +152,10 @@
 														<table border="0" cellpadding="0" cellspacing="0" width="100%">
 															<tbody>
 																<tr>
-																	<td class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-align:center;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-decoration:none;" href=""><span class="webfont-fallback-1" v-if="item[1] && item[1].productName">{{item[1].productName}}</span>
-																		<span class="webfont-fallback-1" v-else>Product title</span></a></td>
+																	<td style="text-align: center;">
+																	<a class="webfont-fallback-1" target="_blank" :style="fontStyleData.describe" :href="item[1].url">
+																		<span class="webfont-fallback-1">{{item[1].goods_name}}</span>
+																	</a></td>
 																</tr>
 															</tbody>
 														</table>
@@ -170,7 +167,7 @@
 														<table border="0" cellpadding="0" cellspacing="0" width="100%">
 															<tbody>
 																<tr>
-																	<td style="text-align:center;"><span class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;text-align:center;text-decoration:none;">$0.00</span><span style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;"> / </span><span class="webfont-fallback-1" style="color:#999999;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:106%;text-decoration:line-through;">$0.00</span></td>
+																	<td style="text-align:center;"><span  :style="fontStyleData.price">{{item[1].price}}</span><span> / </span><span  :style="fontStyleData.marketPrice">{{item[1].market_price}}</span></td>
 																</tr>
 															</tbody>
 														</table>
@@ -181,11 +178,11 @@
 														<table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
 															<tbody>
 																<tr>
-																	<td class="webfont-fallback-1" style="border:2px solid #cc3366;border-radius:0px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding-bottom:7px;padding-left:20px;padding-right:20px;padding-top:7px;text-align:center;">
+																	<td>
 																		<!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
 																		<!--[if !mso]><!-->
-																		<div style="line-height: 17px; text-align: center;">
-																			<!--<![endif]--><a class="webfont-fallback-1" target="_blank" style="line-height: 17px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;text-align:center;text-decoration:none;" href=""><span class="webfont-fallback-1" style="line-height: 17px;">SHOP NOW</span></a>
+																		<div :style="fontStyleData.button.border">
+																			<!--<![endif]--><a :href="item[1].url"  target="_blank" :style="fontStyleData.button.text">SHOP NOW</span></a>
 																			<!--[if !mso]><!-->
 																		</div>
 																		<!--<![endif]-->
@@ -220,7 +217,7 @@
 														<table border="0" cellpadding="0" cellspacing="0" align="center" style=" margin: 0 auto;">
 															<tbody>
 																<tr>
-																	<td style="border:1px solid #666666;">
+																	<td :style="fontStyleData.backgroundImage">
 																		<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																			<tbody>
 																				<tr>
@@ -228,7 +225,8 @@
 																						<table border="0" cellpadding="0" cellspacing="0">
 																							<tbody>
 																								<tr>
-																									<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" href="">
+																									<td class="mobile-product-listing-3-image-cell" style="font-size: 0; line-height: 0; text-align: center;">
+																										<a target="_blank" :href="item[2].url">
 																											<img v-if ="item[2] && item[2].img" :src="item[2] && item[2].img" width="100%" alt="">
 																											<span v-else class="image-placeholder" style="">
 																												<span class="placeholder-style" style="width: 164px; height: 166px;">
@@ -256,8 +254,10 @@
 														<table border="0" cellpadding="0" cellspacing="0" width="100%">
 															<tbody>
 																<tr>
-																	<td class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-align:center;text-decoration:none;"><a class="webfont-fallback-1" target="_blank" style="color:#333333;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:125%;text-decoration:none;" href=""><span class="webfont-fallback-1" v-if="item[2] && item[2].productName">{{item[0].productName}}</span>
-																		<span class="webfont-fallback-1" v-else>Product title</span></a></td>
+																	<td style="text-align: center;">
+																		<a :style="fontStyleData.describe"><span>{{item[2].goods_name}}</span>
+																		</a>
+																	</td>
 																</tr>
 															</tbody>
 														</table>
@@ -268,7 +268,7 @@
 														<table border="0" cellpadding="0" cellspacing="0" width="100%">
 															<tbody>
 																<tr>
-																	<td style="text-align:center;"><span class="webfont-fallback-1" style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;text-align:center;text-decoration:none;">$0.00</span><span style="color:#333333;font-family:Arial, sans-serif;font-size:20px;font-weight:bold;line-height:110%;"> / </span><span class="webfont-fallback-1" style="color:#999999;font-family:Arial, sans-serif;font-size:16px;font-weight:normal;line-height:106%;text-decoration:line-through;">$0.00</span></td>
+																	<td style="text-align:center;"><span  :style="fontStyleData.price">{{item[2].price}}</span><span> / </span><span  :style="fontStyleData.marketPrice">{{item[2].market_price}}</span></td>
 																</tr>
 															</tbody>
 														</table>
@@ -279,11 +279,11 @@
 														<table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
 															<tbody>
 																<tr>
-																	<td class="webfont-fallback-1" style="border:2px solid #cc3366;border-radius:0px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding-bottom:7px;padding-left:20px;padding-right:20px;padding-top:7px;text-align:center;">
+																	<td>
 																		<!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
 																		<!--[if !mso]><!-->
-																		<div style="line-height: 17px; text-align: center;">
-																			<!--<![endif]--><a class="webfont-fallback-1" target="_blank" style="line-height: 17px;color:#cc3366;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;text-align:center;text-decoration:none;" href=""><span class="webfont-fallback-1" style="line-height: 17px;">SHOP NOW</span></a>
+																		<div :style="fontStyleData.button.border">
+																			<!--<![endif]--><a :href="item[2].url"  target="_blank" :style="fontStyleData.button.text">SHOP NOW</a>
 																			<!--[if !mso]><!-->
 																		</div>
 																		<!--<![endif]-->
@@ -316,43 +316,57 @@ export default {
 			type: Array,
 			default: () => [],
 		},
+		fontStyle:{
+           type:Object,
+    }
 	},
 	data () {
 		return {
 			defaultImg:'',
-			demoImg:require('../../assets/images/placeholder-img200.png')	
+			demoImg:require('../../assets/images/placeholder-img200.png'),
+			fontStyleData:{}
 		}
 	},
+	watch: {
+    fontStyle:{
+      handler(nval){
+        this.fontStyleData = nval
+      },
+      deep:true,
+      immediate:true
+    }
+  },
 	computed: {
 		productList() {
 			if (this.list.length > 0) {
+				console.log(this.list)
 				return this.group(this.list, 3);
 			} else {
 				return [
 					[
 						{
 							productName: 'for example product info  list',
-							productUrl:
+							url:
 								'https://www.berrylook.com/en/Products/short-high-collar-brief-plain-long-sleeve-t-shirt-232100.html',
-							productImg:this.demoImg,
+							img:this.demoImg,
 							price: '$20.74',
-							marketPrice: '$51.85',
+							market_price: '$51.85',
 						},
 						{
 							productName: 'for example product info  list',
-							productUrl:
+							url:
 								'https://www.berrylook.com/en/Products/short-high-collar-brief-plain-long-sleeve-t-shirt-232100.html',
-							productImg:this.demoImg,
+								img:this.demoImg,
 							price: '$20.74',
-							marketPrice: '$51.85',
+							market_price: '$51.85',
 						},
 						{
 							productName: 'for example product info  list',
-							productUrl:
+							url:
 								'https://www.berrylook.com/en/Products/short-high-collar-brief-plain-long-sleeve-t-shirt-232100.html',
-							productImg:this.demoImg,
+								img:this.demoImg,
 							price: '$20.74',
-							marketPrice: '$51.85',
+							market_price: '$51.85',
 						},
 					],
 				];
@@ -363,10 +377,22 @@ export default {
 		group(array, subGroupLength) {
 			let index = 0;
 			let newArray = [];
+			let num = 0;
 			while (index < array.length) {
 				newArray.push(array.slice(index, (index += subGroupLength)));
-			}
-			return newArray;
+				if (newArray[num].length < subGroupLength) {
+					let len = subGroupLength - newArray[num].length;
+					for (let i = 0; i < len; i++) {
+						newArray[num].push({
+							goods_name: 'for example product info  list',
+							url: 'https://www.berrylook.com/en/Products/short-high-collar-brief-plain-long-sleeve-t-shirt-232100.html',
+							productImg: this.demoImg,
+							price: '$00.00',
+							market_price: '$00.00',
+						})
+					}
+				} num++;
+			} return newArray;
 		},
 	},
 };

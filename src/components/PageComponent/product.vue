@@ -12,13 +12,13 @@
                       <colum1 :list="productList" :fontStyle="styleData"></colum1>
                     </div>
                     <div v-else-if="rowNum==2">
-                      <colum2 :list="productList"></colum2>
+                      <colum2 :list="productList" :fontStyle="styleData"></colum2>
                     </div>
                     <div v-else-if="rowNum==3">
-                      <colum3 :list="productList"></colum3>
+                      <colum3 :list="productList" :fontStyle="styleData"></colum3>
                     </div>
                     <div v-else-if="rowNum==4">
-                      <colum4 :list="productList"></colum4>
+                      <colum4 :list="productList" :fontStyle="styleData"></colum4>
                     </div>
                   </td>
                 </tr>
@@ -188,6 +188,7 @@
               color: "#999999",
               fontSize: "13px",
               fontWeight: "normal",
+              textDecoration: 'none'
             },
             border: {
               paddingTop: '10px',

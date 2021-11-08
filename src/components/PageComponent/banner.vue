@@ -110,8 +110,8 @@ export default {
   },
   watch: {
     num: {
-      handler() {
-        //console.log(nval);
+      handler(nval) {
+        console.log(nval);
       },
       deep: true,
     },

@@ -153,7 +153,7 @@ export default {
           } else if (currentSiteName == 'popreal') {
             sizePara = "@!h320-w320"
           } else {
-            sizePara = "@!" + rep + "h400-w400";
+            sizePara = "@!" + rep + "h400-w300";
           }
           obj.img = "http://" + siteList.api[currentSiteName][2] + "aopcdn.com/" +
             item.main_original_img_path.replace(/^images/, 'goods') + sizePara;

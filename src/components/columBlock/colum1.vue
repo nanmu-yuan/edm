@@ -24,7 +24,7 @@
                                             <tbody>
                                               <tr>
                                                 <td style="font-size: 0; line-height: 0; text-align: center;">
-                                                  <a target="_blank" href="">
+                                                  <a target="_blank" :href="item.url">
                                                     <img  v-if="item.img" :src="item.img" width='268' height='270' alt="">
                                                     <span v-else class="image-placeholder" style="">
                                                       <span class="placeholder-style" style="width: 268px; height: 270px;">
@@ -65,7 +65,7 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td style="text-align: center;"><a class="webfont-fallback-1" target="_blank" :style="fontStyleData.describe" href=""><span class="webfont-fallback-1">{{item.goods_name}}</span></a></td>
+                                          <td style="text-align: center;"><a class="webfont-fallback-1" target="_blank" :style="fontStyleData.describe" :href="item.url"><span class="webfont-fallback-1">{{item.goods_name}}</span></a></td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -96,7 +96,7 @@
                                             <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
                                             <!--[if !mso]><!-->
                                             <div :style="fontStyleData.button.border">
-                                              <!--<![endif]--><a class="webfont-fallback-1" target="_blank" :style="fontStyleData.button.text">SHOP NOW</span></a>
+                                              <!--<![endif]--><a :href="item.url"  target="_blank" :style="fontStyleData.button.text">SHOP NOW</a>
                                               <!--[if !mso]><!-->
                                             </div>
                                             <!--<![endif]-->
@@ -160,8 +160,8 @@ export default {
         return [
           {
             goods_name: 'for example product info  list',
-            productUrl: 'https://www.berrylook.com/en/Products/short-high-collar-brief-plain-long-sleeve-t-shirt-232100.html',
-            productImg: this.demoImg,
+            url: 'https://www.berrylook.com/en/Products/short-high-collar-brief-plain-long-sleeve-t-shirt-232100.html',
+            img: this.demoImg,
             price: '$20.74',
             market_price: '$51.85',
           },
