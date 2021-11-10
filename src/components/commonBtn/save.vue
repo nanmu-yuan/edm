@@ -1,7 +1,7 @@
 <template>
   <div class="btn-box">
    <el-button @click="save" >SUBMIT</el-button>
-    <el-button @click="saveTemplate">SUBMIT TEMPLATE</el-button>
+    <el-button @click="saveTemplate">SAVE TEMPLATE</el-button>
   </div>
 </template>
 <script>
