@@ -76,8 +76,8 @@
     mapState
   } from "vuex";
   export default {
-    name: "logo",
-    cname: "logo",
+    name: "Logo",
+    cname: "Logo",
     configName: "c_logo",
     props: {
       num: {
@@ -93,7 +93,7 @@
     data() {
       return {
         defaultConfig: {
-          name: "logo",
+          name: "Logo",
           timestamp: this.num,
           content_setting: {
             text_config: {

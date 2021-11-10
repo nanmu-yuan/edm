@@ -36,8 +36,8 @@
   } from "vuex";
   import colums from '../columBlock'
   export default {
-    name: "product",
-    cname: "product",
+    name: "Product",
+    cname: "Product",
     configName: "c_product",
     props: {
       num: {
@@ -57,7 +57,7 @@
     data() {
       return {
         defaultConfig: {
-          name: "product",
+          name: "Product",
           timestamp: this.num,
           content_setting: {
             spu_config: {

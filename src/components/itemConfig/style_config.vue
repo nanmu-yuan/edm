@@ -5,12 +5,13 @@
       <el-form-item v-for="(c_item,c_key) in configData">
         <div style="display:flex;">
           <div>
-            <el-popover placement="left" width="250" trigger="click">
+            <el-popover placement="left" width="270" trigger="click">
               <div class="pop-title">{{c_key}}</div>
-              <el-form ref="form" label-width="120px">
+              <div>
+                 <el-form ref="form" label-width="120px">
                 <el-form-item label="color" v-if="configData[c_key].color !=undefined">
                   <el-color-picker v-model="configData[c_key].color" size="small"
-                    @active-change="activeChange($event,c_key)"></el-color-picker>
+                    @active-change="activeChange($event,c_key,'color')"></el-color-picker>
                 </el-form-item>
                 <el-form-item label="Font Size" v-if="configData[c_key].font_size !=undefined">
                   <el-input-number style="width:100px" size="mini" v-model="configData[c_key].font_size">
@@ -44,9 +45,17 @@
                   <el-input-number style="width:100px" size="mini" v-model="configData[c_key].border_radius">
                   </el-input-number>
                 </el-form-item>
+                <el-form-item label="border color" v-if="configData[c_key].border_color !=undefined">
+                  <el-color-picker v-model="configData[c_key].border_color" size="small"
+                    @active-change="activeChange($event,c_key,'border_color')"></el-color-picker>
+                </el-form-item>
                 <el-form-item label="Pattern" v-if="configData[c_key].pattern!= undefined">
                  <div class="pattern-box" :style="pattern"></div>
                   </el-input-number>
+                </el-form-item>
+                <el-form-item label="background color" v-if="configData[c_key].bgColor !=undefined">
+                  <el-color-picker v-model="configData[c_key].bgColor" size="small"
+                    @active-change="activeChange($event,c_key,'bgColor')"></el-color-picker>
                 </el-form-item>
                 <el-form-item label="background image" v-if="configData[c_key].bgImage!= undefined">
                   <el-upload class="avatar-uploader" action='https://admin.fashionmia.net/opbm.php?a=EdmImages&m=Api'
@@ -56,6 +65,7 @@
                   <span @click="del(c_key)" class="style-delete el-icon-delete"></span>
                 </el-form-item>
               </el-form>
+              </div>
               <div class="bg-box" slot="reference" :style="{'color':configData[c_key].color}">A</div>
             </el-popover>
           </div>
@@ -121,8 +131,14 @@
       },
     },
     methods: {
-      activeChange(data, c_key) {
-        this.configData[c_key].color = data;
+      activeChange(data,c_key,type) {
+        if(type =='border_color'){
+          this.configData[c_key].border_color = data;
+        }else if(type =='bgColor'){
+          this.configData[c_key].bgColor = data;
+        }else if(type =='color'){
+          this.configData[c_key].color = data;
+        }
       },
       handleAvatarSuccess(res) {
         this.configData['background']['bgImage'] = res.data.img;
@@ -161,6 +177,7 @@
 
   .warp-box {
     border-top: 1px solid #fefefe;
+    
   }
 
   .title {

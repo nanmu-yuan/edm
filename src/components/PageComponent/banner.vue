@@ -7,16 +7,16 @@
             <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: 0 auto; ">
               <tbody>
                 <tr>
-                  <td style="font-size:0;line-height:0;padding-bottom:20px;padding-left:20px;padding-right:20px;padding-top:20px;text-align:center;">
+                  <td :style = "pdStyle">
                     <a target="_blank" :href="linkText" style="text-decoration: none;">
                       <span class="image-placeholder" style="" v-if="!imageUrl">
-                        <span class="placeholder-style" style="width: 600px; height: 300px;">
+                        <span class="placeholder-style" style="width: 600px; height: 250px;">
                           <span class="placeholder-inner">
                             <img class="placeholder-img-large"  src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="100"><br>
                           </span>
                         </span>
                       </span>
-                      <img v-else v-lazy ="imageUrl" alt="" width ='600'>
+                      <img v-else v-lazy ="imageUrl" alt="" width ='100%' style="min-height: 250px;">
                     </a>
                   </td>
                 </tr>
@@ -31,8 +31,8 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "banner",
-  cname: "banner",
+  name: "Banner",
+  cname: "Banner",
   configName: "c_banner",
   props: {
     num: {
@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       defaultConfig: {
-        name: "banner",
+        name: "Banner",
         timestamp: this.num,
         content_setting: {
           link_config: {
@@ -105,6 +105,9 @@ export default {
         paddingBottom: '',
         paddingLeft: '',
         paddingRight: '',
+        fontSize:0,
+        lineHeight:0,
+        textAlign:'center'
       }
     };
   },

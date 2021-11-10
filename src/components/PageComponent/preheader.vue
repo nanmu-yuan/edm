@@ -32,7 +32,7 @@
     mapState
   } from "vuex";
   export default {
-    name: "preheader",
+    name: "Preheader",
     cname: "Preheader",
     configName: "c_preheader",
     props: {
@@ -50,7 +50,7 @@
     data() {
       return {
         defaultConfig: {
-          name: "preheader",
+          name: "Preheader",
           timestamp: this.num,
           content_setting: {
             text_config: {

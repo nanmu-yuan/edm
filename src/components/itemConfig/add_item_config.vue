@@ -6,7 +6,7 @@
         <el-collapse-item name="1">
           <template slot="title">
             <div class="add-collapse-box">
-              <span>LINK</span>
+              <span>{{item.textItem.value}}</span>
               <span @click.stop="removeItem(item,index)" class="icon el-icon-delete"></span>
             </div>
           </template>

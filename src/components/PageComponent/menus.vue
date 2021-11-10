@@ -42,8 +42,8 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "menus",
-  cname: "menus",
+  name: "Menus",
+  cname: "Menus",
   configName: "c_menus",
   props: {
     num: {
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       defaultConfig: {
-        name: "menus",
+        name: "Menus",
         timestamp: this.num,
         content_setting: {
           add_item_config: {
