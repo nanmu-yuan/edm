@@ -12,7 +12,7 @@
                       <span class="image-placeholder" style="" v-if="!imageUrl">
                         <span class="placeholder-style" style="width: 600px; height: 250px;">
                           <span class="placeholder-inner">
-                            <img class="placeholder-img-large"  src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="100"><br>
+                            <img class="placeholder-img-large"  src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="300"><br>
                           </span>
                         </span>
                       </span>

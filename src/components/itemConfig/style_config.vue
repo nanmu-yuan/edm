@@ -8,11 +8,42 @@
             <el-popover placement="left" width="270" trigger="click">
               <div class="pop-title">{{c_key}}</div>
               <div>
-                 <el-form ref="form" label-width="120px">
+                 <el-form ref="form" label-width="150px">
                 <el-form-item label="color" v-if="configData[c_key].color !=undefined">
                   <el-color-picker v-model="configData[c_key].color" size="small"
                     @active-change="activeChange($event,c_key,'color')"></el-color-picker>
                 </el-form-item>
+                <el-form-item label="Bottom border color" v-if="configData[c_key].border_bottom_color !=undefined">
+                  <el-color-picker v-model="configData[c_key].border_bottom_color" size="small"
+                    @active-change="activeChange($event,c_key,'border_bottom_color')"></el-color-picker>
+                </el-form-item>
+                <el-form-item label="Bottom border style" v-if="configData[c_key].border_bottom_style !=undefined">
+                  <el-select v-model="configData[c_key].border_bottom_style" size="small" style="width: 100Px;">
+                    <el-option v-for="item of borderStyleOptions" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Bottom border width" v-if="configData[c_key].border_bottom_width !=undefined">
+                  <el-input-number style="width:100px" size="mini" v-model="configData[c_key].border_bottom_width">
+                  </el-input-number>
+                </el-form-item>
+
+                <el-form-item label="Top border color" v-if="configData[c_key].border_top_color !=undefined">
+                  <el-color-picker v-model="configData[c_key].border_top_color" size="small"
+                    @active-change="activeChange($event,c_key,'border_top_color')"></el-color-picker>
+                </el-form-item>
+                <el-form-item label="Top border style" v-if="configData[c_key].border_top_style !=undefined">
+                  <el-select v-model="configData[c_key].border_top_style" size="small" style="width: 100Px;">
+                    <el-option v-for="item of borderStyleOptions" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Top border width" v-if="configData[c_key].border_top_width !=undefined">
+                  <el-input-number style="width:100px" size="mini" v-model="configData[c_key].border_top_width">
+                  </el-input-number>
+                </el-form-item>
+
+
                 <el-form-item label="Font Size" v-if="configData[c_key].font_size !=undefined">
                   <el-input-number style="width:100px" size="mini" v-model="configData[c_key].font_size">
                   </el-input-number>
@@ -138,6 +169,10 @@
           this.configData[c_key].bgColor = data;
         }else if(type =='color'){
           this.configData[c_key].color = data;
+        }else if(type =='border_bottom_color'){
+          this.configData[c_key].border_bottom_color = data;
+        }else if(type =='border_top_color'){
+          this.configData[c_key].border_top_color = data;
         }
       },
       handleAvatarSuccess(res) {
