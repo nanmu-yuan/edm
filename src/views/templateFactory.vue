@@ -36,6 +36,12 @@
                                                 <div class="overlay-actions">
                                                   <div class="overlay-actions-middle">
                                                     <div class="overlay-actions-middle-wrapper clearfix">
+                                                      <div class="action-handle remove-handle" title="Copy" @click.stop="copy(item,index)">
+                                                        <i class="el-icon-copy-document" style="font-size:24px"></i>
+                                                      </div>
+                                                      <div class="action-handle remove-handle" title="Snapshot" @click.stop="copy(item,index)">
+                                                        <i class="el-icon-camera" style="font-size:24px"></i>
+                                                      </div>
                                                       <div class="action-handle remove-handle" title="Remove" @click.stop="remove(item,index)">
                                                         <i class="el-icon-delete" style="font-size:24px"></i>
                                                       </div>
@@ -228,12 +234,25 @@ export default {
       console.log(el, index);
     },
     remove(el, index) {
-      console.log("move.....");
       this.rightConfig.splice(0, 1);
       this.middlePage.splice(index, 1);
       this.$store.commit("adminConfig/REMOVEARR", el);
-      console.log(this.activeIndex);
       this.drawer = false;
+    },
+    copy(el,index){
+      let timestamp = new Date().getTime();
+      let copyDom = JSON.parse(JSON.stringify(el));
+      this.rightConfig = [];
+      copyDom.num = `${timestamp}`;
+      this.middlePage.splice(index,0,copyDom)
+      this.rightConfig.push(copyDom);
+      this.$store.commit("adminConfig/SETCONFIGNAME", copyDom.name);
+      let copyData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[el.num]));
+      copyData['timestamp'] = timestamp.toString();
+      this.$store.commit("adminConfig/ADDARRAY", {
+        num: timestamp,
+        val: copyData,
+      });
     },
     add() {
       this.togoDrawer();
@@ -252,7 +271,6 @@ export default {
       }
       if (mData.moved) {
         let data = mData.moved.element;
-        console.log("move");
         this.$store.commit("adminConfig/DEFAULTARRAYSORT", mData.moved);
         this.rightConfig = [];
         this.activeIndex = mData.moved.newIndex;
@@ -283,6 +301,7 @@ export default {
     // 左侧选择组件
     addDom(dom) {
       //添加时间戳
+      console.log(dom)
       let timestamp = new Date().getTime();
       dom.num = `${timestamp}`;
       //指控右侧配置页面

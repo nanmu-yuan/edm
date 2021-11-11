@@ -1,24 +1,26 @@
 <template>
   <div class="warp-box">
     <el-divider>ADD LINK</el-divider>
-    <div class="add-item-box" v-for="(item,index)  of  configData.linkArr" :key="index">
-      <el-collapse>
-        <el-collapse-item name="1">
-          <template slot="title">
-            <div class="add-collapse-box">
-              <span>{{item.textItem.value}}</span>
-              <span @click.stop="removeItem(item,index)" class="icon el-icon-delete"></span>
-            </div>
-          </template>
-          <el-form class="add-box">
-            <el-form-item :label="item.linkItem.label">
-              <el-input v-model="item.linkItem.value"></el-input>
-            </el-form-item>
-            <el-form-item :label="item.textItem.label">
-              <el-input v-model="item.textItem.value"></el-input>
-            </el-form-item>
-          </el-form>
-        </el-collapse-item>
+    <div class="add-item-box">
+      <el-collapse accordion>
+        <template  v-for="(item,index)  of  configData.linkArr">
+          <el-collapse-item :name="index" :key="index">
+            <template slot="title">
+              <div class="add-collapse-box">
+                <span>{{item.textItem.value}}</span>
+                <span @click.stop="removeItem(item,index)" class="icon el-icon-delete"></span>
+              </div>
+            </template>
+            <el-form class="add-box">
+              <el-form-item :label="item.linkItem.label">
+                <el-input v-model="item.linkItem.value"></el-input>
+              </el-form-item>
+              <el-form-item :label="item.textItem.label">
+                <el-input v-model="item.textItem.value"></el-input>
+              </el-form-item>
+            </el-form>
+          </el-collapse-item>
+        </template>
       </el-collapse>
     </div>
     <div class="add-btn-box">

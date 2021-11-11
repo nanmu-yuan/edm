@@ -1,8 +1,8 @@
 <template>
   <div class="btn-box">
     <el-button-group>
-      <el-button @click="changeType(0)">CENTENT</el-button>
-      <el-button @click="changeType(1)">SETTING</el-button>
+      <el-button :class="[type==0?'active':'']" @click="changeType(0)">CENTENT</el-button>
+      <el-button :class="[type==1?'active':'']" @click="changeType(1)">SETTING</el-button>
     </el-button-group>
   </div>
 </template>
@@ -16,6 +16,7 @@ export default {
     },
     methods: {
         changeType(type){
+          this.type = type;
            this.$emit('typeData',type)
         }
     }
@@ -26,6 +27,10 @@ export default {
   padding-left: 86px;
   padding-bottom: 25px;
   margin-bottom: 8px;
-
+}
+.active{
+  color: #409EFF;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
 }
 </style>

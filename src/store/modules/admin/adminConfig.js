@@ -7,6 +7,7 @@ export default {
     mutations: {
         ADDARRAY (state,data){
            state.defaultArray[data.num] = data.val
+           console.log(state.defaultArray);
         },
         REMOVEARR(state,data){
             console.log(state.defaultArray,data)
@@ -17,9 +18,7 @@ export default {
             state.defaultArray = Object.assign({},state.defaultArray);
         },
         UPDATEPRODUCTLIST (state,data){
-            console.log(data)
            state.defaultArray[data.num]['content_setting']['spu_config']['list'] = data.list;
-           console.log(state.defaultArray);
         },
         SETCONFIGNAME (state,data){
             state.configName = data;
