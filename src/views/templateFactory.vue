@@ -178,7 +178,7 @@ export default {
         ""
       );
       this.domToImage.toPng(this.$refs.template).then((res) => {
-        console.log(res);
+       // console.log(res);
       });
       let params = {
         template: temp,
@@ -191,6 +191,7 @@ export default {
     },
     pullData(data, loading) {
       var self = this;
+      console.log(this.$store.state.adminConfig.defaultArray);
       let json_text = {
         base_template: this.$store.state.adminConfig.defaultArray,
         img: data.data.img,
@@ -245,13 +246,14 @@ export default {
       this.rightConfig = [];
       copyDom.num = `${timestamp}`;
       this.middlePage.splice(index,0,copyDom)
-      this.rightConfig.push(copyDom);
+      this.rightConfig.splice(index,0,copyDom);
       this.$store.commit("adminConfig/SETCONFIGNAME", copyDom.name);
       let copyData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[el.num]));
       copyData['timestamp'] = timestamp.toString();
-      this.$store.commit("adminConfig/ADDARRAY", {
+      this.$store.commit("adminConfig/COPYDEFAULTARRAY", {
         num: timestamp,
         val: copyData,
+        index:index
       });
     },
     add() {

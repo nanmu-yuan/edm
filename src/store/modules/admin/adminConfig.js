@@ -7,7 +7,15 @@ export default {
     mutations: {
         ADDARRAY (state,data){
            state.defaultArray[data.num] = data.val
-           console.log(state.defaultArray);
+        },
+        COPYDEFAULTARRAY(state,data){
+            let objToArry = (obj)=>Object.keys(obj).map(key => obj[key]),newObj = {};
+            let newArr = objToArry(JSON.parse(JSON.stringify(state.defaultArray)));
+            newArr.splice(data.index,0,data.val);
+            for(let i=0;i<newArr.length;i++){
+                newObj[newArr[i].timestamp] = newArr[i];
+            }
+            state.defaultArray = newObj;
         },
         REMOVEARR(state,data){
             console.log(state.defaultArray,data)
