@@ -114,7 +114,7 @@ export default {
   watch: {
     num: {
       handler(nval) {
-        console.log(nval);
+       
       },
       deep: true,
     },

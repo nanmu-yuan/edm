@@ -261,7 +261,6 @@
         },
         mounted() {
             this.$nextTick(() => {
-                console.log(12133131)
                 if (this.$store.state.adminConfig.defaultArray[this.num]) {
                     this.pageData = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[this.num]));
                     this.setConfig(this.pageData);

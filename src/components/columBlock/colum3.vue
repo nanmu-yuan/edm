@@ -339,7 +339,6 @@ export default {
 	computed: {
 		productList() {
 			if (this.list.length > 0) {
-				console.log(this.list)
 				return this.group(this.list, 3);
 			} else {
 				return [

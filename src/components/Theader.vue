@@ -11,6 +11,9 @@
             </el-option>
           </el-select>
         </div>
+        <div class="add-site-box">
+          <el-button @click="addSite">add site</el-button>
+        </div>
       </div>
     </div>
     <ydialog :centerDialogVisible="isDialog"></ydialog>
@@ -42,20 +45,20 @@ export default {
     addSite() {
       this.isDialog.type = true;
     },
+    panel(){
+      this.drawer.type = true;
+    },
     select(value){
       this.$store.commit('siteConfig/UPDATESITENAME',{
-        siteName:value
+        id:value
       });
-      this.$store.commit('siteConfig/UPDATESITEAPI',{
-        siteName:value
-      })
     },
     dataConfig(data) {
-      let list = Object.keys(data.api).map((item) => {
+      let list = Object.keys(data).map((key) => {
         return {
-          value: item,
-          label: item,
-        };
+          value:key,
+          label:data[key]['name']
+        }
       });
      this.siteOptions = list;
     },
@@ -71,19 +74,17 @@ export default {
     },
     currentSiteName:{
       handler(nval){
-        console.log(nval)
         this.siteName = nval;
       },
       deep:true
     },
     siteInfo:{
       handler(nval){
-        console.log(nval,7879897);
       },
     }
   },
   components: {
-    ydialog,
+    ydialog
   },
 };
 </script>

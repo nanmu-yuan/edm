@@ -4,37 +4,43 @@ export default{
         siteInfo:{},
         currentSiteName:'',
         currentSiteApi:'',
-        domainBase:''
+        id:'',
+        domainBase:'',
+        track:'utm_source=EDM&utm_medium='
        
     },
     mutations: {
         UPDATESITENAME(state,data){
-            state.currentSiteName = data.siteName;
-            state.domainBase=domainBase(data.siteName,state.siteInfo); 
+            state.currentSiteName = state.siteInfo[data.id]['name'];
+            state.id = data.id;
+            state.domainBase=domainBase(data.id,state); 
+            state.track = `utm_source=EDM&utm_medium=`;
+            state.currentSiteApi = state.siteInfo[data.id]['api'];
         },
         SAVESITELIST(state,data){
             state.siteInfo = data;
-        },
-        UPDATESITEAPI(state,data){
-            state.currentSiteApi =state.siteInfo['api'][data.siteName][1];
-        },
+        }
     },
     actions: {
         
     }
 }
 // 配置域名
-function domainBase(siteName,siteInfo){
-    let domainBase = '';
-    // 独立站
-    if(siteInfo.meSystem.indexOf(siteName) >= 0){
-        domainBase = 'https://www.'+ siteName + '.com/Products/';
-    // 云站
-    }else if(siteInfo.cloud.indexOf(siteName) >= 0){
-        domainBase = 'https'+'://www.' + siteName +'.com/item/';
+function domainBase(id,state){
+    if(id&&state){
+        let domainBase = '';
+        // 独立站
+        if(state.siteInfo[id]['platform'] == 'meSystem'){
+            domainBase = 'https://www.'+ state.currentSiteName + '.com/Products/';
+        // 云站
+        }else if(state.siteInfo[id]['platform'] == 'cloud'){
+            domainBase = 'https'+'://www.' + state.currentSiteName +'.com/item/';
+        }else{
+        // 店匠
+            domainBase = 'https://www.' + state.currentSiteName + '.com/';
+        }
+        return domainBase
     }else{
-    // 店匠
-        domainBase = 'https://www.' + siteName + '.com/';
+        return null
     }
-    return domainBase
 }

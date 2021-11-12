@@ -161,7 +161,6 @@
     watch: {
       num: {
         handler() {
-          //console.log(nval);
         },
         deep: true,
       },

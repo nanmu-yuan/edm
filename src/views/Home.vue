@@ -35,8 +35,14 @@ export default {
   },
   created(){
     this.axios.get('/api/querySiteInfo').then(res =>{
-      this.siteList = res.data;
-      this.$store.commit('siteConfig/SAVESITELIST',res.data);
+      let originData = res.data,obj={};
+      if(originData.length>0){
+        originData.map((item)=>{
+          obj[item['site_id']] = item;
+        })
+      }
+      this.siteList = obj;
+      this.$store.commit('siteConfig/SAVESITELIST',obj);
     })
   },
   components:{

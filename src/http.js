@@ -33,21 +33,21 @@ export function queryProductBySpu(url,spu){
     })
 }
 function isJsonp(){
-    let currentSiteName = store.state.siteConfig.currentSiteName,siteList = store.state.siteConfig.siteInfo,isJsonp=true;
-    siteList.meSystem.indexOf(currentSiteName)>0?isJsonp = false:isJsonp = true;
+    let id = store.state.siteConfig.id,siteList = store.state.siteConfig.siteInfo,isJsonp=true;
+    siteList[id] == 'meSystem'?isJsonp = false:isJsonp = true;
     return isJsonp
 }
 function responseData(data){
     let obj = null;
-    let currentSiteName = store.state.siteConfig.currentSiteName,siteList = store.state.siteConfig.siteInfo
+    let id = store.state.siteConfig.id,siteList = store.state.siteConfig.siteInfo
     if(typeof data == 'string'){data = JSON.parse(data)}
-    if(siteList.meSystem.indexOf(currentSiteName) >= 0){
+    if(siteList[id]['platform'] == 'meSystem'){
         obj = data.response.data[0]
-    }else if(siteList.cloud.indexOf(currentSiteName) >= 0){
+    }else if(siteList[id]['platform'] == 'cloud'){
         obj = data.data.list[0];
-    }else if( siteList.shopify.indexOf(currentSiteName) >= 0){
+    }else if( siteList[id]['platform'] == 'shopify'){
         obj = data.data.response? data.data.response:data.data ? data.data[0] : null;
-    }else if(siteList.Independence.indexOf(currentSiteName) >= 0){
+    }else if(siteList[id]['platform'] == 'Independence'){
         obj  = data;
     }
     else{

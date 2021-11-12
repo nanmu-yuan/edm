@@ -191,7 +191,6 @@ export default {
     },
     pullData(data, loading) {
       var self = this;
-      console.log(this.$store.state.adminConfig.defaultArray);
       let json_text = {
         base_template: this.$store.state.adminConfig.defaultArray,
         img: data.data.img,
@@ -206,7 +205,7 @@ export default {
         url: "http://smartsend.beta.seamarketings.com/api/v3/base_template/",
         headers: {
           Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM2NjM4MTM4LCJlbWFpbCI6IiJ9.l_qJ4ioqkjb4gshjNGnRmE6gmGS8pdSokGAMYcKiHEU",
+            " JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM3MjQxMzUwLCJlbWFpbCI6IiJ9.OdbB3syxrWaVhXm5Gq_M_3Om9eg_DVTFtME6GdsBPEk",
         },
         data: {
           title: params.title,
@@ -232,7 +231,6 @@ export default {
       };
     },
     start(el, index) {
-      console.log(el, index);
     },
     remove(el, index) {
       this.rightConfig.splice(0, 1);
@@ -303,7 +301,6 @@ export default {
     // 左侧选择组件
     addDom(dom) {
       //添加时间戳
-      console.log(dom)
       let timestamp = new Date().getTime();
       dom.num = `${timestamp}`;
       //指控右侧配置页面
@@ -337,7 +334,7 @@ export default {
         url: `http://smartsend.beta.seamarketings.com/api/v3/base_template/${id}/`,
         headers: {
           Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM2NjM4MTM4LCJlbWFpbCI6IiJ9.l_qJ4ioqkjb4gshjNGnRmE6gmGS8pdSokGAMYcKiHEU",
+            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM3MjQxMzUwLCJlbWFpbCI6IiJ9.OdbB3syxrWaVhXm5Gq_M_3Om9eg_DVTFtME6GdsBPEk",
         },
         success: function (res) {
           //var data = JSON.parse(res)

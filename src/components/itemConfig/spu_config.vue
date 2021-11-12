@@ -75,7 +75,7 @@ export default {
       let api = `${this.$store.state.siteConfig.currentSiteApi}`,
       promiseList = [],
       spus = this.spus.split(','),
-      currentSiteName = this.$store.state.siteConfig.currentSiteName,
+      id = this.$store.state.siteConfig.id,
       domainBase = this.$store.state.siteConfig.domainBase,
       siteList = this.$store.state.siteConfig.siteInfo;
       for (let i = 0; i < spus.length; i++) {
@@ -83,7 +83,7 @@ export default {
         promiseList.push(this.get(url,spus[i]));
       }
       this.promiseAllarr(promiseList).then(res => {
-        this.originListData = this.dataOptimization(res,currentSiteName,domainBase,siteList);
+        this.originListData = this.dataOptimization(res,id,domainBase,siteList);
         this.$store.commit('adminConfig/UPDATEPRODUCTLIST',{
           num:this.num,
           list:this.originListData
@@ -113,10 +113,11 @@ export default {
         })
       })
     },
-    dataOptimization(data, currentSiteName, domainBase, siteList) {
+    dataOptimization(data, id, domainBase, siteList) {
+      let currentSiteName = siteList[id]['name'];
       return data.map(item => {
         let obj = {};
-        if (siteList.shopify.indexOf(currentSiteName) >= 0) {
+        if (siteList[id]['platform'] =='shopify') {
           obj.goods_name = item.name;
           obj.url = item.link + '?';
           if (currentSiteName == 'netlumi') {
@@ -130,22 +131,22 @@ export default {
             obj.img = 'http://' + item.img;
           }
           obj.price = '$' + item.price;
-        }else if(siteList.cloud.indexOf(currentSiteName) >= 0){
+        }else if(siteList[id]['platform'] == 'cloud'){
             obj.goods_name = item.name;
             obj.url = domainBase + item.handle + '-' + item.id + '.html?';
             obj.img = item.mainImg + '@!w420-h420';
-            obj.price = siteList.api[currentSiteName][3] ? item.salePrice : '$' + item.salePrice.toFixed(2);
-        } else if(siteList.Independence.indexOf(currentSiteName) >= 0){
+            obj.price = '$' + item.salePrice.toFixed(2);
+        } else if(siteList[id]['platform'] == 'Independence'){
              obj.goods_name = item.name;
              obj.url = item.url + '?';
              obj.img = item.mainImg;
              obj.price =item.price;
-        }else if (siteList.meSystem.indexOf(currentSiteName) >= 0) {
+        }else if (siteList[id]['platform'] == 'meSystem') {
           let tmpUrl = "";
           obj.goods_name = item.goods_name;
           tmpUrl = item.goods_name.replace(/^\s+/, '').replace(/\s{2,}/g, ' ').replace(/\&*/g, '');
           obj.url = domainBase + tmpUrl.toLowerCase().split(' ').join('-') + '-' + item.id + '.html?';
-          obj.price = siteList.api[currentSiteName][3] ? item.price : '$' + item.price.toFixed(2);
+          obj.price = '$' + item.price.toFixed(2);
           var rep = currentSiteName == 'fashionmia' ? 'g-' : '';
           var sizePara = "";
           if (currentSiteName == 'calladream') {
@@ -155,15 +156,14 @@ export default {
           } else {
             sizePara = "@!" + rep + "h400-w300";
           }
-          obj.img = "http://" + siteList.api[currentSiteName][2] + "aopcdn.com/" +
-            item.main_original_img_path.replace(/^images/, 'goods') + sizePara;
+          obj.img = "http://" + 'bl.' + "aopcdn.com/" + item.main_original_img_path.replace(/^images/, 'goods') + sizePara;
         }
         if (item.marketPrice && item.type) {
-          obj.market_price = siteList.api[currentSiteName][3] ? item.marketPrice : '$' + item.marketPrice.toFixed(2);
+          obj.market_price = '$' + item.marketPrice.toFixed(2);
         } else if (item.market_price) {
-          obj.market_price = siteList.api[currentSiteName][3] ? item.market_price : '$' + item.market_price.toFixed(2);
+          obj.market_price = '$' + item.market_price.toFixed(2);
         } else if (item.before_price) {
-          obj.market_price = siteList.api[currentSiteName][3] ? item.before_price : '$' + item.before_price.toFixed(2);
+          obj.market_price ='$' + item.before_price.toFixed(2);
         } else {
           obj.market_price = 0;
         }

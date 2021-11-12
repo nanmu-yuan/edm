@@ -68,7 +68,6 @@ export default {
     watch: {
         num: {
             handler: function (nval) {
-                console.log(nval,45645646)
                 // 记录每次添加组件时所保留的默认配置信息
                 this.configObj = JSON.parse(JSON.stringify(this.$store.state.adminConfig.defaultArray[nval])
                 );

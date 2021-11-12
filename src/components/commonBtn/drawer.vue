@@ -19,7 +19,6 @@ export default {
   },
   watch: {
     isDrawer(nval) {
-      console.log(nval);
     },
   },
   methods:{

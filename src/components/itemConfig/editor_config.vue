@@ -43,7 +43,6 @@ const toolbarOptions = [
       },
       methods: {
         onEditorChange({ quill, html, text }) {
-			console.log(html)
 		},
       },
       created () {

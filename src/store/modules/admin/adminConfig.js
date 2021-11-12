@@ -18,7 +18,6 @@ export default {
             state.defaultArray = newObj;
         },
         REMOVEARR(state,data){
-            console.log(state.defaultArray,data)
             delete state.defaultArray[data.num]
         },
         UPDATEARRAY (state,data){
@@ -50,7 +49,6 @@ export default {
                 newObj[sortArr[i].timestamp] = sortArr[i]
             }
             state.defaultArray = newObj;
-            console.log(state.defaultArray)
         }
     },
     actions: {
