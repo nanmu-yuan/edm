@@ -1,8 +1,15 @@
 <template>
-  <div style="display:flex">
+  <div style="display:flex;flex-wrap: wrap;">
     <div class="box-item" v-for="(item,index) of baseList" :key='index'>
-      <p @click="show(item.id)">{{item.id}}</p>
-      <p @click="del(item.id)">delete</p>
+      <el-image :src="item.json_text.baseImg" style="width: 200px;">
+        <div slot="placeholder" class="image-slot">
+          加载中<span class="dot">...</span>
+        </div>
+      </el-image>
+      <div class="tool-box">
+        <span @click="show(item.id)">show</span>
+        <span @click="del(item.id)">delete</span>
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +64,11 @@ export default {
       },
       success: function (res) {
         loading.close();
-        self.baseList = res.data.results;
+        let originData = res.data.results;
+        originData.map(item=>{
+          item.json_text = JSON.parse(item.json_text)
+        })
+        self.baseList = originData;
       },
     });
   },
@@ -65,11 +76,21 @@ export default {
 </script>
 <style scoped>
 .box-item {
-  height: 50px;
-  width: 50px;
-  border: 1px solid gray;
-  margin: 5px;
+  height: 200px;
+  width: 12.5%;
   text-align: center;
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.tool-box{
+  position: absolute;
+  bottom: 8px;
+  right: 2px;
+}
+.tool-box >span{
+  display: inline-block;
+  margin: 0 5px;
+
 }
 </style>

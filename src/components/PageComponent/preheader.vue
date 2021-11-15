@@ -177,11 +177,6 @@
         },
         deep: true,
       },
-      currentSiteName: {
-        handler(nval) {
-          console.log(nval);
-        },
-      },
     },
     methods: {
       setConfig(data) {

@@ -62,6 +62,7 @@
         },
         computed: {
             ...mapState("adminConfig", ["defaultArray"]),
+            ...mapState("siteConfig", ["track"]),
         },
         data() {
             return {
@@ -220,6 +221,20 @@
                 },
                 deep: true,
             },
+            track: {
+                handler(nval) {
+                    if (nval) {
+                        let track = nval;
+                        let copyData = JSON.parse(JSON.stringify(this.cacheData));
+                        copyData.map(item => {
+                            let cache = item.linkItem.value;
+                            item.linkItem.value = `${cache}?${track}`;
+                        })
+                        this.titleAndLink = copyData;
+                    }
+                },
+                deep: true,
+            },
             defaultArray: {
                 handler() {
                     let data = this.$store.state.adminConfig.defaultArray[this.num];
@@ -229,9 +244,20 @@
             },
         },
         methods: {
+            trackConfig(data) {
+                let track = this.$store.state.siteConfig.track;
+                let copyData = JSON.parse(JSON.stringify(data));
+                copyData.map(item => {
+                    let cache = item.linkItem.value;
+                    item.linkItem.value = `${cache}?${track}`;
+                })
+                this.titleAndLink = copyData;
+            },
             setConfig(data) {
                 if (data) {
                     this.titleAndLink = data.content_setting.add_item_config.linkArr;
+                    this.cacheData = data.content_setting.add_item_config.linkArr;
+                    this.trackConfig(data.content_setting.add_item_config.linkArr);
                     this.bgStyle.backgroundColor = data.style_setting.style_config.background.color;
                     this.bgStyle.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`;
 

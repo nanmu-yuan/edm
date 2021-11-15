@@ -14,7 +14,7 @@ export default{
             state.currentSiteName = state.siteInfo[data.id]['name'];
             state.id = data.id;
             state.domainBase=domainBase(data.id,state); 
-            state.track = `utm_source=EDM&utm_medium=`;
+            state.track = `utm_source=EDM&utm_medium=${state.currentSiteName}`;
             state.currentSiteApi = state.siteInfo[data.id]['api'];
         },
         SAVESITELIST(state,data){

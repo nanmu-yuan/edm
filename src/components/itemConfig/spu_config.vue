@@ -115,16 +115,19 @@ export default {
     },
     dataOptimization(data, id, domainBase, siteList) {
       let currentSiteName = siteList[id]['name'];
+      let track = `${this.$store.state.siteConfig.track}&utm_campaign=`;
       return data.map(item => {
         let obj = {};
         if (siteList[id]['platform'] =='shopify') {
           obj.goods_name = item.name;
-          obj.url = item.link + '?';
+          obj.url = item.link;
           if (currentSiteName == 'netlumi') {
             obj.url = obj.url.split(".com")[1].replace(new RegExp("(^http.+com)*"), domainBase.replace(/\/$/, ''));
           } else {
             obj.url = obj.url.replace(new RegExp("(^http.+com)*"), domainBase.replace(/\/$/, ''));
           }
+          let cache = obj.url;
+          obj.url = `${cache}?${track}${item.spu}`
           if (/^(http|https)/.test(item.img)) {
             obj.img = item.img;
           } else {
@@ -134,18 +137,24 @@ export default {
         }else if(siteList[id]['platform'] == 'cloud'){
             obj.goods_name = item.name;
             obj.url = domainBase + item.handle + '-' + item.id + '.html?';
+            let cache = obj.url;
+            obj.url = `${cache}?${track}${item.spu}`
             obj.img = item.mainImg + '@!w420-h420';
             obj.price = '$' + item.salePrice.toFixed(2);
         } else if(siteList[id]['platform'] == 'Independence'){
              obj.goods_name = item.name;
-             obj.url = item.url + '?';
+             obj.url = item.url;
              obj.img = item.mainImg;
              obj.price =item.price;
+             let cache = obj.url;
+             obj.url = `${cache}?${track}`;
         }else if (siteList[id]['platform'] == 'meSystem') {
           let tmpUrl = "";
           obj.goods_name = item.goods_name;
           tmpUrl = item.goods_name.replace(/^\s+/, '').replace(/\s{2,}/g, ' ').replace(/\&*/g, '');
-          obj.url = domainBase + tmpUrl.toLowerCase().split(' ').join('-') + '-' + item.id + '.html?';
+          obj.url = domainBase + tmpUrl.toLowerCase().split(' ').join('-') + '-' + item.id + '.html';
+          let cache = obj.url;
+          obj.url = `${cache}?${track}${item.goods_sn}`
           obj.price = '$' + item.price.toFixed(2);
           var rep = currentSiteName == 'fashionmia' ? 'g-' : '';
           var sizePara = "";

@@ -12,6 +12,7 @@
 </template>
 <script>
 import Theader from "../components/Theader";
+import {EventBus} from '../util/eventBus.js'
 export default {
   name: "home",
   provide(){
@@ -31,11 +32,10 @@ export default {
       this.$nextTick(()=>{
         this.isRouterAlive = true;
       })
-    }
-  },
-  created(){
-    this.axios.get('/api/querySiteInfo').then(res =>{
-      let originData = res.data,obj={};
+    },
+    querySiteInf(){
+      this.axios.get('http://smartsend.beta.seamarketings.com/api/edm/site/list/').then(res =>{
+      let originData = res.data.data,obj={};
       if(originData.length>0){
         originData.map((item)=>{
           obj[item['site_id']] = item;
@@ -43,6 +43,14 @@ export default {
       }
       this.siteList = obj;
       this.$store.commit('siteConfig/SAVESITELIST',obj);
+    })
+    }
+  },
+  created(){
+    this.querySiteInf();
+    let self = this;
+    EventBus.$on('query',()=>{
+      self.querySiteInf();
     })
   },
   components:{

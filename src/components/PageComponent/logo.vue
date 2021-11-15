@@ -15,7 +15,7 @@
                             <tbody>
                               <tr>
                                 <td>
-                                  <a target="_blank" href="https://www.SITENAME.com/?utm_source=EDM&amp;utm_medium=AQB20171019&amp;utm_campaign=Link503" style="text-decoration: none">
+                                  <a target="_blank" :href="logoLink" style="text-decoration: none">
                                     <span class="image-placeholder" v-if="!imgaUrl">
                                       <span class="placeholder-style" style="width: 200px; height: 50px;">
                                         <span class="placeholder-inner">
@@ -89,6 +89,7 @@
     },
     computed: {
       ...mapState("adminConfig", ["defaultArray"]),
+      ...mapState("siteConfig", ["track"]),
     },
     data() {
       return {
@@ -148,8 +149,9 @@
           },
         },
         pageData: {},
+        copyData:'',
         titleText: "123123",
-        linkText: "",
+        logoLink: "",
         imgaUrl: "",
         fontStyle: {
           fontSize: '12',
@@ -178,6 +180,16 @@
         },
         deep: true,
       },
+      track: {
+        handler(nval) {
+          if (nval) {
+            let track = nval;
+            let copyData = this.copyData;
+            this.logoLink = `${copyData}?${track}`;
+          }
+        },
+        deep: true,
+      },
       pageData: {
         handler(nval) {
           this.setConfig(nval);
@@ -193,9 +205,16 @@
       },
     },
     methods: {
+      trackConfig(data) {
+        let track = this.$store.state.siteConfig.track;
+        let copyData = data;
+        this.logoLink = `${copyData}?${track}`
+      },
       setConfig(data) {
         if (data) {
           this.titleText = data.content_setting.text_config.value;
+          this.copyData = data.content_setting.link_config.value;
+          this.trackConfig(data.content_setting.link_config.value);
           this.imgaUrl = data.content_setting.image_config.value;
           this.bgStyle.backgroundColor = data.style_setting.style_config.background.color;
           this.bgStyle.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`
