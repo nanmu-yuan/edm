@@ -25,7 +25,7 @@
                                         </span>
                                       </span>
                                     </span>
-                                    <img v-else alt="" border="0" v-lazy="imgaUrl" width="200" height="70" />
+                                    <img v-else alt="" border="0" v-lazy="imgaUrl" />
                                   </a>
                                 </td>
                               </tr>
@@ -268,5 +268,11 @@
 
   .image-placeholder .placeholder-img-small {
     padding-bottom: 10px;
+  }
+  img[lazy="loading"]{
+  display:block;
+  width:50px !important;
+  height:50px !important;
+  margin:0 auto;
   }
 </style>

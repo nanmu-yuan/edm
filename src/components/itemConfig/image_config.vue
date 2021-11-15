@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     handleAvatarSuccess(res) {
-      this.configData["value"] = res.data.img;
+      this.configData["value"] = res && res.data && res.data.img;
     },
     beforeAvatarUpload(file) {
       const isLt2M = file.size / 1024 / 1024 < 2;

@@ -3,7 +3,7 @@
         <div class="temp-box-item" v-for="(item, index) in listData" :key="index" @click = "show(item.id)">
             <el-image :src="item.json_text.baseImg">
                 <div slot="placeholder" class="image-slot">
-                  加载中<span class="dot">...</span>
+                  loading<span class="dot">...</span>
                 </div>
               </el-image>
         </div>
@@ -107,8 +107,10 @@ import {EventBus} from '../../util/eventBus.js'
     transition: all .2s linear;
   }
   .temp-box-item:hover{
-    box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
     transform: translate3d(0,-2px,0);
     z-index: 14;
+    border: 2px solid #4db159;
+    box-sizing: border-box;
+
   }
   </style>

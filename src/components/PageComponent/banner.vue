@@ -16,7 +16,7 @@
                           </span>
                         </span>
                       </span>
-                      <img v-else v-lazy ="imageUrl" alt="" width ='100%' style="min-height: 250px;">
+                      <img v-else v-lazy ="imageUrl" alt="" width ='100%'>
                     </a>
                   </td>
                 </tr>
