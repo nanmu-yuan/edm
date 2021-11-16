@@ -122,6 +122,7 @@
   import pageCom from "../components/PageComponent";
   import rConfig from "../components/rightConfig";
   import {EventBus} from '../util/eventBus.js'
+import quillcss from '../util/quillcss.js'
   export default {
     name: "templateFactory",
     data() {
@@ -158,8 +159,14 @@
         });
         this.isShowPlacehold = false;
         let temp = this.$refs.template.innerHTML.replace(/data-v-[^"]*"[^"]*"/g, "");
+        let baseHtml = `<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+                        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+                        <title>SITENAME</title>
+                        <style>${quillcss}</style>
+                        </head>
+                       <body>${temp}</body></html>`
         let params = {
-          template: temp,
+          template: baseHtml,
           site_name: this.$store.state.siteConfig.currentSiteName,
         };
         this.promise(params).then((res) => {
