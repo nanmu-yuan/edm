@@ -170,12 +170,16 @@ import quillcss from '../util/quillcss.js'
           site_name: this.$store.state.siteConfig.currentSiteName,
         };
         this.promise(params).then((res) => {
+          let tepUrl = JSON.parse(res);
           loading.close();
           this.$notify({
             title: "成功",
             message: "这是一条成功的提示消息",
             type: "success",
           });
+          setTimeout(()=>{
+            window.open(tepUrl.data.img,'_blank');
+          },500)
         });
       },
       promise(params) {

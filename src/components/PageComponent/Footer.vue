@@ -3,7 +3,7 @@
     <table border="0" cellpadding="0" cellspacing="0" width="100%" :style="bgStyle">
       <tbody>
         <tr>
-          <td style="border-bottom:0px solid #eaeaea;border-top:2px solid #eaeaea;">
+          <td :style="borderStyle">
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
               <tbody>
                 <tr>
@@ -58,7 +58,10 @@
           timestamp: this.num,
           content_setting: {
             editor_config: {
-              content:''
+              content:`
+              <p class = "ql-align-center">Unit 1402A 14/F The Belgian bank bldg NOS721-725 Nathan RD Mongkok Kowloon.HK</p>
+              <p class = "ql-align-center">Suite 10c,17-23 Queen Street,Deal, Kent,United Kingdom CT14 6EY</p>
+              <p class = "ql-align-center">Copyright © 2021. SITENAME. All Rights Reserved.<p>`
             },
             image_config: {
               title: "IMAGE",
@@ -67,30 +70,38 @@
           },
           style_setting: {
             style_config: {
-              background: {
-                bgImage: '',
-                pattern: '',
-                color: '#fff'
-              },
+            background: {
+            bgImage: '',
+            pattern: '',
+            color: '#fff'
+            },
+            border: {
+                border_top_color: '#666666',
+                border_top_width: '2',
+                border_top_style: 'solid',
+                border_bottom_color: '#000',
+                border_bottom_width: '6',
+                border_bottom_style: 'solid',
+              }
             },
             pd_position_config: {
               title: 'POSITION',
               pd_style: [
                 {
                   label: 'TOP',
-                  value: '20'
+                  value: '10'
                 },
                 {
                   label: 'BOTTOM',
-                  value: '20'
+                  value: '10'
                 },
                 {
                   label: 'RIGHT',
-                  value: '20'
+                  value: '15'
                 },
                 {
                   label: 'LEFT',
-                  value: '20'
+                  value: '15'
                 }
               ]
 
@@ -103,7 +114,7 @@
         linkText: "",
         imageUrl: '',
         bgStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: '#000',
           backgroundImage: 'url()',
         },
         pdStyle: {
@@ -111,6 +122,14 @@
           paddingBottom: '',
           paddingLeft: '',
           paddingRight: '',
+        },
+        borderStyle: {
+          borderBottomColor: '#666666',
+          borderBottomWidth: '6px',
+          borderBottomStyle: 'solid',
+          borderTopColor: '#666666',
+          borderTopWidth: '1px',
+          borderTopStyle: 'solid',
         }
       };
     },
@@ -145,6 +164,15 @@
           this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
           this.pdStyle.paddingLeft = data.style_setting.pd_position_config.pd_style[2]['value'] + 'px';
           this.pdStyle.paddingRight = data.style_setting.pd_position_config.pd_style[3]['value'] + 'px';
+
+
+          this.borderStyle.borderBottomColor = data.style_setting.style_config.border.border_bottom_color;
+          this.borderStyle.borderBottomWidth = data.style_setting.style_config.border.border_bottom_width + 'px';
+          this.borderStyle.borderBottomStyle = data.style_setting.style_config.border.border_bottom_style;
+
+          this.borderStyle.borderTopColor = data.style_setting.style_config.border.border_top_color;
+          this.borderStyle.borderTopWidth = data.style_setting.style_config.border.border_top_width + 'px';
+          this.borderStyle.borderTopStyle = data.style_setting.style_config.border.border_top_style;
         }
       },
     },
