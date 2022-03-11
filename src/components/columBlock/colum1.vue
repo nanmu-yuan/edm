@@ -19,13 +19,13 @@
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tbody>
                                       <tr>
-                                        <td style="padding:10px">
+                                        <td :style="fontStyleData.imagePadding">
                                           <table border="0" cellpadding="0" cellspacing="0" width="" style="">
                                             <tbody>
                                               <tr>
                                                 <td style="font-size: 0; line-height: 0; text-align: center;">
                                                   <a target="_blank" :href="item.url">
-                                                    <img  v-if="item.img" :src="item.img" width='268' height='270' alt="">
+                                                    <img v-lazy="item.img" v-if="item.img"  width='268' height='270' alt="">
                                                     <span v-else class="image-placeholder" style="">
                                                       <span class="placeholder-style" style="width: 268px; height: 270px;">
                                                         <span class="placeholder-inner">
@@ -61,11 +61,11 @@
                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="padding-top: 15px;">
+                                  <td :style="fontStyleData.describe.padTopAndBottom">
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td style="text-align: center;"><a class="webfont-fallback-1" target="_blank" :style="fontStyleData.describe" :href="item.url"><span class="webfont-fallback-1">{{item.goods_name}}</span></a></td>
+                                          <td style="text-align: center;" :title="item.goods_name"><a class="webfont-fallback-1" target="_blank" :style="fontStyleData.describe" :href="item.url"><span>{{item.goods_name}}</span></a></td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -77,18 +77,18 @@
 																	</td>
 																</tr> -->
                                 <tr>
-                                  <td style="padding-top: 15px;">
+                                  <td :style="fontStyleData.price.padTopAndBottom">
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td style="text-align:center;"><span  :style="fontStyleData.price">{{item.price}}</span><span> / </span><span  :style="fontStyleData.marketPrice">{{item.market_price}}</span></td>
+                                          <td style="text-align:center;"><span  :style="fontStyleData.price">{{item.price}}</span><span v-if="item.market_price"> / </span><span v-if="item.market_price"  :style="fontStyleData.marketPrice">{{item.market_price}}</span></td>
                                         </tr>
                                       </tbody>
                                     </table>
                                   </td>
                                 </tr>
                                 <tr>
-                                  <td style="padding-top: 15px;">
+                                  <td :style="fontStyleData.button.padTopAndBottom">
                                     <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
                                       <tbody>
                                         <tr>
@@ -96,7 +96,7 @@
                                             <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
                                             <!--[if !mso]><!-->
                                             <div :style="fontStyleData.button.border">
-                                              <!--<![endif]--><a :href="item.url"  target="_blank" :style="fontStyleData.button.text">SHOP NOW</a>
+                                              <!--<![endif]--><a :href="item.url"  target="_blank" :style="fontStyleData.button.text">{{btnText.value}}</a>
                                               <!--[if !mso]><!-->
                                             </div>
                                             <!--<![endif]-->
@@ -125,6 +125,7 @@
   </div>
 </template>
 <script>
+
 export default {
   name: 'colum1',
   props: {
@@ -134,6 +135,9 @@ export default {
     },
     fontStyle:{
       type:Object,
+    },
+    btnText:{
+      type:Object
     }
   },
   data() {

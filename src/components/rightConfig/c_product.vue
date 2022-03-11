@@ -39,6 +39,10 @@ export default {
             configObj: {},
             rToolCom: {
                 content_config: [
+                      {
+                         component: toolConfig.text_config,
+                         configName: "text_config",
+                     },
                      {
                         component: toolConfig.spu_config,
                         configName: "spu_config",
@@ -98,6 +102,7 @@ export default {
 };
 </script>
 <style scoped>
+
 </style>
 
 

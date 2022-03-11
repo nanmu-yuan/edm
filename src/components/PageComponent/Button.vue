@@ -12,17 +12,17 @@
                                                 <!--[if (mso)|(IE)]><table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><![endif]-->
                                                 <!--[if (mso)|(IE)]><td style="width: 600px; vertical-align: top;"><![endif]-->
                                                 <template v-for="(item,index) of titleAndLink">
-                                                    <div v-if="index==1 || index==2 || index == 3"  style="display: table-cell; width: 20px; vertical-align: top;"></div>
-                                                    <div style="display: table-cell;vertical-align: top;" :key="index">
+                                                    <div  v-if="index==1 || index==2 || index == 3"  style="display: table-cell; width: 20px; vertical-align: top;"  :key="index"></div>
+                                                    <div :style="{display: 'table-cell',verticalAlign: 'top',width:titleAndLink.length==1?'580px':titleAndLink.length==2?'280px':titleAndLink.length==3?'180px':'130px'}" :key="index">
                                                         <table border="0" cellpadding="0" cellspacing="0"  :align="btnType" :width="btnType" style="margin: 0 auto; border-collapse: separate !important;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td :style="styleData.button.style">
                                                                         <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
                                                                         <!--[if !mso]><!-->
-                                                                        <div style="line-height: 17px; text-align: center;">
+                                                                        <div style="text-align: center;">
                                                                             <!--<![endif]-->
-                                                                            <a :style="styleData.button.text" target="_blank":href="item.linkItem.value"><span>{{item.textItem.value}}</span></a>
+                                                                            <a :style="styleData.button.text" target="_blank" :href="item.linkItem.value"><span>{{item.textItem.value}}</span></a>
                                                                             <!--[if !mso]><!-->
                                                                         </div>
                                                                         <!--<![endif]-->
@@ -133,17 +133,10 @@
                             ]
                         },
                         style_config: {
-                            link: {
-                                font_size: '12',
-                                color: '#000',
-                                font_weight: 'normal',
-                                lineHeight: '127%',
-                                textAlign: 'right'
-                            },
                             background: {
                                 bgImage: '',
                                 pattern: '',
-                                color: '#fff'
+                                bgColor: '#fff'
                             },
                             button: {
                                 color: "#999999",
@@ -151,11 +144,15 @@
                                 font_weight: "normal",
                                 top_padding: '10',
                                 bottom_padding: '10',
+                                left_padding: '20',
+                                right_padding: '20',
                                 border_width: '1',
                                 border_style: 'solid',
                                 border_color: '#999',
                                 border_radius: '0',
-                                bgColor: '#fff'
+                                bgColor: '#fff',
+                                fontFamily:'cursive',
+                                lineHeight:'1.2'
                             },
                         }
                     },
@@ -167,6 +164,7 @@
                 bgStyle: {
                     backgroundColor: '#fff',
                     backgroundImage: 'url()',
+                    backgroundSize:"cover"
                 },
                 pdStyle: {
                     paddingTop: '',
@@ -180,24 +178,28 @@
                             color: "#999999",
                             fontSize: "13px",
                             fontWeight: "normal",
-                            textDecoration: 'none'
+                            textDecoration: 'none',
+                            fontFamily:'cursive',
+                            lineHeight:'1.2'
                         },
                         style: {
                             paddingTop: '10px',
                             paddingBottom: '10px',
+                            paddingLeft: '25px',
+                            paddingRight: '25px',
                             borderWidth: '1px',
                             borderStyle: 'solid',
                             borderRadius: '0',
                             borderColor: 'red',
-                            paddingRight: '17px',
-                            paddingLeft: '17px',
                             backgroundColor: '#fff',
                             backgroundImage: 'url()',
+                            backgroundSize:"cover"
                         },
                     },
                     backgroundColor: {
                         backgroundColor: '#fff',
                         backgroundImage: 'url()',
+                        backgroundSize:"cover"
                     },
                     backgroundImage: {
                         borderWidth: '1px',
@@ -228,7 +230,7 @@
                         let copyData = JSON.parse(JSON.stringify(this.cacheData));
                         copyData.map(item => {
                             let cache = item.linkItem.value;
-                            item.linkItem.value = `${cache}?${track}`;
+                            item.linkItem.value = `${cache}?${track}&utm_content=button${item.textItem.value}&utm_adset=button`;
                         })
                         this.titleAndLink = copyData;
                     }
@@ -249,7 +251,7 @@
                 let copyData = JSON.parse(JSON.stringify(data));
                 copyData.map(item => {
                     let cache = item.linkItem.value;
-                    item.linkItem.value = `${cache}?${track}`;
+                    item.linkItem.value = `${cache}?${track}&utm_content=button${item.textItem.value}&utm_adset=button`;
                 })
                 this.titleAndLink = copyData;
             },
@@ -258,7 +260,7 @@
                     this.titleAndLink = data.content_setting.add_item_config.linkArr;
                     this.cacheData = data.content_setting.add_item_config.linkArr;
                     this.trackConfig(data.content_setting.add_item_config.linkArr);
-                    this.bgStyle.backgroundColor = data.style_setting.style_config.background.color;
+                    this.bgStyle.backgroundColor = data.style_setting.style_config.background.bgColor;
                     this.bgStyle.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`;
 
                     this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
@@ -269,6 +271,9 @@
                     this.styleData.button.text.color = data.style_setting.style_config.button.color;
                     this.styleData.button.text.fontSize = data.style_setting.style_config.button.font_size + 'px';
                     this.styleData.button.text.fontWeight = data.style_setting.style_config.button.font_weight;
+                    this.styleData.button.text.fontFamily = data.style_setting.style_config.button.fontFamily;
+                    this.styleData.button.text.lineHeight = data.style_setting.style_config.button.lineHeight;
+                    
 
                     this.styleData.button.style.backgroundColor = data.style_setting.style_config.button.bgColor;
                     this.styleData.button.style.backgroundImage = `url(${data.style_setting.style_config.button.bgImage})`;
@@ -278,6 +283,8 @@
                     this.styleData.button.style.borderColor = data.style_setting.style_config.button.border_color;
                     this.styleData.button.style.paddingBottom = data.style_setting.style_config.button.bottom_padding + 'px';
                     this.styleData.button.style.paddingTop = data.style_setting.style_config.button.top_padding + 'px';
+                    this.styleData.button.style.paddingLeft = data.style_setting.style_config.button.left_padding + 'px';
+                    this.styleData.button.style.paddingRight = data.style_setting.style_config.button.right_padding + 'px';
                     this.styleData.button.style.borderRadius = data.style_setting.style_config.button.border_radius + 'px';
 
                     /** btntype**/

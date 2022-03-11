@@ -8,8 +8,8 @@
               </el-image>
         </div>
     </div>
-  </template>
-  <script>
+</template>
+<script>
 import {EventBus} from '../../util/eventBus.js'
   export default {
       name:'temp',
@@ -20,39 +20,7 @@ import {EventBus} from '../../util/eventBus.js'
       },
       data () {
           return {
-           listData:[],
-           list:[
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               },
-               {
-                src:'https://sources.aopcdn.com/edm/images//20211020/1634722588624.png'
-               }
-           ]
+           listData:[]
           }
       },
       methods: {
@@ -64,18 +32,10 @@ import {EventBus} from '../../util/eventBus.js'
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
-        $.ajax({
-          type: "get",
-          url: `http://smartsend.beta.seamarketings.com/api/v3/base_template/${id}/`,
-          headers: {
-            Authorization:
-              "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjM3MjQxMzUwLCJlbWFpbCI6IiJ9.OdbB3syxrWaVhXm5Gq_M_3Om9eg_DVTFtME6GdsBPEk",
-          },
-          success: function (res) {
-                EventBus.$emit('modifyTempConfig',res);
+        this.axios.get(`/api/v3/base_template/${id}/`).then(res =>{
+          EventBus.$emit('modifyTempConfig',res);
                 loading.close();
-            },
-        });
+        })
         }
       },
       watch:{
@@ -90,7 +50,7 @@ import {EventBus} from '../../util/eventBus.js'
       created() {
       },
     }
-  </script>
+</script>
   <style scoped>
 .temp-box{
     display: flex;

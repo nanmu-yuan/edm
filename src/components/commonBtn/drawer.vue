@@ -2,11 +2,11 @@
   <transition name="bounce">
     <div v-if="isDrawer" class="drawer-box">
       <div style=" padding: 15px;">
-        <div class="cance-box"><span @click="cance" class="el-icon-d-arrow-right"></span></div>
       <slot>
 
       </slot>
       </div>
+       <div class="cance-box"><el-button  type="success" @click="cance" >退出<span class="el-icon-d-arrow-right"></span></el-button></div>
     </div>
   </transition>
 </template>
@@ -34,12 +34,10 @@ export default {
   position: fixed;
   right: 0;
   height: calc(100vh - 61px);
-  width: 25%;
-  border: 1px solid #e4e7ed;
-  z-index: 999;
-  top: 60px;
+  width: 33%;
+  z-index: 2001;
+  top: 62px;
   background: #fff;
-   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
 }
 .bounce-enter-active {
   animation: bounce-in .5s;
@@ -64,9 +62,9 @@ export default {
 }
 .cance-box{
     position: absolute;
-    right: 15px;
-    font-size: 16px;
-    color:rgb(220, 223, 230);
-    top: 25px;
+    font-size: 30px;
+    right: 86px;
+    color:#999;
+    bottom: 20px;
 }
 </style>

@@ -11,8 +11,8 @@
   </div>
 </template>
 <script>
-import Theader from "../components/Theader";
-import {EventBus} from '../util/eventBus.js'
+import Theader from "../../components/Theader";
+import {EventBus} from '../../util/eventBus.js'
 export default {
   name: "home",
   provide(){
@@ -34,7 +34,7 @@ export default {
       })
     },
     querySiteInf(){
-      this.axios.get('http://smartsend.beta.seamarketings.com/api/edm/site/list/').then(res =>{
+      this.axios.get(`/api/edm/site/list/`).then(res =>{
       let originData = res.data.data,obj={};
       if(originData.length>0){
         originData.map((item)=>{
@@ -54,7 +54,7 @@ export default {
     })
   },
   components:{
-    Theader
+  Theader
   }
 };
 </script>

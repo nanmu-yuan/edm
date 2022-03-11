@@ -49,6 +49,10 @@ export default {
                 newObj[sortArr[i].timestamp] = sortArr[i]
             }
             state.defaultArray = newObj;
+        },
+        CLEARNDEFAULTARRAY(state){
+            state.defaultArray ={};
+            state.configName = '';
         }
     },
     actions: {

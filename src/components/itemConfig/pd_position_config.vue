@@ -4,8 +4,10 @@
             <el-divider>POSITION</el-divider>
             <template v-for="(item,index) of configData.pd_style">
                 <el-form-item :key="index" :label="item.label">
+                    <el-tooltip class="item" effect="dark" :content="`用来调整目标组件的${item.label}内边距大小`" placement="left">
                     <el-input-number size="mini" style="width:100px" v-model="item.value" @change="handleChange"
                         :min="0"></el-input-number>
+                </el-tooltip>
                 </el-form-item>
             </template>
         </el-form>

@@ -10,7 +10,7 @@
                   <td :style = "pdStyle">
                     <a target="_blank" :href="ImageLink" style="text-decoration: none;">
                       <span class="image-placeholder" style="" v-if="!imageUrl">
-                        <span class="placeholder-style" style="width: 600px; height: 250px;">
+                        <span class="placeholder-style" style="width: 600px; height: 210px;margin: 20px 0;">
                           <span class="placeholder-inner">
                             <img class="placeholder-img-large"  src="https://sources.aopcdn.com/edm/images//20211020/1634722588624.png" width="300"><br>
                           </span>
@@ -66,7 +66,7 @@ export default {
             background: {
                 bgImage: '',
                 pattern:'',
-                color: '#fff'
+                bgColor: '#fff'
               },
           },
           pd_position_config: {
@@ -74,19 +74,19 @@ export default {
             pd_style: [
               {
                 label: 'TOP',
-                value: '20'
+                value: '0'
               },
               {
                 label: 'BOTTOM',
-                value: '20'
+                value: '0'
               },
               {
                 label: 'RIGHT',
-                value: '20'
+                value: '0'
               },
               {
                 label: 'LEFT',
-                value: '20'
+                value: '0'
               }
             ]
 
@@ -130,7 +130,7 @@ export default {
           if (nval) {
             let track = nval;
             let copyData = this.cacheData;
-            this.ImageLink = `${copyData}?${track}`;
+            this.ImageLink = `${copyData}?${track}&utm_adset=banner&utm_content=banner`;
           }
         },
         deep: true,
@@ -147,15 +147,15 @@ export default {
     trackConfig(data) {
         let track = this.$store.state.siteConfig.track;
         let copyData = data;
-        this.ImageLink = `${copyData}?${track}`
+        this.ImageLink = `${copyData}?${track}&utm_adset=banner&utm_content=banner`
       },
     setConfig(data) {
       if (data) {
-        this.ImageLink = 'https://'+data.content_setting.link_config.value;
-        this.trackConfig('https://'+data.content_setting.link_config.value);
-        this.cacheData = 'https://'+data.content_setting.link_config.value;
+        this.ImageLink = data.content_setting.link_config.value;
+        this.trackConfig(data.content_setting.link_config.value);
+        this.cacheData = data.content_setting.link_config.value;
         this.imageUrl = data.content_setting.image_config.value;
-        this.bgStyle.backgroundColor = data.style_setting.style_config.background.color;
+        this.bgStyle.backgroundColor = data.style_setting.style_config.background.bgColor;
         this.bgStyle.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`;
         this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
         this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
@@ -198,8 +198,7 @@ export default {
 }
 img[lazy="loading"]{
   display:block;
-  width:50px !important;
-  height:50px !important;
+  height:250px !important;
   margin:0 auto;
   }
 </style>

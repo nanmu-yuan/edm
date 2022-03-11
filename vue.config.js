@@ -1,5 +1,5 @@
 const webpack = require('webpack')
- 
+
 module.exports = {
   chainWebpack: config => {
     config.plugin('provide').use(webpack.ProvidePlugin, [{
@@ -10,6 +10,13 @@ module.exports = {
     }])
   },
   devServer: {
-    before: require('./mock/mock.js')
-}
+    host: 'localhost',
+    port: '8080',
+    proxy: {
+      '/api': {
+        target: 'http://smartsend.beta.seamarketings.com',
+        changeOrigin: true,
+      }
+    }
+  }
 }

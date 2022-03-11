@@ -15,8 +15,15 @@
                           <table border="0" cellspacing="0" cellpadding="0" width="100%">
                             <tbody>
                               <tr>
-                                <td class="ql-editor" style="color:#656565;font-family:Arial, sans-serif;font-size:12px;font-weight:normal;line-height:117%;text-align:left;text-decoration:none;">
-                                   <div v-html = "content"></div>
+                                <td style="color:#656565;font-size:12px;font-weight:normal;text-decoration:none;">
+                                  <!-- <div style="text-align: center; margin-bottom: 8px;">
+                                    <template v-for="(item, index) in titleAndLink" >
+                                      <a  :key="index" :style="linkStyle"
+                                        :href="item.linkItem.value">{{item.textItem.value}}</a>
+                                        <span style="color: #999;" v-if="index+1<titleAndLink.length">|</span>
+                                    </template>
+                                  </div> -->
+                                  <div v-html="content"></div>
                                 </td>
                               </tr>
                             </tbody>
@@ -35,7 +42,9 @@
   </div>
 </template>
 <script>
-  import { mapState } from "vuex";
+  import {
+    mapState
+  } from "vuex";
   export default {
     name: "Footer",
     cname: "Footer",
@@ -57,11 +66,67 @@
           name: "Footer",
           timestamp: this.num,
           content_setting: {
+            add_item_config: {
+              linkArr: [{
+                textItem: {
+                  label: 'TEXT',
+                  value: 'xxx'
+                },
+                linkItem: {
+                  label: 'LINK',
+                  value: 'xxx'
+                }
+              },
+              {
+                textItem: {
+                  label: 'TEXT',
+                  value: 'xxx'
+                },
+                linkItem: {
+                  label: 'LINK',
+                  value: 'xxx'
+                }
+              },
+              {
+                textItem: {
+                  label: 'TEXT',
+                  value: 'xxx'
+                },
+                linkItem: {
+                  label: 'LINK',
+                  value: 'xxx'
+                }
+              },{
+                textItem: {
+                  label: 'TEXT',
+                  value: 'xxx'
+                },
+                linkItem: {
+                  label: 'LINK',
+                  value: 'xxx'
+                }
+              }]
+            },
             editor_config: {
               content:`
-              <p class = "ql-align-center">Unit 1402A 14/F The Belgian bank bldg NOS721-725 Nathan RD Mongkok Kowloon.HK</p>
-              <p class = "ql-align-center">Suite 10c,17-23 Queen Street,Deal, Kent,United Kingdom CT14 6EY</p>
-              <p class = "ql-align-center">Copyright © 2021. SITENAME. All Rights Reserved.<p>`
+                 <p style="text-align:center">To make sure you can receive our latest style updates</p>
+          <p style="text-align:center"> please remember to add our address to your contact book</p>
+          <p style="text-align:center">If you prefer not to receive our fashion news and offers, simply click here to 
+          <a rel="noopener noreferrer" style="color:#077ab1;text-decoration: none;"  target="_blank" href="*[link_unsubscribe]*">unsubscribe</a></p>
+          <p></br></p>
+          <p style="text-align:center">
+          <a rel='noopener noreferrer' style="font-size:12px;color: #999;text-decoration: none;padding:0 10px" target="_blank" href=""> ABOUT US </a>
+          <strong>|</strong>
+          <a rel='noopener noreferrer' style="font-size:12px;color: #999;text-decoration: none;padding:0 10px"  target="_blank" href=""> CONTACT US </a>
+          <strong>|</strong>
+          <a  rel='noopener noreferrer' style="font-size:12px;color: #999;text-decoration: none;padding:0 10px" target="_blank" href=""> PRIVACY POLICY </a>
+          <strong>|</strong>
+          <a rel='noopener noreferrer' style="font-size:12px;color: #999;text-decoration: none;padding:0 10px"  target="_blank" href=""> TERMS AND CONDITIONS </a>
+          </p>
+          <p></br></p>
+          <p style="text-align:center">Suite 10c,17-23 Queen Street,Deal, Kent,United Kingdom CT14 6EY</p>
+          <p style="text-align:center">Copyright © 2021. SITENAME. All Rights Reserved.</p>
+              `
             },
             image_config: {
               title: "IMAGE",
@@ -70,12 +135,18 @@
           },
           style_setting: {
             style_config: {
-            background: {
-            bgImage: '',
-            pattern: '',
-            color: '#fff'
-            },
-            border: {
+              background: {
+                bgImage: '',
+                pattern: '',
+                bgColor: '#fff'
+              },
+              link:{
+                font_size: '12',
+                color: '#000',
+                font_weight: 'normal',
+                fontFamily:'cursive'
+              },
+              border: {
                 border_top_color: '#666666',
                 border_top_width: '2',
                 border_top_style: 'solid',
@@ -86,8 +157,7 @@
             },
             pd_position_config: {
               title: 'POSITION',
-              pd_style: [
-                {
+              pd_style: [{
                   label: 'TOP',
                   value: '10'
                 },
@@ -110,9 +180,10 @@
         },
         pageData: {},
         titleText: "",
-        content:'',
+        content: '',
         linkText: "",
         imageUrl: '',
+        titleAndLink:[],
         bgStyle: {
           backgroundColor: '#000',
           backgroundImage: 'url()',
@@ -130,6 +201,14 @@
           borderTopColor: '#666666',
           borderTopWidth: '1px',
           borderTopStyle: 'solid',
+        },
+        linkStyle:{
+          color: "#999999",
+          fontSize: "13px",
+          fontWeight: "normal",
+          textDecoration: 'none',
+          fontFamily:'cursive',
+          padding:'0 10px'
         }
       };
     },
@@ -155,10 +234,22 @@
       },
     },
     methods: {
+      trackConfig(data) {
+                let track = this.$store.state.siteConfig.track;
+                let copyData = JSON.parse(JSON.stringify(data));
+                copyData.map(item => {
+                    let cache = item.linkItem.value;
+                    item.linkItem.value = `${cache}?${track}&utm_content=${item.textItem.value}&utm_campaign=footer`;
+                })
+                this.titleAndLink = copyData;
+            },
       setConfig(data) {
         if (data) {
           this.content = data.content_setting.editor_config.content;
-          this.bgStyle.backgroundColor = data.style_setting.style_config.background.color;
+          // this.titleAndLink = data.content_setting.add_item_config.linkArr;
+          // this.cacheData = data.content_setting.add_item_config.linkArr;
+          // this.trackConfig(data.content_setting.add_item_config.linkArr);
+          this.bgStyle.backgroundColor = data.style_setting.style_config.background.bgColor;
           this.bgStyle.backgroundImage = `url(${data.style_setting.style_config.background.bgImage})`;
           this.pdStyle.paddingTop = data.style_setting.pd_position_config.pd_style[0]['value'] + 'px';
           this.pdStyle.paddingBottom = data.style_setting.pd_position_config.pd_style[1]['value'] + 'px';
@@ -173,6 +264,12 @@
           this.borderStyle.borderTopColor = data.style_setting.style_config.border.border_top_color;
           this.borderStyle.borderTopWidth = data.style_setting.style_config.border.border_top_width + 'px';
           this.borderStyle.borderTopStyle = data.style_setting.style_config.border.border_top_style;
+
+
+          this.linkStyle.color = data.style_setting.style_config.link.color;
+          this.linkStyle.fontSize = data.style_setting.style_config.link.font_size + 'px';
+          this.linkStyle.fontWeight = data.style_setting.style_config.link.font_weight;
+          this.linkStyle.fontFamily = data.style_setting.style_config.link.fontFamily;
         }
       },
     },

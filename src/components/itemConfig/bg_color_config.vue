@@ -9,7 +9,7 @@
                 <el-color-picker v-model="configData.bgColor" show-alpha @active-change="activeChange"></el-color-picker>
             </el-form-item>
             <el-form-item label="background image">
-                <el-upload class="avatar-uploader" action='https://admin.fashionmia.net/opbm.php?a=EdmImages&m=Api' :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+                <el-upload class="avatar-uploader" :data="params" action="/api/v3/base_template/upload/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
                     <i class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
             </el-form-item>
@@ -17,6 +17,7 @@
     </div>
 </template>
 <script>
+import MXKpayEncrypt from "../../util/crypto";
 export default {
     name: "bg_color_config",
     props: {
@@ -32,6 +33,18 @@ export default {
             configData: {},
         }
     },
+  computed: {
+    params: {
+      get() {
+        let staumtime = new Date().getTime();
+        let cache = `${staumtime}.png_${staumtime}`;
+        return {
+          filename: MXKpayEncrypt(cache),
+        };
+      },
+      set() {},
+    },
+  },
     watch: {
         configObj: {
             handler(nval) {
@@ -45,19 +58,20 @@ export default {
             this.configData['bgColor'] = data;
         },
         handleAvatarSuccess(res) {
-            this.configData['imageUrl'] = res.data.img;
+            this.configData['imageUrl'] =  res && res.data &&res.data.data&&res.data.data.user_url;
         },
         beforeAvatarUpload(file) {
-            const isJPG = file.type === "image/jpeg";
-            const isLt2M = file.size / 1024 / 1024 < 2;
+            // const isJPG = file.type === "image/jpeg";
+            // const isLt2M = file.size / 1024 / 1024 < 2;
 
-            if (!isJPG) {
-                this.$message.error("上传头像图片只能是 JPG 格式!");
-            }
-            if (!isLt2M) {
-                this.$message.error("上传头像图片大小不能超过 2MB!");
-            }
-            return isJPG && isLt2M;
+            // if (!isJPG) {
+            //     this.$message.error("上传头像图片只能是 JPG 格式!");
+            // }
+            // if (!isLt2M) {
+            //     this.$message.error("上传头像图片大小不能超过 2MB!");
+            // }
+            // return isJPG && isLt2M;
+            return true
         },
     },
 };

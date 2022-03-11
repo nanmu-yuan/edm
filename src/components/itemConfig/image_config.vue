@@ -3,14 +3,15 @@
     <el-divider>{{configData.title}}</el-divider>
     <el-form>
       <el-form-item>
-        <el-upload class="avatar-uploader" action="https://admin.fashionmia.net/opbm.php?a=EdmImages&m=Api" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-         <el-button>SELECT IMAGE</el-button>
+        <el-upload class="avatar-uploader" :data="params" action="/api/v3/base_template/upload/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+          <el-button>SELECT IMAGE</el-button>
         </el-upload>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
+import MXKpayEncrypt from "../../util/crypto";
 export default {
   name: "image_config",
   props: {
@@ -27,6 +28,18 @@ export default {
       configData: {},
     };
   },
+  computed: {
+    params: {
+      get() {
+        let staumtime = new Date().getTime();
+        let cache = `${staumtime}.png_${staumtime}`;
+        return {
+          filename: MXKpayEncrypt(cache),
+        };
+      },
+      set() {},
+    },
+  },
   created() {
     this.defaultData = this.configObj;
   },
@@ -40,11 +53,10 @@ export default {
   },
   methods: {
     handleAvatarSuccess(res) {
-      this.configData["value"] = res && res.data && res.data.img;
+      this.configData["value"] = res && res.data && res.data.data&&res.data.data.user_url;
     },
     beforeAvatarUpload(file) {
       const isLt2M = file.size / 1024 / 1024 < 2;
-
       if (!isLt2M) {
         this.$message.error("上传头像图片大小不能超过 2MB!");
       }
@@ -54,7 +66,7 @@ export default {
 };
 </script>
 <style scoped>
-.warp-box{
-       border-top: 1px solid #fefefe;
-    }
+.warp-box {
+  border-top: 1px solid #fefefe;
+}
 </style>

@@ -21,12 +21,12 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td style="padding: 10px 10px 10px 10px;">
+                                          <td :style="fontStyleData.imagePadding">
                                             <table border="0" cellpadding="0" cellspacing="0" width="" style="">
                                               <tbody>
                                                 <tr>
                                                   <td style="font-size: 0; line-height: 0; text-align: center;"><a target="_blank" :href="item[0].url">
-                                                       <img v-if="item[0] && item[0].img" :src="item[0] && item[0].img" width="100%">
+                                                       <img v-if="item[0] && item[0].img" v-lazy="item[0] && item[0].img" width="100%">
                                                       <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
@@ -49,29 +49,29 @@
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.describe.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="text-align: center;"><a  target="_blank" :style="fontStyleData.describe"><span>{{item[0].goods_name}}</span></a></td>
+                                  <td style="text-align: center;"><a  target="_blank" :href="item[0].url" :style="fontStyleData.describe"><span  :title="item[0].goods_name" :style="fontStyleData.describe.span">{{item[0].goods_name}}</span></a></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.price.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="text-align:center;"><span :style="fontStyleData.price" >{{item[0].price}}</span><span> / </span><span  :style="fontStyleData.marketPrice">{{item[0].market_price}}</span></td>
+                                  <td style="text-align:center;"><span :style="fontStyleData.price" >{{item[0].price}}</span><span v-if="item[0].market_price"> / </span><span v-if="item[0].market_price"  :style="fontStyleData.marketPrice">{{item[0].market_price}}</span></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.button.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
                               <tbody>
                                 <tr>
@@ -79,7 +79,7 @@
                                     <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
                                     <!--[if !mso]><!-->
                                     <div :style="fontStyleData.button.border">
-                                      <!--<![endif]--><a class="webfont-fallback-1" target="_blank" :style="fontStyleData.button.text" :href="item[0].url">SHOP NOW</a>
+                                      <!--<![endif]--><a class="webfont-fallback-1" target="_blank" :style="fontStyleData.button.text" :href="item[0].url">{{btnText.value}}</a>
                                       <!--[if !mso]><!-->
                                     </div>
                                     <!--<![endif]-->
@@ -118,13 +118,13 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td style="padding: 10px 10px 10px 10px;">
+                                          <td :style="fontStyleData.imagePadding">
                                             <table border="0" cellpadding="0" cellspacing="0" width="" style="">
                                               <tbody>
                                                 <tr>
                                                   <td  style="font-size: 0; line-height: 0; text-align: center;">
                                                     <a target="_blank":href="item[1].url">
-                                                      <img v-if="item[1]&&item[1].img" :src="item[1].img" width="100%" alt="">
+                                                      <img v-if="item[1]&&item[1].img" v-lazy="item[1].img" width="100%" alt="">
                                                       <span v-else class="image-placeholder">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
@@ -147,29 +147,29 @@
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.describe.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="text-align: center;"><a :style="fontStyleData.describe"  :href="item[1].url"><span class="webfont-fallback-1">{{item[1].goods_name}}</span></a></td>
+                                  <td style="text-align: center;"><a :style="fontStyleData.describe"  :href="item[1].url"><span :title="item[1].goods_name" :style="fontStyleData.describe.span">{{item[1].goods_name}}</span></a></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.price.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="text-align:center;"><span :style="fontStyleData.price">{{item[1].price}}</span><span> / </span><span  :style="fontStyleData.marketPrice">{{item[1].market_price}}</span></td>
+                                  <td style="text-align:center;"><span :style="fontStyleData.price">{{item[1].price}}</span><span v-if="item[1].market_price"> / </span><span v-if="item[1].market_price"  :style="fontStyleData.marketPrice">{{item[1].market_price}}</span></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.button.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
                               <tbody>
                                 <tr>
@@ -177,7 +177,7 @@
                                     <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
                                     <!--[if !mso]><!-->
                                     <div :style="fontStyleData.button.border">
-                                      <!--<![endif]--><a  target="_blank" :href="item[1].url" :style="fontStyleData.button.text" href="">SHOP NOW</a>
+                                      <!--<![endif]--><a  target="_blank" :href="item[1].url" :style="fontStyleData.button.text" >{{btnText.value}}</a>
                                       <!--[if !mso]><!-->
                                     </div>
                                     <!--<![endif]-->
@@ -216,13 +216,13 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td style="padding: 10px 10px 10px 10px;">
+                                          <td :style="fontStyleData.imagePadding">
                                             <table border="0" cellpadding="0" cellspacing="0" width="" style="">
                                               <tbody>
                                                 <tr>
                                                   <td style="font-size: 0; line-height: 0; text-align: center;">
                                                     <a target="_blank" :href="item[2].url">
-                                                      <img  v-if="item[2] && item[2].img" :src="item[2] && item[2].img" width="100%" alt="">
+                                                      <img  v-if="item[2] && item[2].img" v-lazy="item[2] && item[2].img" width="100%" alt="">
                                                       <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
@@ -245,29 +245,29 @@
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.describe.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="text-align: center;"><a :style="fontStyleData.describe"  :href="item[2].url"><span class="webfont-fallback-1">{{item[2].goods_name}}</span></a></td>
+                                  <td style="text-align: center;"><a :style="fontStyleData.describe"  :href="item[2].url"><span :title="item[2].goods_name" :style="fontStyleData.describe.span">{{item[2].goods_name}}</span></a></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.price.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="text-align:center;"><span :style="fontStyleData.price">{{item[2].price}}</span><span> / </span><span  :style="fontStyleData.marketPrice">{{item[2].market_price}}</span></td>
+                                  <td style="text-align:center;"><span :style="fontStyleData.price">{{item[2].price}}</span><span v-if="item[2].market_price"> / </span><span v-if="item[2].market_price"  :style="fontStyleData.marketPrice">{{item[2].market_price}}</span></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.button.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
                               <tbody>
                                 <tr>
@@ -275,7 +275,7 @@
                                     <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
                                     <!--[if !mso]><!-->
                                     <div :style="fontStyleData.button.border">
-                                      <!--<![endif]--><a target="_blank"  :style="fontStyleData.button.text" :href="item[2].url">SHOP NOW</a>
+                                      <!--<![endif]--><a target="_blank"  :style="fontStyleData.button.text" :href="item[2].url">{{btnText.value}}</a>
                                       <!--[if !mso]><!-->
                                     </div>
                                     <!--<![endif]-->
@@ -314,13 +314,13 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tbody>
                                         <tr>
-                                          <td style="padding: 10px 10px 10px 10px;">
+                                          <td :style="fontStyleData.imagePadding">
                                             <table border="0" cellpadding="0" cellspacing="0" width="" style="">
                                               <tbody>
                                                 <tr>
                                                   <td class="mobile-product-listing-4-image-cell" style="font-size: 0; line-height: 0; text-align: center;">
                                                     <a target="_blank" :href="item[3].url">
-                                                      <img v-if="item[3] && item[3].img" :src="item[3] && item[3].img" width="100%" alt="">
+                                                      <img v-if="item[3] && item[3].img" v-lazy="item[3] && item[3].img" width="100%" alt="">
                                                       <span v-else class="image-placeholder" style="">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
                                                           <span class="placeholder-inner">
@@ -343,29 +343,29 @@
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.describe.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="text-align: center;"> <a :style="fontStyleData.describe"  :href="item[3].url"><span class="webfont-fallback-1">{{item[3].goods_name}}</span></a></td>
+                                  <td style="text-align: center;"> <a :style="fontStyleData.describe"  :href="item[3].url"><span :title="item[3].goods_name" :style="fontStyleData.describe.span">{{item[3].goods_name}}</span></a></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.price.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td style="text-align:center;"><span :style="fontStyleData.price">{{item[3].price}}</span><span> / </span><span  :style="fontStyleData.marketPrice">{{item[3].market_price}}</span></td>
+                                  <td style="text-align:center;"><span :style="fontStyleData.price">{{item[3].price}}</span><span v-if="item[3].market_price"> / </span><span v-if="item[3].market_price"  :style="fontStyleData.marketPrice">{{item[3].market_price}}</span></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding-top: 15px;">
+                          <td :style="fontStyleData.button.padTopAndBottom">
                             <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; border-collapse: separate !important;">
                               <tbody>
                                 <tr>
@@ -373,7 +373,7 @@
                                     <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
                                     <!--[if !mso]><!-->
                                       <div :style="fontStyleData.button.border">
-                                      <!--<![endif]--><a target="_blank" :style="fontStyleData.button.text" href="item[3].url">SHOP NOW</a>
+                                      <!--<![endif]--><a target="_blank" :style="fontStyleData.button.text" href="item[3].url">{{btnText.value}}</a>
                                       <!--[if !mso]><!-->
                                     </div>
                                     <!--<![endif]-->
@@ -408,6 +408,9 @@ export default {
     },
     fontStyle:{
       type:Object,
+    },
+    btnText:{
+      type:Object
     }
   },
   data() {

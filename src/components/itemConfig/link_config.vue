@@ -4,7 +4,6 @@
         <el-form>
             <el-form-item>
                 <el-input v-model="configData.value">
-                    <template slot="prepend">https://</template>
                 </el-input>
             </el-form-item>
         </el-form>

@@ -13,7 +13,8 @@
             </template>
             <el-form class="add-box">
               <el-form-item :label="item.linkItem.label">
-                <el-input v-model="item.linkItem.value"></el-input>
+                <el-input v-model="item.linkItem.value">
+                </el-input>
               </el-form-item>
               <el-form-item :label="item.textItem.label">
                 <el-input v-model="item.textItem.value"></el-input>

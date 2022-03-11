@@ -5,15 +5,22 @@
       <el-form-item>
         <el-input type="textarea" v-model="spus"></el-input>
       </el-form-item>
+      <el-form-item v-if="errorData">
+        <el-divider>Error Spu</el-divider>
+        <el-input class="error" :disabled='true' type="textarea" v-model="errorData"></el-input>
+      </el-form-item>
       <el-form-item>
-        <el-tooltip  class="item" effect="dark" content="需要选择站点" placement="top-start">
-          <el-button @click="submit" :disabled='disabled'>submmit</el-button>
-        </el-tooltip>
+          <el-button @click="submit" :disabled='disabled'>查询spu</el-button>
+           <el-tooltip class="item" effect="dark" content="展示当前选中产品模块的数据，可根据实际情况进行修改、排序。" placement="top-start">
+          <el-button v-if="true" @click="showOriginData">查看当前数据</el-button>
+          </el-tooltip>
       </el-form-item>
     </el-form>
+    <productList :ProductDialogVisible="ProductDialogVisible"></productList>
   </div>
 </template>
 <script>
+  import productList from '../commonBtn/productList.vue'
 import { mapState } from "vuex";
 export default {
   name: 'spu_config',
@@ -61,7 +68,12 @@ export default {
       defaultData: {},
       configData: {},
       disabled:true,
+      ProductDialogVisible:{
+        type:false,
+        dataList:[]
+      },
       spus: 'SPEHDJS3EIJ,SPQ0UXQAF2C',
+      errorData:'',
       originListData: {
           list:[],
           time:''
@@ -71,7 +83,12 @@ export default {
     }
   },
   methods: {
+    showOriginData(){
+      this.ProductDialogVisible.type = true;
+      this.ProductDialogVisible.dataList = this.$store.state.adminConfig.defaultArray[this.num]['content_setting']['spu_config']['list']
+    },
     submit() {
+      this.$store.commit('siteConfig/ERRORSPU','clear')
       let api = `${this.$store.state.siteConfig.currentSiteApi}`,
       promiseList = [],
       spus = this.spus.split(','),
@@ -83,7 +100,17 @@ export default {
         promiseList.push(this.get(url,spus[i]));
       }
       this.promiseAllarr(promiseList).then(res => {
-        this.originListData = this.dataOptimization(res,id,domainBase,siteList);
+       let errorSpu = this.$store.state.siteConfig.errorSpu;
+       this.errorData = errorSpu.join(",");
+       let newSpus = []; 
+        spus.forEach(item=>{
+          if(errorSpu.indexOf(item)<0){
+            newSpus.push(item)
+          }
+        })
+       this.spus = newSpus.join(',')
+       let scortData = this.sortDataList(res,newSpus);
+       this.originListData = this.dataOptimization(scortData,id,domainBase,siteList);
         this.$store.commit('adminConfig/UPDATEPRODUCTLIST',{
           num:this.num,
           list:this.originListData
@@ -113,9 +140,21 @@ export default {
         })
       })
     },
+    sortDataList(data,spus){
+      let sortList = [];
+      for(let i=0;i<data.length;i++){
+        let spu = data[i]['spu']||data[i]['goods_sn'];
+        for(let j=0;j<spus.length;j++){
+          if(spu==spus[j]){
+            sortList[j] = data[i]
+          }
+        }
+      }
+      return sortList;
+    },
     dataOptimization(data, id, domainBase, siteList) {
       let currentSiteName = siteList[id]['name'];
-      let track = `${this.$store.state.siteConfig.track}&utm_campaign=`;
+      let track = `${this.$store.state.siteConfig.track}`;
       return data.map(item => {
         let obj = {};
         if (siteList[id]['platform'] =='shopify') {
@@ -127,7 +166,7 @@ export default {
             obj.url = obj.url.replace(new RegExp("(^http.+com)*"), domainBase.replace(/\/$/, ''));
           }
           let cache = obj.url;
-          obj.url = `${cache}?${track}${item.spu}`
+          obj.url = `${cache}?${track}&utm_content=goods${item.spu}&utm_adset=goods`
           if (/^(http|https)/.test(item.img)) {
             obj.img = item.img;
           } else {
@@ -138,7 +177,7 @@ export default {
             obj.goods_name = item.name;
             obj.url = domainBase + item.handle + '-' + item.id + '.html?';
             let cache = obj.url;
-            obj.url = `${cache}?${track}${item.spu}`
+            obj.url = `${cache}${track}${item.spu}`
             obj.img = item.mainImg + '@!w420-h420';
             obj.price = '$' + item.salePrice.toFixed(2);
         } else if(siteList[id]['platform'] == 'Independence'){
@@ -147,14 +186,14 @@ export default {
              obj.img = item.mainImg;
              obj.price =item.price;
              let cache = obj.url;
-             obj.url = `${cache}?${track}`;
+             obj.url = `${cache}?${track}&utm_content=goods${item.spu}&utm_adset=goods`;
         }else if (siteList[id]['platform'] == 'meSystem') {
           let tmpUrl = "";
           obj.goods_name = item.goods_name;
           tmpUrl = item.goods_name.replace(/^\s+/, '').replace(/\s{2,}/g, ' ').replace(/\&*/g, '');
           obj.url = domainBase + tmpUrl.toLowerCase().split(' ').join('-') + '-' + item.id + '.html';
           let cache = obj.url;
-          obj.url = `${cache}?${track}${item.goods_sn}`
+          obj.url = `${cache}?${track}&utm_content=goods${item.goods_sn}&utm_adset=goods`
           obj.price = '$' + item.price.toFixed(2);
           var rep = currentSiteName == 'fashionmia' ? 'g-' : '';
           var sizePara = "";
@@ -182,11 +221,17 @@ export default {
   },
   created() {
     this.defaultData = this.configObj
+  },
+  components:{
+    productList
   }
 }
 </script>
 <style scoped>
 .warp-box {
   border-top: 1px solid #fefefe;
+}
+.error ::v-deep .el-textarea__inner{
+  border-color: red;
 }
 </style>

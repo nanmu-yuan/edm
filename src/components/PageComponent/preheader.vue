@@ -11,8 +11,8 @@
                     <tbody>
                       <tr>
                         <td :style="titleStyle">
-                          <span>{{ titleText }}</span>
-                          <a target="_blank" href="*[link_viewinbrowser]*" :style="linkStyle"><span>
+                          <a :style = "titleStyle"><span>{{ titleText }}</span></a>
+                          <a target="_blank" :href="linkUrl" :style="linkStyle"><span>
                               {{ linkText }}</span></a>
                         </td>
                       </tr>
@@ -82,18 +82,20 @@
                   value: "right",
                 },
               ],
-              value: "center",
+              value: "right",
             },
             style_config: {
               text: {
                 color: "#999999",
                 font_size: "13",
-                font_weight: "normal"
+                font_weight: "normal",
+                fontFamily:'cursive'
               },
               link: {
                 color: "#999999",
                 font_size: "13",
                 font_weight: "normal",
+                 fontFamily:'cursive'
               },
               background: {
                 bgImage: '',
@@ -135,14 +137,14 @@
           lineHeight: "115%",
           textAlign: "right",
           textDecoration: "none",
+          fontFamily:'cursive'
         },
         linkStyle: {
           color: "#cc3366",
-          fonFamily: "Arial, sans-serif",
           fontSize: "13px",
           fontWeight: "normal",
-          lineHeight: "115%",
           textDecoration: "none",
+          fontFamily:'cursive'
         },
         bgColor: {
           background: "",
@@ -182,14 +184,16 @@
       setConfig(data) {
         if (data) {
           this.titleText = data.content_setting.text_config.value;
-          this.linkUrl = "https://" + data.content_setting.link_config.value;
+          this.linkUrl = data.content_setting.link_config.value;
           this.titleStyle["textAlign"] = data.style_setting.select_config.value;
           this.bgColor["background"] = data.style_setting.style_config.background.color
           this.bgColor["backgroundImage"] = `url(${data.style_setting.style_config.background.bgImage})`;
           this.linkStyle.color = data.style_setting.style_config.link.color;
           this.linkStyle.fontWeight = data.style_setting.style_config.link.font_weight;
+          this.linkStyle.fontFamily = data.style_setting.style_config.link.fontFamily;
           this.linkStyle.fontSize = data.style_setting.style_config.link.font_size + 'px';
           this.titleStyle.color = data.style_setting.style_config.text.color;
+          this.titleStyle.fontFamily = data.style_setting.style_config.text.fontFamily;
           this.titleStyle.fontWeight = data.style_setting.style_config.text.font_weight;
           this.titleStyle.fontSize = data.style_setting.style_config.text.font_size + 'px';
           this.linkText = data.content_setting.link_text_config.value;

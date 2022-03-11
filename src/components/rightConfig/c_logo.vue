@@ -39,20 +39,24 @@ export default {
             configObj: {},
             rToolCom: {
                 content_config: [
-                     {
-                        component: toolConfig.text_config,
-                        configName: "text_config",
-                    },
-                    {
-                        component: toolConfig.link_config,
-                        configName: "link_config",
-                    },
+                    //  {
+                    //     component: toolConfig.text_config,
+                    //     configName: "text_config",
+                    // },
+                    // {
+                    //     component: toolConfig.link_config,
+                    //     configName: "link_config",
+                    // },
                     {
                         component: toolConfig.image_config,
                         configName: "image_config",
                     },
                 ],
                 style_config: [ 
+                    {
+                        component: toolConfig.select_config,
+                        configName: "select_config",
+                    },
                     {
                         component: toolConfig.style_config,
                         configName: "style_config",

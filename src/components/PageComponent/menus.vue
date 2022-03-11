@@ -113,7 +113,8 @@
                 color: '#000',
                 font_weight: 'normal',
                 lineHeight: '127%',
-                textAlign: 'right'
+                textAlign: 'right',
+                fontFamily:'cursive'
               },
               background: {
                 bgImage: '',
@@ -144,7 +145,8 @@
           fontSize: '12',
           color: '#000',
           fontWeight: 'normal',
-          textDecoration: 'none'
+          textDecoration: 'none',
+          fontFamily:'cursive'
         },
         pdBTStyle: {
           paddingTop: '',
@@ -194,7 +196,7 @@
             let copyData = JSON.parse(JSON.stringify(this.cacheData));
             copyData.map(item => {
               let cache = item.linkItem.value;
-              item.linkItem.value = `${cache}?${track}`;
+              item.linkItem.value = `${cache}?${track}&utm_content=navigation${item.textItem.value}&utm_adset=navigation`;
             })
             this.titleAndLink = copyData;
           }
@@ -208,7 +210,7 @@
         let copyData = JSON.parse(JSON.stringify(data));
         copyData.map(item => {
           let cache = item.linkItem.value;
-          item.linkItem.value = `${cache}?${track}`;
+          item.linkItem.value = `${cache}?${track}&utm_content=navigation${item.textItem.value}&utm_adset=navigation`;
         })
         this.titleAndLink = copyData;
       },
@@ -225,6 +227,7 @@
           this.fontStyle.fontSize = data.style_setting.style_config.link.font_size + 'px';
           this.fontStyle.color = data.style_setting.style_config.link.color;
           this.fontStyle.fontWeight = data.style_setting.style_config.link.font_weight;
+          this.fontStyle.fontFamily = data.style_setting.style_config.link.fontFamily;
           // border style
           this.borderStyle.borderBottomColor = data.style_setting.style_config.border.border_bottom_color;
           this.borderStyle.borderBottomWidth = data.style_setting.style_config.border.border_bottom_width + 'px';
