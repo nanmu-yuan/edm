@@ -123,7 +123,7 @@
                                               <tbody>
                                                 <tr>
                                                   <td  style="font-size: 0; line-height: 0; text-align: center;">
-                                                    <a target="_blank":href="item[1].url">
+                                                    <a target="_blank" :href="item[1].url">
                                                       <img v-if="item[1]&&item[1].img" v-lazy="item[1].img" width="100%" alt="">
                                                       <span v-else class="image-placeholder">
                                                         <span class="placeholder-style" style="width: 113px; height: 115px;">
@@ -373,7 +373,7 @@
                                     <!--[if (mso)|(IE) ]><table border="0" cellpadding="0" cellspacing="0"><tr><td style="line-height: 17px;text-align: center;"><![endif]-->
                                     <!--[if !mso]><!-->
                                       <div :style="fontStyleData.button.border">
-                                      <!--<![endif]--><a target="_blank" :style="fontStyleData.button.text" href="item[3].url">{{btnText.value}}</a>
+                                      <!--<![endif]--><a target="_blank" :style="fontStyleData.button.text" :href="item[3].url">{{btnText.value}}</a>
                                       <!--[if !mso]><!-->
                                     </div>
                                     <!--<![endif]-->
